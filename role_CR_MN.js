@@ -1,7 +1,7 @@
 var role_CR_MN = {
   /** @param {Creep} creep **/
   control(creep) {
-    var source = Game.getObjectById(creep.Memory.sources.sourceId);
+    var source = Game.getObjectById(sourceId);
     var targets = creep.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
         return (structure.structureType == STRUCTURE_EXTENSION ||

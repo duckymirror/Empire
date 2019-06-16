@@ -3,7 +3,6 @@
 *>---------------------------------< Start >----------------------------------<*
 *******************************************************************************/
 var roleSpawn = require("role.spawn");
-var roleTower = require("role.tower");
 var amountCreeps = require("amountCreeps");
 var amountCreepsIsLive = require("amountCreepsIsLive");
 /*******************************************************************************
