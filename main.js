@@ -43,6 +43,21 @@ module.exports.loop = function () {
     roleSpawn.run();
     amountCreepsIsLive.run();
     amountCreeps.run();
+    /*
+    console.log("=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:")
+    if (Memory.sourceId0) {
+      console.log("|>-< Source1 >-<|>-< OK >-<|")
+    } else {
+      console.log("|>-< Source1 >-<|>-< X >--<|")
+    }
+
+    if (Memory.sourceId1) {
+      console.log("|>-< Source2 >-<|>-< OK >-<|")
+    } else {
+      console.log("|>-< Source2 >-<|>-< X >--<|")
+    }
+    console.log("=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:")
+    */
 };
 /*******************************************************************************
 *>-------------------------------< Main loop >--------------------------------<*
