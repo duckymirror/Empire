@@ -5,11 +5,11 @@ var roleFarBuilder = {
             creep.memory.room = creep.room.name;
         }
 
-        if (creep.carry.energy === 0) {
+        if (creep.store[RESOURCE_ENERGY] === 0) {
             creep.memory.work = 0;
-        } else if (creep.room.name != "E49S39" && creep.carry.energy == creep.carryCapacity) {
+        } else if (creep.room.name != "E49S39" && creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             creep.memory.work = 1;
-        } else if (creep.carry.energy == creep.carryCapacity) {
+        } else if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             creep.memory.work = 2;
         }
 
