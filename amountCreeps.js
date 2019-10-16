@@ -1,19 +1,19 @@
 var amountCreeps = {
     run(amountCreeps) {
 
-        Memory.amountCreeps.amountMiners0InE51S39 = 1;
-        Memory.amountCreeps.amountMiners1InE51S39 = 1;
-        Memory.amountCreeps.amountTransportersInE51S39 = 3;
-        Memory.amountCreeps.amountBuildersInE51S39 = 1;
+        Memory.amountCreeps.amountMiners0InW49S29 = 1;
+        Memory.amountCreeps.amountMiners1InW49S29 = 1;
+        Memory.amountCreeps.amountTransportersInW49S29 = 3;
+        Memory.amountCreeps.amountBuildersInW49S29 = 2;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInE51S39 = 1;
+            Memory.amountCreeps.amountWarriorsInW49S29 = 1;
         } else {
-            Memory.amountCreeps.amountWarriorsInE51S39 = 0;
+            Memory.amountCreeps.amountWarriorsInW49S29 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInE51S39 = 0;
-        Memory.amountCreeps.amountFarBuildersInE51S39 = 2;
+        Memory.amountCreeps.amountClaimersInW49S29 = 0;
+        Memory.amountCreeps.amountFarBuildersInW49S29 = 2;
 
         //---------------------------------------------------------------------------------------
 
