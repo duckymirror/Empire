@@ -1,17 +1,16 @@
 var roleBuilder = {
     /** @param {Creep} creep **/
     control(creep) {
-        if (creep.carry.energy === 0 || creep.room.name != creep.memory.room) {
+        if (creep.store[RESOURCE_ENERGY] === 0 || creep.room.name != creep.memory.room) {
             creep.memory.building = false;
         }
-        if (creep.carry.energy == creep.carryCapacity && creep.room.name == creep.memory.room) {
+        if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity() && creep.room.name == creep.memory.room) {
             creep.memory.building = true;
         }
 
         if (creep.spawning) {
             creep.memory.room = creep.room.name;
         }
-
         if (creep.memory.building) {
             var constructionSite = creep.room.find(FIND_CONSTRUCTION_SITES);
             if (creep.room.controller.ticksToDowngrade <= 3000) {
