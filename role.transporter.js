@@ -38,7 +38,7 @@ var roleTransporter = {
 
         if (creep.memory.room == creep.room.name) {
             if (Memory.mode == 1) {
-                if (creep.carry.energy === 0) {
+                if (creep.store[RESOURCE_ENERGY] != creep.store.getCapacity()) {
                     creep.memory.work = 0;
                 } else if (targets.length > 0 || targets2.length > 0) {
                     creep.memory.work = 2;
@@ -52,7 +52,7 @@ var roleTransporter = {
                     creep.memory.work = 6;
                 }
             } else if (Memory.mode == 2) {
-                if (creep.carry.energy === 0) {
+                if (creep.store[RESOURCE_ENERGY] === 0) {
                     creep.memory.work = 0;
                 } else if (creep.room.controller) {
                     creep.memory.work = 6;
@@ -97,7 +97,7 @@ var roleTransporter = {
 
                 case 1:
                     creep.say("🚓");
-                    if (creep.carry.energy != 0) {
+                    if (creep.store[RESOURCE_ENERGY] != 0) {
                         if (creep.transfer(tower[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(tower[0]);
                         }
