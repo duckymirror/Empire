@@ -38,7 +38,7 @@ var roleTransporter = {
 
         if (creep.memory.room == creep.room.name) {
             if (Memory.mode == 1) {
-                if (creep.store[RESOURCE_ENERGY] != creep.store.getCapacity()) {
+                if (creep.store[RESOURCE_ENERGY] === 0) {
                     creep.memory.work = 0;
                 } else if (targets.length > 0 || targets2.length > 0) {
                     creep.memory.work = 2;
