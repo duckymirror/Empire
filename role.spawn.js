@@ -3,7 +3,7 @@ var roleSpawn = {
         /**********************************************************************************************************\
        |                                               Переменные                                                   |
         \**********************************************************************************************************/
-        var originSpawn = Game.spawns["Spawn1"];
+        var originSpawn = Game.spawns["SP-R1"];
         var originRoom = originSpawn.room;
         var sources = originRoom.find(FIND_SOURCES);
 
@@ -75,19 +75,19 @@ var roleSpawn = {
        |                                         Спаун: меньше 550 энергии                                          |
         \**********************************************************************************************************/
         if (amountEnergy <= 549) {
-            if (Memory.room.W49S29.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S29) {
+            if (Memory.room.W49S27.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S27) {
                 var newName = "miner0 | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, MOVE, MOVE], newName,
                     { memory: { role: "miner0", sourceId: sources[0].id } });
-            } else if (Memory.room.W49S29.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S29) {
+            } else if (Memory.room.W49S27.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S27) {
                 var newName = "transporter | " + numberCreep;
                 originSpawn.spawnCreep([WORK, CARRY, MOVE, MOVE], newName,
                     { memory: { role: "transporter" } });
-            } else if (Memory.room.W49S29.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S29) {
+            } else if (Memory.room.W49S27.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S27) {
                 var newName = "miner1 | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, MOVE, MOVE], newName,
                     { memory: { role: "miner1", sourceId: sources[1].id } });
-            } else if (Memory.room.W49S29.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S29) {
+            } else if (Memory.room.W49S27.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S27) {
                 var newName = "builder | " + numberCreep;
                 originSpawn.spawnCreep([WORK, CARRY, MOVE, MOVE], newName,
                     { memory: { role: "builder" } });
@@ -96,31 +96,31 @@ var roleSpawn = {
            |                                   Спаун: меньше 799 энергии и больше 549                                   |
             \**********************************************************************************************************/
         } else if (amountEnergy > 549 && amountEnergy <= 799) {
-            if (Memory.room.W49S29.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S29) {
+            if (Memory.room.W49S27.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S27) {
                 var newName = "miner0 | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, WORK, MOVE], newName,
                     { memory: { role: "miner0", sourceId: sources[0].id } });
-            } else if (Memory.room.W49S29.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S29) {
+            } else if (Memory.room.W49S27.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S27) {
                 var newName = "transporter | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE, CARRY], newName,
                     { memory: { role: "transporter" } });
-            } else if (Memory.room.W49S29.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S29) {
+            } else if (Memory.room.W49S27.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S27) {
                 var newName = "miner1" + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, WORK, MOVE], newName,
                     { memory: { role: "miner1", sourceId: sources[1].id } });
-            } else if (Memory.room.W49S29.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S29) {
+            } else if (Memory.room.W49S27.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S27) {
                 var newName = "builder | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, CARRY, MOVE, CARRY, MOVE], newName,
                     { memory: { role: "builder" } });
-            } else if (Memory.room.W49S29.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S29) {
+            } else if (Memory.room.W49S27.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S27) {
                 var newName = "warrior | " + numberCreep;
                 originSpawn.spawnCreep([RANGED_ATTACK, RANGED_ATTACK, MOVE, MOVE, RANGED_ATTACK, MOVE], newName,
                     { memory: { role: "warrior" } });
-            } else if (Memory.room.W49S29.amountClaimersIsLive < Memory.amountCreeps.amountClaimersInW49S29) {
+            } else if (Memory.room.W49S27.amountClaimersIsLive < Memory.amountCreeps.amountClaimersInW49S27) {
                 var newName = "claimer | " + numberCreep;
                 originSpawn.spawnCreep([CLAIM, MOVE, MOVE], newName,
                     { memory: { role: "claimer" } });
-            } else if (Memory.room.W49S29.amountFarBuildersIsLive < Memory.amountCreeps.amountFarBuildersInW49S29) {
+            } else if (Memory.room.W49S27.amountFarBuildersIsLive < Memory.amountCreeps.amountFarBuildersInW49S27) {
                 var newName = "farBuilder | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], newName,
                     { memory: { role: "farBuilder" } });
@@ -129,61 +129,61 @@ var roleSpawn = {
            |                                          Спаун: больше 800 энергии                                         |
             \**********************************************************************************************************/
         } else if (amountEnergy > 799 && amountEnergy < 1299) {
-            if (Memory.room.W49S29.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S29) {
+            if (Memory.room.W49S27.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S27) {
                 var newName = "miner0 | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
                     { memory: { role: "miner0", sourceId: sources[0].id } });
-            } else if (Memory.room.W49S29.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S29) {
+            } else if (Memory.room.W49S27.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S27) {
                 var newName = "transporter | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, CARRY, CARRY, MOVE, MOVE, CARRY, MOVE], newName,
                     { memory: { role: "transporter" } });
-            } else if (Memory.room.W49S29.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S29) {
+            } else if (Memory.room.W49S27.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S27) {
                 var newName = "miner1 | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, WORK, MOVE], newName,
                     { memory: { role: "miner1", sourceId: sources[1].id } });
-            } else if (Memory.room.W49S29.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S29) {
+            } else if (Memory.room.W49S27.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S27) {
                 var newName = "builder | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, CARRY, MOVE, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], newName,
                     { memory: { role: "builder" } });
-            } else if (Memory.room.W49S29.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S29) {
+            } else if (Memory.room.W49S27.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S27) {
                 var newName = "warrior | " + numberCreep;
                 originSpawn.spawnCreep([RANGED_ATTACK, RANGED_ATTACK, MOVE, MOVE, RANGED_ATTACK, RANGED_ATTACK, MOVE, MOVE], newName,
                     { memory: { role: "warrior" } });
-            } else if (Memory.room.W49S29.amountClaimersIsLive < Memory.amountCreeps.amountClaimersInW49S29) {
+            } else if (Memory.room.W49S27.amountClaimersIsLive < Memory.amountCreeps.amountClaimersInW49S27) {
                 var newName = "claimer | " + numberCreep;
                 originSpawn.spawnCreep([CLAIM, MOVE, MOVE], newName,
                     { memory: { role: "claimer" } });
-            } else if (Memory.room.W49S29.amountFarBuildersIsLive < Memory.amountCreeps.amountFarBuildersInW49S29) {
+            } else if (Memory.room.W49S27.amountFarBuildersIsLive < Memory.amountCreeps.amountFarBuildersInW49S27) {
                 var newName = "farBuilder | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, WORK, CARRY, MOVE, MOVE], newName,
                     { memory: { role: "farBuilder" } });
             }
         } else if (amountEnergy > 1299) {
-            if (Memory.room.W49S29.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S29) {
+            if (Memory.room.W49S27.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW49S27) {
                 var newName = "miner0 | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
                     { memory: { role: "miner0", sourceId: sources[0].id } });
-            } else if (Memory.room.W49S29.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S29) {
+            } else if (Memory.room.W49S27.amountTransportersIsLive < Memory.amountCreeps.amountTransportersInW49S27) {
                 var newName = "transporter | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, MOVE, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY, MOVE], newName,
                     { memory: { role: "transporter" } });
-            } else if (Memory.room.W49S29.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S29) {
+            } else if (Memory.room.W49S27.amountMiners1IsLive < Memory.amountCreeps.amountMiners1InW49S27) {
                 var newName = "miner1 | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, WORK, MOVE], newName,
                     { memory: { role: "miner1", sourceId: sources[1].id } });
-            } else if (Memory.room.W49S29.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S29) {
+            } else if (Memory.room.W49S27.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S27) {
                 var newName = "builder | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, CARRY, MOVE, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY, MOVE], newName,
                     { memory: { role: "builder" } });
-            } else if (Memory.room.W49S29.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S29) {
+            } else if (Memory.room.W49S27.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S27) {
                 var newName = "warrior | " + numberCreep;
                 originSpawn.spawnCreep([RANGED_ATTACK, RANGED_ATTACK, MOVE, MOVE, RANGED_ATTACK, RANGED_ATTACK, MOVE, MOVE], newName,
                     { memory: { role: "warrior" } });
-            } else if (Memory.room.W49S29.amountClaimersIsLive < Memory.amountCreeps.amountClaimersInW49S29) {
+            } else if (Memory.room.W49S27.amountClaimersIsLive < Memory.amountCreeps.amountClaimersInW49S27) {
                 var newName = "claimer | " + numberCreep;
                 originSpawn.spawnCreep([CLAIM, MOVE, MOVE], newName,
                     { memory: { role: "claimer" } });
-            } else if (Memory.room.W49S29.amountFarBuildersIsLive < Memory.amountCreeps.amountFarBuildersInW49S29) {
+            } else if (Memory.room.W49S27.amountFarBuildersIsLive < Memory.amountCreeps.amountFarBuildersInW49S27) {
                 var newName = "farBuilder | " + numberCreep;
                 originSpawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], newName,
                     { memory: { role: "farBuilder" } });
