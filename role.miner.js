@@ -12,8 +12,6 @@ var roleMiner = {
             } else {
                 creep.harvest(source);
             }
-        } else {
-            creep.moveTo(new RoomPosition(25, 25, creep.memory.room));
         }
     }
 };
