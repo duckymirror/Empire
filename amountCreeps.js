@@ -3,7 +3,7 @@ var amountCreeps = {
 
         Memory.amountCreeps.amountMiners0InW49S28 = 1;
         Memory.amountCreeps.amountMiners1InW49S28 = 1;
-        Memory.amountCreeps.amountTransportersInW49S28 = 1;
+        Memory.amountCreeps.amountTransportersInW49S28 = 2;
         Memory.amountCreeps.amountBuildersInW49S28 = 1;
 
         if (Game.flags.attack) {
@@ -13,7 +13,7 @@ var amountCreeps = {
         }
 
         Memory.amountCreeps.amountClaimersInW49S28 = 1;
-        Memory.amountCreeps.amountFarBuildersInW49S28 = 1;
+        Memory.amountCreeps.amountFarBuildersInW49S28 = 0;
 
         //---------------------------------------------------------------------------------------
 
