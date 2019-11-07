@@ -8,7 +8,7 @@ Memory.target = {};
 Memory.room = {};
 Memory.amountCreeps = {};
 
-Memory.room.W49S27 = {};
+Memory.room.W49S28 = {};
 Memory.room.E49S39 = {};
 Memory.room.E16S28 = {};
 Memory.room.W13N47 = {};
