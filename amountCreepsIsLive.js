@@ -1,5 +1,6 @@
 var amountCreepsIsLive = {
     run(amountCreeps) {
+
         var roleMiner = require("role.miner");
         var roleBuilder = require("role.builder");
         var roleTransporter = require("role.transporter");
