@@ -3,33 +3,33 @@ var amountCreeps = {
 
         Memory.amountCreeps.amountMiners0InW49S28 = 1;
         Memory.amountCreeps.amountMiners1InW49S28 = 1;
-        Memory.amountCreeps.amountTransportersInW49S28 = 3;
-        Memory.amountCreeps.amountBuildersInW49S28 = 3;
+        Memory.amountCreeps.amountTransportersInW49S28 = 1;
+        Memory.amountCreeps.amountBuildersInW49S28 = 1;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInW49S28 = 2;
+            Memory.amountCreeps.amountWarriorsInW49S28 = 1;
         } else {
             Memory.amountCreeps.amountWarriorsInW49S28 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInW49S28 = 0;
-        Memory.amountCreeps.amountFarBuildersInW49S28 = 0;
+        Memory.amountCreeps.amountClaimersInW49S28 = 1;
+        Memory.amountCreeps.amountFarBuildersInW49S28 = 1;
 
         //---------------------------------------------------------------------------------------
 
-        Memory.amountCreeps.amountMiners0InE49S39 = 1;
-        Memory.amountCreeps.amountMiners1InE49S39 = 1;
-        Memory.amountCreeps.amountTransportersInE49S39 = 3;
-        Memory.amountCreeps.amountBuildersInE49S39 = 1;
+        Memory.amountCreeps.amountMiners0InW49S27 = 1;
+        Memory.amountCreeps.amountMiners1InW49S27 = 1;
+        Memory.amountCreeps.amountTransportersInW49S27 = 3;
+        Memory.amountCreeps.amountBuildersInW49S27 = 1;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInE49S39 = 1;
+            Memory.amountCreeps.amountWarriorsInW49S27 = 2;
         } else {
-            Memory.amountCreeps.amountWarriorsInE49S39 = 0;
+            Memory.amountCreeps.amountWarriorsInW49S27 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInE49S39 = 0;
-        Memory.amountCreeps.amountFarBuildersInE49S39 = 0;
+        Memory.amountCreeps.amountClaimersInW49S27 = 0;
+        Memory.amountCreeps.amountFarBuildersInW49S27 = 0;
 
         //---------------------------------------------------------------------------------------
 
