@@ -23,7 +23,7 @@ var amountCreeps = {
         Memory.amountCreeps.amountBuildersInW49S27 = 1;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInW49S27 = 2;
+            Memory.amountCreeps.amountWarriorsInW49S27 = 1;
         } else {
             Memory.amountCreeps.amountWarriorsInW49S27 = 0;
         }
@@ -62,6 +62,7 @@ var amountCreeps = {
 
         Memory.amountCreeps.amountClaimersInW13N47 = 0;
         Memory.amountCreeps.amountFarBuildersInW13N47 = 0;
+
     }
 };
 module.exports = amountCreeps;
