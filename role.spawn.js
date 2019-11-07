@@ -16,12 +16,7 @@ var roleSpawn = {
                     return (structure.structureType == STRUCTURE_EXTENSION);
                 }
             });
-            var amountExtension1 = extensions1.length;
-            if (amountExtension1 > 0) {
-                var amountEnergy1 = amountExtension1 * 50 + 300;
-            } else {
-                var amountEnergy1 = 300;
-            }
+            var amountEnergy1 = originRoom1.energyCapacityAvailable;
         }
 
         if (Game.spawns["Spawn3"]) {
@@ -33,12 +28,7 @@ var roleSpawn = {
                     return (structure.structureType == STRUCTURE_EXTENSION);
                 }
             });
-            var amountExtension2 = extensions2.length;
-            if (amountExtension2 > 0) {
-                var amountEnergy2 = amountExtension2 * 50 + 300;
-            } else {
-                var amountEnergy2 = 300;
-            }
+            var amountEnergy2 = originRoom2.energyCapacityAvailable;
         }
 
         if (Game.spawns["Spawn4"]) {
@@ -50,12 +40,7 @@ var roleSpawn = {
                     return (structure.structureType == STRUCTURE_EXTENSION);
                 }
             });
-            var amountExtension3 = extensions3.length;
-            if (amountExtension3 > 0) {
-                var amountEnergy3 = amountExtension3 * 50 + 300;
-            } else {
-                var amountEnergy3 = 300;
-            }
+            var amountEnergy3 = originRoom3.energyCapacityAvailable;
         }
 
         var numberCreep = Math.random();
@@ -64,12 +49,12 @@ var roleSpawn = {
                 return (structure.structureType == STRUCTURE_EXTENSION);
             }
         });
-        var amountExtension = extensions.length;
-        if (amountExtension > 0) {
-            var amountEnergy = amountExtension * 50 + 300;
-        } else {
-            var amountEnergy = 300;
-        }
+        var amountEnergy = originRoom.energyCapacityAvailable;
+        
+        Memory.stats["room." + originRoom.name + ".energyAvailable"] = originRoom.energyAvailable;
+        Memory.stats["room." + originRoom1.name + ".energyAvailable"] = originRoom1.energyAvailable;
+        //Memory.stats["room." + originRoom2.name + ".energyAvailable"] = originRoom.energyAvailable;
+        //Memory.stats["room." + originRoom3.name + ".energyAvailable"] = originRoom.energyAvailable;
 
         /**********************************************************************************************************\
        |                                         Спаун: меньше 550 энергии                                          |
@@ -214,6 +199,10 @@ var roleSpawn = {
                     var newName = "builder | " + numberCreep;
                     originSpawn1.spawnCreep([WORK, CARRY, MOVE, MOVE], newName,
                         { memory: { role: "builder" } });
+                } else if (Memory.room.W49S27.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S27) {
+                    var newName = "warrior | " + numberCreep;
+                    originSpawn1.spawnCreep([RANGED_ATTACK, MOVE], newName,
+                        { memory: { role: "warrior" } });
                 }
                 /**********************************************************************************************************\
                |                                   Спаун: меньше 799 энергии и больше 549                                   |
@@ -233,7 +222,7 @@ var roleSpawn = {
                         { memory: { role: "miner1", sourceId: sources1[1].id } });
                 } else if (Memory.room.W49S27.amountBuildersIsLive < Memory.amountCreeps.amountBuildersInW49S27) {
                     var newName = "builder | " + numberCreep;
-                    originSpawn1.spawnCreep([WORK, WORK, WORK, CARRY, MOVE, CARRY, MOVE], newName,
+                    originSpawn1.spawnCreep([WORK, WORK, CARRY, MOVE, CARRY, MOVE, MOVE, MOVE], newName,
                         { memory: { role: "builder" } });
                 } else if (Memory.room.W49S27.amountWarriorsIsLive < Memory.amountCreeps.amountWarriorsInW49S27) {
                     var newName = "warrior | " + numberCreep;
