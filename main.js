@@ -10,7 +10,7 @@ Memory.amountCreeps = {};
 
 Memory.room.W49S28 = {};
 Memory.room.W49S27 = {};
-Memory.room.E16S28 = {};
+Memory.room.W48S27 = {};
 Memory.room.W13N47 = {};
 Memory.stats = {};
 
