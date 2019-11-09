@@ -7,7 +7,7 @@ var roleFarBuilder = {
 
         if (creep.store[RESOURCE_ENERGY] === 0) {
             creep.memory.work = 0;
-        } else if (creep.room.name != "W49S27" && creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
+        } else if (creep.room.name != "W48S27" && creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             creep.memory.work = 1;
         } else if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             creep.memory.work = 2;
@@ -17,7 +17,7 @@ var roleFarBuilder = {
             creep.memory.workMode = 0;
         } else if (creep.memory.room == "W11N46") {
             creep.memory.workMode = 1;
-        } else if (creep.memory.room == "W49S27") {
+        } else if (creep.memory.room == "W48S27") {
             creep.memory.workMode = 2;
         }
 
@@ -26,7 +26,7 @@ var roleFarBuilder = {
             case 0:
                 switch (creep.memory.work) {
                     case 0:
-                        if (creep.room.name == "W49S27") {
+                        if (creep.room.name == "W48S27") {
                             var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(source, { reusePath: 20 });
@@ -41,7 +41,7 @@ var roleFarBuilder = {
                         break;
 
                     case 1:
-                        creep.moveTo(new RoomPosition(25, 25, "W49S27"));
+                        creep.moveTo(new RoomPosition(25, 25, "W48S27"));
                         break;
 
                     case 2:
