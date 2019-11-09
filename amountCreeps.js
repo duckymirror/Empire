@@ -12,7 +12,7 @@ var amountCreeps = {
             Memory.amountCreeps.amountWarriorsInW49S28 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInW49S28 = 1;
+        Memory.amountCreeps.amountClaimersInW49S28 = 0;
         Memory.amountCreeps.amountFarBuildersInW49S28 = 0;
 
         //---------------------------------------------------------------------------------------
@@ -33,19 +33,19 @@ var amountCreeps = {
 
         //---------------------------------------------------------------------------------------
 
-        Memory.amountCreeps.amountMiners0InE16S28 = 0;
-        Memory.amountCreeps.amountMiners1InE16S28 = 1;
-        Memory.amountCreeps.amountTransportersInE16S28 = 2;
-        Memory.amountCreeps.amountBuildersInE16S28 = 4;
+        Memory.amountCreeps.amountMiners0InW48S27 = 1;
+        Memory.amountCreeps.amountMiners1InW48S27 = 1;
+        Memory.amountCreeps.amountTransportersInW48S27 = 2;
+        Memory.amountCreeps.amountBuildersInW48S27 = 1;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInE16S28 = 1;
+            Memory.amountCreeps.amountWarriorsInW48S27 = 1;
         } else {
-            Memory.amountCreeps.amountWarriorsInE16S28 = 0;
+            Memory.amountCreeps.amountWarriorsInW48S27 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInE16S28 = 0;
-        Memory.amountCreeps.amountFarBuildersInE16S28 = 0;
+        Memory.amountCreeps.amountClaimersInW48S27 = 0;
+        Memory.amountCreeps.amountFarBuildersInW48S27 = 0;
 
         //---------------------------------------------------------------------------------------
 
