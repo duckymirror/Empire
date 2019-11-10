@@ -7,17 +7,17 @@ var roleFarBuilder = {
 
         if (creep.store[RESOURCE_ENERGY] === 0) {
             creep.memory.work = 0;
-        } else if (creep.room.name != "W48S27" && creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
+        } else if (creep.room.name != "W49S26" && creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             creep.memory.work = 1;
         } else if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
             creep.memory.work = 2;
         }
 
-        if (creep.memory.room == "W49S28") {
+        if (creep.memory.room == "W49S28" || creep.memory.room == "W49S27") {
             creep.memory.workMode = 0;
         } else if (creep.memory.room == "W11N46") {
             creep.memory.workMode = 1;
-        } else if (creep.memory.room == "W48S27") {
+        } else if (creep.memory.room == "W49S26") {
             creep.memory.workMode = 2;
         }
 
@@ -26,7 +26,7 @@ var roleFarBuilder = {
             case 0:
                 switch (creep.memory.work) {
                     case 0:
-                        if (creep.room.name == "W48S27") {
+                        if (creep.room.name == "W49S26") {
                             var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(source, { reusePath: 20 });
@@ -36,12 +36,14 @@ var roleFarBuilder = {
                                 if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                     creep.moveTo(creep.room.storage);
                                 }
+                            } else {
+                              creep.moveTo(new RoomPosition(25, 25, "W49S26"));
                             }
                         }
                         break;
 
                     case 1:
-                        creep.moveTo(new RoomPosition(25, 25, "W48S27"));
+                        creep.moveTo(new RoomPosition(25, 25, "W49S26"));
                         break;
 
                     case 2:
