@@ -56,24 +56,44 @@ var roleSpawn = {
         Memory.stats["room." + originRoom.name + ".controllerProgress"] = originRoom.controller.progress;
         Memory.stats["room." + originRoom.name + ".controllerProgressTotal"] = originRoom.controller.progressTotal;
         Memory.stats["room." + originRoom.name + ".controllerLevel"] = originRoom.controller.level;
+        if (originRoom.storage) {
+          Memory.stats["room." + originRoom.name + ".storageCapacityEnergy"] = originRoom.storage.store[RESOURCE_ENERGY];
+        } else {
+          Memory.stats["room." + originRoom.name + ".storageCapacityEnergy"] = 0;
+        }
 
         Memory.stats["room." + originRoom1.name + ".energyCapacityAvailable"] = amountEnergy1;
         Memory.stats["room." + originRoom1.name + ".energyAvailable"] = originRoom1.energyAvailable;
         Memory.stats["room." + originRoom1.name + ".controllerProgress"] = originRoom1.controller.progress;
         Memory.stats["room." + originRoom1.name + ".controllerProgressTotal"] = originRoom1.controller.progressTotal;
         Memory.stats["room." + originRoom1.name + ".controllerLevel"] = originRoom1.controller.level;
+        if (originRoom1.storage) {
+          Memory.stats["room." + originRoom1.name + ".storageCapacityEnergy"] = originRoom1.storage.store[RESOURCE_ENERGY];
+        } else {
+          Memory.stats["room." + originRoom1.name + ".storageCapacityEnergy"] = 0;
+        }
 
         Memory.stats["room." + originRoom2.name + ".energyCapacityAvailable"] = amountEnergy2;
         Memory.stats["room." + originRoom2.name + ".energyAvailable"] = originRoom2.energyAvailable;
         Memory.stats["room." + originRoom2.name + ".controllerProgress"] = originRoom2.controller.progress;
         Memory.stats["room." + originRoom2.name + ".controllerProgressTotal"] = originRoom2.controller.progressTotal;
         Memory.stats["room." + originRoom2.name + ".controllerLevel"] = originRoom2.controller.level;
+        if (originRoom2.storage) {
+          Memory.stats["room." + originRoom2.name + ".storageCapacityEnergy"] = originRoom2.storage.store[RESOURCE_ENERGY];
+        } else {
+          Memory.stats["room." + originRoom2.name + ".storageCapacityEnergy"] = 0;
+        }
 
         Memory.stats["room." + "W49S26" + ".energyCapacityAvailable"] = 0;
         Memory.stats["room." + "W49S26" + ".energyAvailable"] = 0;
         Memory.stats["room." + "W49S26" + ".controllerProgress"] = 0;
         Memory.stats["room." + "W49S26" + ".controllerProgressTotal"] = 0;
         Memory.stats["room." + "W49S26" + ".controllerLevel"] = 0;
+        //if (originRoom3.storage) {
+        //  Memory.stats["room." + "W49S26" + ".storageCapacityEnergy"] = originRoom.storage.store[RESOURCE_ENERGY];
+        //} else {
+        Memory.stats["room." + "W49S26" + ".storageCapacityEnergy"] = 0;
+        //}
 
 
         /**********************************************************************************************************\
