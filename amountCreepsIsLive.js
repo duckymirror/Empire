@@ -32,13 +32,13 @@ var amountCreepsIsLive = {
         Memory.room.W48S27.amountClaimersIsLive = 0;
         Memory.room.W48S27.amountFarBuildersIsLive = 0;
 
-        Memory.room.W13N47.amountMiners0IsLive = 0;
-        Memory.room.W13N47.amountMiners1IsLive = 0;
-        Memory.room.W13N47.amountBuildersIsLive = 0;
-        Memory.room.W13N47.amountTransportersIsLive = 0;
-        Memory.room.W13N47.amountWarriorsIsLive = 0;
-        Memory.room.W13N47.amountClaimersIsLive = 0;
-        Memory.room.W13N47.amountFarBuildersIsLive = 0;
+        Memory.room.W49S26.amountMiners0IsLive = 0;
+        Memory.room.W49S26.amountMiners1IsLive = 0;
+        Memory.room.W49S26.amountBuildersIsLive = 0;
+        Memory.room.W49S26.amountTransportersIsLive = 0;
+        Memory.room.W49S26.amountWarriorsIsLive = 0;
+        Memory.room.W49S26.amountClaimersIsLive = 0;
+        Memory.room.W49S26.amountFarBuildersIsLive = 0;
 
         for (var i in Game.creeps) {
             var creep = Game.creeps[i];
@@ -51,8 +51,8 @@ var amountCreepsIsLive = {
                         Memory.room.W49S27.amountMiners0IsLive++;
                     } else if (creep.memory.room == "W48S27") {
                         Memory.room.W48S27.amountMiners0IsLive++;
-                    } else if (creep.memory.room == "W13N47") {
-                        Memory.room.W13N47.amountMiners0IsLive++;
+                    } else if (creep.memory.room == "W49S26") {
+                        Memory.room.W49S26.amountMiners0IsLive++;
                     }
                     break;
                 case "miner1":
@@ -63,8 +63,8 @@ var amountCreepsIsLive = {
                         Memory.room.W49S27.amountMiners1IsLive++;
                     } else if (creep.memory.room == "W48S27") {
                         Memory.room.W48S27.amountMiners1IsLive++;
-                    } else if (creep.memory.room == "W13N47") {
-                        Memory.room.W13N47.amountMiners1IsLive++;
+                    } else if (creep.memory.room == "W49S26") {
+                        Memory.room.W49S26.amountMiners1IsLive++;
                     }
                     break;
                 case "builder":
@@ -75,8 +75,8 @@ var amountCreepsIsLive = {
                         Memory.room.W49S27.amountBuildersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
                         Memory.room.W48S27.amountBuildersIsLive++;
-                    } else if (creep.memory.room == "W13N47") {
-                        Memory.room.W13N47.amountBuildersIsLive++;
+                    } else if (creep.memory.room == "W49S26") {
+                        Memory.room.W49S26.amountBuildersIsLive++;
                     }
                     break;
                 case "transporter":
@@ -87,8 +87,8 @@ var amountCreepsIsLive = {
                         Memory.room.W49S27.amountTransportersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
                         Memory.room.W48S27.amountTransportersIsLive++;
-                    } else if (creep.memory.room == "W13N47") {
-                        Memory.room.W13N47.amountTransportersIsLive++;
+                    } else if (creep.memory.room == "W49S26") {
+                        Memory.room.W49S26.amountTransportersIsLive++;
                     }
                     break;
                 case "claimer":
@@ -99,8 +99,8 @@ var amountCreepsIsLive = {
                         Memory.room.W49S27.amountClaimersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
                         Memory.room.W48S27.amountClaimersIsLive++;
-                    } else if (creep.memory.room == "W13N47") {
-                        Memory.room.W13N47.amountClaimersIsLive++;
+                    } else if (creep.memory.room == "W49S26") {
+                        Memory.room.W49S26.amountClaimersIsLive++;
                     }
                     break;
                 case "warrior":
@@ -111,8 +111,8 @@ var amountCreepsIsLive = {
                         Memory.room.W49S27.amountWarriorsIsLive++;
                     } else if (creep.memory.room == "W48S27") {
                         Memory.room.W48S27.amountWarriorsIsLive++;
-                    } else if (creep.memory.room == "W13N47") {
-                        Memory.room.W13N47.amountWarriorsIsLive++;
+                    } else if (creep.memory.room == "W49S26") {
+                        Memory.room.W49S26.amountWarriorsIsLive++;
                     }
                     break;
                 case "farBuilder":
@@ -123,8 +123,8 @@ var amountCreepsIsLive = {
                         Memory.room.W49S27.amountFarBuildersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
                         Memory.room.W48S27.amountFarBuildersIsLive++;
-                    } else if (creep.memory.room == "W13N47") {
-                        Memory.room.W13N47.amountFarBuilders0IsLive++;
+                    } else if (creep.memory.room == "W49S26") {
+                        Memory.room.W49S26.amountFarBuilders0IsLive++;
                     }
                     break;
             }
