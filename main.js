@@ -11,7 +11,7 @@ Memory.amountCreeps = {};
 Memory.room.W49S28 = {};
 Memory.room.W49S27 = {};
 Memory.room.W48S27 = {};
-Memory.room.W13N47 = {};
+Memory.room.W49S26 = {};
 Memory.stats = {};
 
 module.exports.loop = function () {
