@@ -28,7 +28,7 @@ var roleSpawn = {
                     return (structure.structureType == STRUCTURE_EXTENSION);
                 }
             });
-            var amountEnergy2 = 300//originRoom2.energyCapacityAvailable;
+            var amountEnergy2 = originRoom2.energyCapacityAvailable;
         }
 
         if (Game.spawns["Spawn4"]) {
@@ -43,7 +43,7 @@ var roleSpawn = {
             var amountEnergy3 = originRoom3.energyCapacityAvailable;
         }
 
-        var numberCreep = Math.random();
+        var numberCreep = Game.time;
         var extensions = originRoom.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION);
@@ -51,10 +51,30 @@ var roleSpawn = {
         });
         var amountEnergy = originRoom.energyCapacityAvailable;
 
+        Memory.stats["room." + originRoom.name + ".energyCapacityAvailable"] = amountEnergy;
         Memory.stats["room." + originRoom.name + ".energyAvailable"] = originRoom.energyAvailable;
+        Memory.stats["room." + originRoom.name + ".controllerProgress"] = originRoom.controller.progress;
+        Memory.stats["room." + originRoom.name + ".controllerProgressTotal"] = originRoom.controller.progressTotal;
+        Memory.stats["room." + originRoom.name + ".controllerLevel"] = originRoom.controller.level;
+
+        Memory.stats["room." + originRoom1.name + ".energyCapacityAvailable"] = amountEnergy1;
         Memory.stats["room." + originRoom1.name + ".energyAvailable"] = originRoom1.energyAvailable;
-        //Memory.stats["room." + originRoom2.name + ".energyAvailable"] = originRoom2.energyAvailable;
-        //Memory.stats["room." + originRoom3.name + ".energyAvailable"] = originRoom.energyAvailable;
+        Memory.stats["room." + originRoom1.name + ".controllerProgress"] = originRoom1.controller.progress;
+        Memory.stats["room." + originRoom1.name + ".controllerProgressTotal"] = originRoom1.controller.progressTotal;
+        Memory.stats["room." + originRoom1.name + ".controllerLevel"] = originRoom1.controller.level;
+
+        Memory.stats["room." + originRoom2.name + ".energyCapacityAvailable"] = amountEnergy2;
+        Memory.stats["room." + originRoom2.name + ".energyAvailable"] = originRoom2.energyAvailable;
+        Memory.stats["room." + originRoom2.name + ".controllerProgress"] = originRoom2.controller.progress;
+        Memory.stats["room." + originRoom2.name + ".controllerProgressTotal"] = originRoom2.controller.progressTotal;
+        Memory.stats["room." + originRoom2.name + ".controllerLevel"] = originRoom2.controller.level;
+
+        Memory.stats["room." + "W49S26" + ".energyCapacityAvailable"] = 0;
+        Memory.stats["room." + "W49S26" + ".energyAvailable"] = 0;
+        Memory.stats["room." + "W49S26" + ".controllerProgress"] = 0;
+        Memory.stats["room." + "W49S26" + ".controllerProgressTotal"] = 0;
+        Memory.stats["room." + "W49S26" + ".controllerLevel"] = 0;
+
 
         /**********************************************************************************************************\
        |                                         Спаун: меньше 550 энергии                                          |
@@ -324,7 +344,7 @@ var roleSpawn = {
                 /**********************************************************************************************************\
                |                                   Спаун: меньше 799 энергии и больше 549                                   |
                 \**********************************************************************************************************/
-            } else if (amountEnergy2 > 549 && amountEnergy1 <= 799) {
+            } else if (amountEnergy2 > 549 && amountEnergy2 <= 799) {
                 if (Memory.room.W48S27.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW48S27) {
                     var newName = "miner0 | " + numberCreep;
                     originSpawn2.spawnCreep([WORK, WORK, WORK, WORK, MOVE], newName,
