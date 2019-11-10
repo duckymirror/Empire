@@ -25,6 +25,6 @@ module.exports.loop = function () {
     roleSpawn.run();
     amountCreepsIsLive.run();
     amountCreeps.run();
-    Memory.stats["colony.Bucket"] = Game.cpu.bucket;
+    //Memory.stats["colony.Bucket"] = Game.cpu.bucket;
     Memory.stats["colony.usedCpu"] = Game.cpu.getUsed()
 };
