@@ -393,7 +393,7 @@ var roleSpawn = {
                 /**********************************************************************************************************\
                |                                          Спаун: больше 800 энергии                                         |
                 \**********************************************************************************************************/
-            } else if (amountEnergy2 >= 800 && amountEnergy2 < 1200) {
+            } else if (amountEnergy2 >= 800 && amountEnergy2 < 1300) {
                 if (Memory.room.W48S27.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW48S27) {
                     var newName = "miner0 | " + numberCreep;
                     originSpawn2.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
@@ -423,7 +423,7 @@ var roleSpawn = {
                     originSpawn2.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY], newName,
                         { memory: { role: "farBuilder" } });
                 }
-            } else if (amountEnergy2 >= 1200) {
+            } else if (amountEnergy2 >= 1300) {
                 if (Memory.room.W48S27.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InW48S27) {
                     var newName = "miner0 | " + numberCreep;
                     originSpawn2.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
