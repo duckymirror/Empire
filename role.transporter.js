@@ -18,7 +18,6 @@ var roleTransporter = {
       if (creep.spawning) {
           creep.memory.room = creep.room.name;
       }
-
         if (creep.memory.room == creep.room.name) {
             if (creep.store[RESOURCE_ENERGY] == 0) {
               creep.memory.work = 0;
@@ -26,7 +25,7 @@ var roleTransporter = {
               creep.memory.work = 2;
             } else if (tower[0] || tower[1]) {
               creep.memory.work = 4;
-            } else if (storageInRoom) {
+            } else if (storageInRoom.store[RESOURCE_ENERGY] < 750001) {
               creep.memory.work = 5;
             } else {
               creep.memory.work = 6;
@@ -38,35 +37,34 @@ var roleTransporter = {
                     creep.say("📥");
 
                     if (droppedEnergy) {
-                        if (droppedEnergy[0] && droppedEnergy[0].amount > 700 && creep.memory.source != 1) {
-                            creep.memory.source = 0;
-                        } else if (droppedEnergy[1] && droppedEnergy[1].amount > 700) {
-                            creep.memory.source = 1;
-                        } else {
-                            creep.memory.source = 2;
+                      if (droppedEnergy[0] && droppedEnergy[0].amount > 700 && creep.memory.source != 1) {
+                        creep.memory.source = 0;
+                      } else if (droppedEnergy[1] && droppedEnergy[1].amount > 700) {
+                        creep.memory.source = 1;
+                      } else {
+                        creep.memory.source = 2;
+                      }
+
+                    switch (creep.memory.source) {
+                      case 0:
+                        if (creep.pickup(droppedEnergy[0]) == ERR_NOT_IN_RANGE) {
+                          creep.moveTo(droppedEnergy[0]);
                         }
-
-                        switch (creep.memory.source) {
-                            case 0:
-                                if (creep.pickup(droppedEnergy[0]) == ERR_NOT_IN_RANGE) {
-                                    creep.moveTo(droppedEnergy[0]);
-                                }
-                                break;
-
-                            case 1:
-                                if (creep.pickup(droppedEnergy[1]) == ERR_NOT_IN_RANGE) {
-                                    creep.moveTo(droppedEnergy[1]);
-                                }
-                                break;
-
-                            case 2:
-                                var targetDroppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
-                                if (creep.pickup(targetDroppedEnergy) == ERR_NOT_IN_RANGE) {
-                                    creep.moveTo(targetDroppedEnergy);
-                                }
-                                break;
+                        break;
+                      case 1:
+                        if (creep.pickup(droppedEnergy[1]) == ERR_NOT_IN_RANGE) {
+                          creep.moveTo(droppedEnergy[1]);
                         }
+                          break;
+                      case 2:
+                        var targetDroppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+                        if (creep.pickup(targetDroppedEnergy) == ERR_NOT_IN_RANGE) {
+                          creep.moveTo(targetDroppedEnergy);
+                        }
+                        break;
+                      }
                     }
+
                     break;
 
                 case 2:
