@@ -1,20 +1,23 @@
 var amountCreepsIsLive = {
     run(amountCreeps) {
 
-        var roleMiner = require("role.miner");
+        var DroneMiner = require("DroneMiner");
         var roleBuilder = require("role.builder");
         var roleTransporter = require("role.transporter");
         var roleWarrior = require("role.warrior");
         var roleClaimer = require("role.claimer");
         var roleFarBuilder = require("role.farBuilder");
 
-        Memory.room.W49S28.amountMiners0IsLive = 0;
-        Memory.room.W49S28.amountMiners1IsLive = 0;
-        Memory.room.W49S28.amountBuildersIsLive = 0;
-        Memory.room.W49S28.amountTransportersIsLive = 0;
-        Memory.room.W49S28.amountWarriorsIsLive = 0;
-        Memory.room.W49S28.amountClaimersIsLive = 0;
-        Memory.room.W49S28.amountFarBuildersIsLive = 0;
+        var roleRefiller = require("role.refiller");
+
+        Memory.room.E45N9.amountMiners0IsLive = 0;
+        Memory.room.E45N9.amountMiners1IsLive = 0;
+        Memory.room.E45N9.amountBuildersIsLive = 0;
+        Memory.room.E45N9.amountTransportersIsLive = 0;
+        Memory.room.E45N9.amountWarriorsIsLive = 0;
+        Memory.room.E45N9.amountClaimersIsLive = 0;
+        Memory.room.E45N9.amountFarBuildersIsLive = 0;
+        Memory.room.E45N9.amountRefillersIsLive = 0
 
         Memory.room.W49S27.amountMiners0IsLive = 0;
         Memory.room.W49S27.amountMiners1IsLive = 0;
@@ -44,9 +47,9 @@ var amountCreepsIsLive = {
             var creep = Game.creeps[i];
             switch (creep.memory.role) {
                 case "miner0":
-                    roleMiner.control(creep);
-                    if (creep.memory.room == "W49S28") {
-                        Memory.room.W49S28.amountMiners0IsLive++;
+                    DroneMiner.control(creep);
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountMiners0IsLive++;
                     } else if (creep.memory.room == "W49S27") {
                         Memory.room.W49S27.amountMiners0IsLive++;
                     } else if (creep.memory.room == "W48S27") {
@@ -56,9 +59,9 @@ var amountCreepsIsLive = {
                     }
                     break;
                 case "miner1":
-                    roleMiner.control(creep);
-                    if (creep.memory.room == "W49S28") {
-                        Memory.room.W49S28.amountMiners1IsLive++;
+                    DroneMiner.control(creep);
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountMiners1IsLive++;
                     } else if (creep.memory.room == "W49S27") {
                         Memory.room.W49S27.amountMiners1IsLive++;
                     } else if (creep.memory.room == "W48S27") {
@@ -69,8 +72,8 @@ var amountCreepsIsLive = {
                     break;
                 case "builder":
                     roleBuilder.control(creep);
-                    if (creep.memory.room == "W49S28") {
-                        Memory.room.W49S28.amountBuildersIsLive++;
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountBuildersIsLive++;
                     } else if (creep.memory.room == "W49S27") {
                         Memory.room.W49S27.amountBuildersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
@@ -81,8 +84,8 @@ var amountCreepsIsLive = {
                     break;
                 case "transporter":
                     roleTransporter.control(creep);
-                    if (creep.memory.room == "W49S28") {
-                        Memory.room.W49S28.amountTransportersIsLive++;
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountTransportersIsLive++;
                     } else if (creep.memory.room == "W49S27") {
                         Memory.room.W49S27.amountTransportersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
@@ -93,8 +96,8 @@ var amountCreepsIsLive = {
                     break;
                 case "claimer":
                     roleClaimer.control(creep);
-                    if (creep.memory.room == "W49S28") {
-                        Memory.room.W49S28.amountClaimersIsLive++;
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountClaimersIsLive++;
                     } else if (creep.memory.room == "W49S27") {
                         Memory.room.W49S27.amountClaimersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
@@ -105,8 +108,8 @@ var amountCreepsIsLive = {
                     break;
                 case "warrior":
                     roleWarrior.control(creep);
-                    if (creep.memory.room == "W49S28") {
-                        Memory.room.W49S28.amountWarriorsIsLive++;
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountWarriorsIsLive++;
                     } else if (creep.memory.room == "W49S27") {
                         Memory.room.W49S27.amountWarriorsIsLive++;
                     } else if (creep.memory.room == "W48S27") {
@@ -117,8 +120,8 @@ var amountCreepsIsLive = {
                     break;
                 case "farBuilder":
                     roleFarBuilder.control(creep);
-                    if (creep.memory.room == "W49S28") {
-                        Memory.room.W49S28.amountFarBuildersIsLive++;
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountFarBuildersIsLive++;
                     } else if (creep.memory.room == "W49S27") {
                         Memory.room.W49S27.amountFarBuildersIsLive++;
                     } else if (creep.memory.room == "W48S27") {
@@ -127,6 +130,11 @@ var amountCreepsIsLive = {
                         Memory.room.W49S26.amountFarBuilders0IsLive++;
                     }
                     break;
+                case "refiller":
+                    roleRefiller.control(creep);
+                    if (creep.memory.room == "E45N9") {
+                        Memory.room.E45N9.amountRefillersIsLive++;
+                    }
             }
         }
     }
