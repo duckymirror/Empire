@@ -8,11 +8,10 @@ Memory.target = {};
 Memory.room = {};
 Memory.amountCreeps = {};
 
-Memory.room.W49S28 = {};
+Memory.room.E45N9 = {};
 Memory.room.W49S27 = {};
 Memory.room.W48S27 = {};
 Memory.room.W49S26 = {};
-Memory.stats = {};
 
 module.exports.loop = function () {
 
@@ -25,6 +24,4 @@ module.exports.loop = function () {
     roleSpawn.run();
     amountCreepsIsLive.run();
     amountCreeps.run();
-    //Memory.stats["colony.Bucket"] = Game.cpu.bucket;
-    Memory.stats["colony.usedCpu"] = Game.cpu.getUsed()
 };
