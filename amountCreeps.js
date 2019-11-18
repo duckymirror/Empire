@@ -1,19 +1,21 @@
 var amountCreeps = {
     run(amountCreeps) {
 
-        Memory.amountCreeps.amountMiners0InW49S28 = 1;
-        Memory.amountCreeps.amountMiners1InW49S28 = 1;
-        Memory.amountCreeps.amountTransportersInW49S28 = 2;
-        Memory.amountCreeps.amountBuildersInW49S28 = 3;
+        Memory.amountCreeps.amountMiners0InE45N9 = 1;
+        Memory.amountCreeps.amountMiners1InE45N9 = 1;
+        Memory.amountCreeps.amountTransportersInE45N9 = 4;
+        Memory.amountCreeps.amountBuildersInE45N9 = 2;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInW49S28 = 0;
+            Memory.amountCreeps.amountWarriorsInE45N9 = 1;
         } else {
-            Memory.amountCreeps.amountWarriorsInW49S28 = 0;
+            Memory.amountCreeps.amountWarriorsInE45N9 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInW49S28 = 1;
-        Memory.amountCreeps.amountFarBuildersInW49S28 = 0;
+        Memory.amountCreeps.amountClaimersInE45N9 = 0;
+        Memory.amountCreeps.amountFarBuildersInE45N9 = 0;
+
+        Memory.amountCreeps.amountRefillersInE45N9 = 1;
 
         //---------------------------------------------------------------------------------------
 
@@ -23,12 +25,12 @@ var amountCreeps = {
         Memory.amountCreeps.amountBuildersInW49S27 = 2;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInW49S27 = 0;
+            Memory.amountCreeps.amountWarriorsInW49S27 = 1;
         } else {
             Memory.amountCreeps.amountWarriorsInW49S27 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInW49S27 = 1;
+        Memory.amountCreeps.amountClaimersInW49S27 = 0;
         Memory.amountCreeps.amountFarBuildersInW49S27 = 0;
 
         //---------------------------------------------------------------------------------------
@@ -36,7 +38,7 @@ var amountCreeps = {
         Memory.amountCreeps.amountMiners0InW48S27 = 1;
         Memory.amountCreeps.amountMiners1InW48S27 = 1;
         Memory.amountCreeps.amountTransportersInW48S27 = 2;
-        Memory.amountCreeps.amountBuildersInW48S27 = 1;
+        Memory.amountCreeps.amountBuildersInW48S27 = 2;
 
         if (Game.flags.attack) {
             Memory.amountCreeps.amountWarriorsInW48S27 = 1;
