@@ -31,7 +31,7 @@ var roleTransporter = {
 				creep.memory.work = 0;
 			} else if (targets) {
 				creep.memory.work = 2;
-			} else if (storageInRoom && storageInRoom.store[RESOURCE_ENERGY] != 1000000) {
+			} else if (storageInRoom && storageInRoom.store[RESOURCE_ENERGY] != 500000) {
 				creep.memory.work = 5;
 			} else {
 				creep.memory.work = 6;
