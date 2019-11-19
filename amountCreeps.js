@@ -3,7 +3,7 @@ var amountCreeps = {
 
         Memory.amountCreeps.amountMiners0InE45N9 = 1;
         Memory.amountCreeps.amountMiners1InE45N9 = 1;
-        Memory.amountCreeps.amountTransportersInE45N9 = 4;
+        Memory.amountCreeps.amountTransportersInE45N9 = 1;
         Memory.amountCreeps.amountBuildersInE45N9 = 2;
 
         if (Game.flags.attack) {

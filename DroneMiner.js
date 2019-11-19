@@ -89,7 +89,7 @@ var DroneMiner = {
 
                 } else {
 
-                    if (creep.room.storage.store[RESOURCE_ENERGY] < 750001) {
+                    if (creep.room.storage.store[RESOURCE_ENERGY] < 500000) {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
