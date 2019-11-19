@@ -16,7 +16,27 @@ var roleTower = {
                     return (creep.owner.username != "kotyara");
                 }
             });
+
+            var friendsCreeps = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS, 10, {
+                filter: (creep) => {
+                    return (creep.owner.username == "kotyara");
+                }
+            });
+
+            var rampartsNear = tower.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_RAMPART) && structure.pos.inRangeTo(tower.pos, 10);
+                }
+            });
             
+            if (friendsCreeps && rampartsNear) {
+                if (rampartsNear[0].isPublic == false) {
+                    rampartsNear[0].setPublic(true)
+                }
+            } else if (rampartsNear && rampartsNear[0].isPublic == true) {
+                rampartsNear[0].setPublic(false)
+            }
+
             var roads = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_ROAD) && structure.hits < structure.hitsMax;
