@@ -11,7 +11,11 @@ var roleTower = {
         for (var i in towers){
             
             var tower = towers[i];
-            var hostileCreeps = tower.room.find(FIND_HOSTILE_CREEPS);
+            var hostileCreeps = tower.room.find(FIND_HOSTILE_CREEPS, {
+                filter: (creep) => {
+                    return (creep.owner.username != "kotyara");
+                }
+            });
             
             var roads = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -23,30 +27,17 @@ var roleTower = {
                     return (structure.structureType == STRUCTURE_WALL) && structure.hits < 1000000;
                 }
             });
-            var allRamparts = tower.room.find(FIND_STRUCTURES, {
+            var ramparts = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_RAMPART);
+                    return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 1000000;
                 }
             });
-            if (allRamparts.length < 3) {
-                var ramparts = tower.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < structure.hitsMax;
-                    }
-                });
-            } else {
-                var ramparts = tower.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 1000000;
-                    }
-                });
-            }
             var brokenRamparts = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 10000;
                 }
             });
-            
+
             if (hostileCreeps.length == 0) {
                 if (tower.store[RESOURCE_ENERGY] > 699) {
                     if (brokenRamparts.length > 0) {
@@ -64,22 +55,11 @@ var roleTower = {
                     }
                 }
             } else {
-                if (hostileCreeps.length > 1) {
-                    if (hostileCreeps[0].owner.name = "kotyara") {
-                        if (hostileCreeps[1].owner.name = "kotyara") {
-                            console.log("Котяра здесь");
-                        } else {
-                            tower.attack(hostileCreeps[1]);
-                        }
-                    } else {
-                        tower.attack(hostileCreeps[1]);
+                if (hostileCreeps.length > 0) {
+                    if (hostileCreeps.length > 1) {
+                        Memory.amountCreeps.amountWarriorsInE45N9 = 1;
                     }
-                } else {
-                    if (hostileCreeps[0].owner.name = "kotyara") {
-                        console.log("Котяра здесь");
-                    } else {
-                        tower.attack(hostileCreeps[0]);
-                    }
+                    tower.attack(hostileCreeps[0]);
                 }
             }
         }
