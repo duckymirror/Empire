@@ -8,6 +8,9 @@
 1  - В комнате нельзя добывать, потому что она занята другим игроком (*)
 2  - В источнике ресурсов закончились ресурсы (*)
 3  - В комнате присутствует СЕТЬ, но крип не имеет CARRY
+97 - Крип движется к СЕТИ
+98 - Крип движется к ИСТОЧНИКУ
+99 - Крип добывает
 
 (*) - Добыча ресурсов не идет, если данный код активен
 
@@ -45,16 +48,19 @@ var DroneMiner = {
                         if (creep.store[RESOURCE_ENERGY] < creep.store.getCapacity) {
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(source, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.say("98")
                             } else if (creep.harvest(source) == ERR_NOT_OWNER) {
                                 creep.say("1")
                             } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
                                 creep.say('2')
                             } else {
                                 creep.harvest(source);
+                                creep.say("99")
                             }
                         } else {
                             if (creep.transfer(linkInRoom[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(linkInRoom[0]);
+                                creep.say("97")
                             }
                         }
 
@@ -68,6 +74,7 @@ var DroneMiner = {
                             creep.say('2')
                         } else {
                             creep.harvest(source);
+                            creep.say("99")
                         }
                         creep.say("3");
 
@@ -85,6 +92,7 @@ var DroneMiner = {
                             creep.say('2')
                         } else {
                             creep.harvest(source);
+                            creep.say("99")
                         }
                         
                     } else {
@@ -93,12 +101,14 @@ var DroneMiner = {
                             if (containerNear[0].store[RESOURCE_ENERGY] != containerNear[0].store.getCapacity) {
                                 if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                                     creep.moveTo(containerNear[0].pos, {reusePath: 50, visualizePathStyle: visualizePath});
+                                    creep.say("98")
                                 } else if (creep.harvest(source) == ERR_NOT_OWNER) {
                                     creep.say("1")
                                 } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
                                     creep.say('2')
                                 } else {
                                     creep.harvest(source);
+                                    creep.say("99")
                                 }
                             } else {
                                 creep.say("01")
@@ -108,6 +118,7 @@ var DroneMiner = {
                                 creep.say("0")
                             } else {
                                 creep.moveTo(source, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.say("98")
                             }
                         }
 
@@ -118,6 +129,7 @@ var DroneMiner = {
                 if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                     if (!creep.pos.isEqualTo(containerNear[0].pos)) {
                         creep.moveTo(containerNear[0].pos, {reusePath: 50, visualizePathStyle: visualizePath});
+                        creep.say("98")
                     } else if (containerNear[0].store[RESOURCE_ENERGY] < 2000) {
                         if (creep.harvest(source) == ERR_NOT_OWNER) {
                             creep.say("1")
@@ -125,6 +137,7 @@ var DroneMiner = {
                             creep.say('2')
                         } else {
                             creep.harvest(source);
+                            creep.say("99")
                         }
                     } else {
                         creep.say("02")
@@ -132,8 +145,10 @@ var DroneMiner = {
                 } else {
                     if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(source, {reusePath: 50, visualizePathStyle: visualizePath});
+                        creep.say("98")
                     } else {
                         creep.harvest(source);
+                        creep.say("99")
                     }
                 }
 
