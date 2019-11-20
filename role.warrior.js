@@ -4,7 +4,17 @@ var roleWarrior = {
         if (creep.spawning) {
             creep.memory.room = creep.room.name;
         }
-
+    
+        var friendsCreeps = creep.room.find(FIND_HOSTILE_CREEPS, {
+            filter: (creep) => {
+                return (creep.owner.username == "kotyara");
+            }
+        });
+        
+        if (friendsCreeps.length > 0) {
+            creep.say("Привет!", (true));
+        }
+        
         var hostileCreeps = creep.pos.findInRange(FIND_HOSTILE_CREEPS, 3, {
             filter: (creep) => {
                 return (creep.owner.username != "kotyara");
