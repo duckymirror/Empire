@@ -29,7 +29,7 @@ var roleBuilder = {
 		});
         if (creep.memory.building) {
             var constructionSite = creep.room.find(FIND_CONSTRUCTION_SITES);
-            if (creep.room.controller.ticksToDowngrade <= 3000) {
+            if (creep.room.controller && creep.room.controller.ticksToDowngrade <= 3000) {
                 if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.room.controller);
                 }
