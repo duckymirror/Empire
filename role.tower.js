@@ -17,7 +17,7 @@ var roleTower = {
                 }
             });
 
-            var friendsCreeps = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS, 10, {
+            var friendsCreeps = tower.pos.findInRange(FIND_HOSTILE_CREEPS, 6, {
                 filter: (creep) => {
                     return (creep.owner.username == "kotyara");
                 }
@@ -29,7 +29,7 @@ var roleTower = {
                 }
             });
             
-            if (friendsCreeps && rampartsNear) {
+            if (friendsCreeps.length > 0 && rampartsNear) {
                 if (rampartsNear[0].isPublic == false) {
                     rampartsNear[0].setPublic(true)
                 }
