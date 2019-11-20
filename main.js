@@ -9,8 +9,8 @@ Memory.room = {};
 Memory.amountCreeps = {};
 
 Memory.room.E45N9 = {};
-Memory.room.W49S27 = {};
-Memory.room.W48S27 = {};
+Memory.room.E46N9 = {};
+Memory.room.E48N5 = {};
 Memory.room.W49S26 = {};
 
 module.exports.loop = function () {
