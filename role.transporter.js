@@ -46,7 +46,7 @@ var roleTransporter = {
 						}
 					}
 
-					if (containerNear && (containerNear[0].store[RESOURCE_ENERGY] > 50 || containerNear[1].store[RESOURCE_ENERGY] > 50)) {
+					if (containerNear.length > 0 && (containerNear[0] && containerNear[0].store[RESOURCE_ENERGY] > 50 || containerNear[1] && containerNear[1].store[RESOURCE_ENERGY] > 50)) {
 						if (containerNear[0].store[RESOURCE_ENERGY] > 50) {
 							if(creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 								creep.moveTo(containerNear[0]);
@@ -57,12 +57,10 @@ var roleTransporter = {
 							}
 						}
 					} else {
-						if (droppedEnergy[0] && droppedEnergy[0].amount > 700 && creep.memory.source != 1) {
+						if (droppedEnergy[0] && droppedEnergy[0].amount > 300 && creep.memory.source != 1) {
 							creep.memory.source = 0;
-						} else if (droppedEnergy[1] && droppedEnergy[1].amount > 700) {
+						} else if (droppedEnergy[1] && droppedEnergy[1].amount > 300) {
 							creep.memory.source = 1;
-						} else {
-							creep.memory.source = 2;
 						}
 						switch (creep.memory.source) {
 							case 0:
