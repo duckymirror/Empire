@@ -13,41 +13,43 @@ var amountCreeps = {
         }
 
         Memory.amountCreeps.amountClaimersInE45N9 = 0;
-        Memory.amountCreeps.amountFarBuildersInE45N9 = 0;
+        Memory.amountCreeps.amountFarBuildersInE45N9 = 1;
 
         Memory.amountCreeps.amountRefillersInE45N9 = 1;
 
         //---------------------------------------------------------------------------------------
 
-        Memory.amountCreeps.amountMiners0InW49S27 = 1;
-        Memory.amountCreeps.amountMiners1InW49S27 = 1;
-        Memory.amountCreeps.amountTransportersInW49S27 = 3;
-        Memory.amountCreeps.amountBuildersInW49S27 = 2;
+        Memory.amountCreeps.amountMiners0InE46N9 = 1;
+        Memory.amountCreeps.amountMiners1InE46N9 = 1;
+        Memory.amountCreeps.amountTransportersInE46N9 = 2;
+        Memory.amountCreeps.amountBuildersInE46N9 = 2;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInW49S27 = 1;
+            Memory.amountCreeps.amountWarriorsInE46N9 = 1;
         } else {
-            Memory.amountCreeps.amountWarriorsInW49S27 = 0;
+            Memory.amountCreeps.amountWarriorsInE46N9 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInW49S27 = 0;
-        Memory.amountCreeps.amountFarBuildersInW49S27 = 0;
+        Memory.amountCreeps.amountClaimersInE46N9 = 0;
+        Memory.amountCreeps.amountFarBuildersInE46N9 = 0;
+        
+        Memory.amountCreeps.amountRefillersInE45N9 = 0;
 
         //---------------------------------------------------------------------------------------
 
-        Memory.amountCreeps.amountMiners0InW48S27 = 1;
-        Memory.amountCreeps.amountMiners1InW48S27 = 1;
-        Memory.amountCreeps.amountTransportersInW48S27 = 2;
-        Memory.amountCreeps.amountBuildersInW48S27 = 2;
+        Memory.amountCreeps.amountMiners0InE48N5 = 1;
+        Memory.amountCreeps.amountMiners1InE48N5 = 1;
+        Memory.amountCreeps.amountTransportersInE48N5 = 2;
+        Memory.amountCreeps.amountBuildersInE48N5 = 2;
 
         if (Game.flags.attack) {
-            Memory.amountCreeps.amountWarriorsInW48S27 = 1;
+            Memory.amountCreeps.amountWarriorsInE48N5 = 1;
         } else {
-            Memory.amountCreeps.amountWarriorsInW48S27 = 0;
+            Memory.amountCreeps.amountWarriorsInE48N5 = 0;
         }
 
-        Memory.amountCreeps.amountClaimersInW48S27 = 0;
-        Memory.amountCreeps.amountFarBuildersInW48S27 = 0;
+        Memory.amountCreeps.amountClaimersInE48N5 = 0;
+        Memory.amountCreeps.amountFarBuildersInE48N5 = 0;
 
         //---------------------------------------------------------------------------------------
 
