@@ -2,9 +2,9 @@
 
 Коды предупреждения:
 
-0  - В хранилище находится более 750000 энергии (*)
 01 - Хранилище и контейнер заполнены (*)
 02 - Контейнер заполнен (*)
+0  - В хранилище находится более 999999 энергии (*)
 1  - В комнате нельзя добывать, потому что она занята другим игроком (*)
 2  - В источнике ресурсов закончились ресурсы (*)
 3  - В комнате присутствует СЕТЬ, но крип не имеет CARRY
@@ -89,7 +89,7 @@ var DroneMiner = {
 
                 } else {
 
-                    if (creep.room.storage.store[RESOURCE_ENERGY] < 500000) {
+                    if (creep.room.storage.store[RESOURCE_ENERGY] < 1000000) {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
