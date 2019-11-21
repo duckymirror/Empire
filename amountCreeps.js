@@ -11,9 +11,10 @@ var amountCreeps = {
         } else {
             Memory.amountCreeps.amountWarriorsInE45N9 = 0;
         }
+        Memory.amountCreeps.amountDroneHealerInE45N9 = 0;
 
         Memory.amountCreeps.amountClaimersInE45N9 = 0;
-        Memory.amountCreeps.amountFarBuildersInE45N9 = 1;
+        Memory.amountCreeps.amountFarBuildersInE45N9 = 0;
 
         Memory.amountCreeps.amountRefillersInE45N9 = 1;
 
@@ -21,35 +22,39 @@ var amountCreeps = {
 
         Memory.amountCreeps.amountMiners0InE46N9 = 1;
         Memory.amountCreeps.amountMiners1InE46N9 = 1;
-        Memory.amountCreeps.amountTransportersInE46N9 = 2;
-        Memory.amountCreeps.amountBuildersInE46N9 = 2;
+        Memory.amountCreeps.amountTransportersInE46N9 = 4;
+        Memory.amountCreeps.amountBuildersInE46N9 = 1;
 
         if (Game.flags.attack) {
             Memory.amountCreeps.amountWarriorsInE46N9 = 1;
         } else {
-            Memory.amountCreeps.amountWarriorsInE46N9 = 0;
+            Memory.amountCreeps.amountWarriorsInE45N9 = 0;
         }
+        Memory.amountCreeps.amountDroneHealerInE45N9 = 0;
 
         Memory.amountCreeps.amountClaimersInE46N9 = 0;
         Memory.amountCreeps.amountFarBuildersInE46N9 = 0;
         
-        Memory.amountCreeps.amountRefillersInE45N9 = 0;
+        Memory.amountCreeps.amountRefillersInE46N9 = 0;
 
         //---------------------------------------------------------------------------------------
 
         Memory.amountCreeps.amountMiners0InE48N5 = 1;
         Memory.amountCreeps.amountMiners1InE48N5 = 1;
-        Memory.amountCreeps.amountTransportersInE48N5 = 2;
-        Memory.amountCreeps.amountBuildersInE48N5 = 2;
+        Memory.amountCreeps.amountTransportersInE48N5 = 4;
+        Memory.amountCreeps.amountBuildersInE48N5 = 1;
 
         if (Game.flags.attack) {
             Memory.amountCreeps.amountWarriorsInE48N5 = 1;
         } else {
             Memory.amountCreeps.amountWarriorsInE48N5 = 0;
         }
+        Memory.amountCreeps.amountDroneHealersInE48N5 = 0;
 
         Memory.amountCreeps.amountClaimersInE48N5 = 0;
         Memory.amountCreeps.amountFarBuildersInE48N5 = 0;
+
+        Memory.amountCreeps.amountRefillersInE48N5 = 0;
 
         //---------------------------------------------------------------------------------------
 
