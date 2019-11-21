@@ -9,6 +9,7 @@ var amountCreepsIsLive = {
         var roleFarBuilder = require("role.farBuilder");
 
         var roleRefiller = require("role.refiller");
+        var DroneHealer = require("DroneHealer");
 
         Memory.room.E45N9.amountMiners0IsLive = 0;
         Memory.room.E45N9.amountMiners1IsLive = 0;
@@ -17,7 +18,8 @@ var amountCreepsIsLive = {
         Memory.room.E45N9.amountWarriorsIsLive = 0;
         Memory.room.E45N9.amountClaimersIsLive = 0;
         Memory.room.E45N9.amountFarBuildersIsLive = 0;
-        Memory.room.E45N9.amountRefillersIsLive = 0
+        Memory.room.E45N9.amountRefillersIsLive = 0;
+        Memory.room.E45N9.amountDroneHealersIsLive = 0;
 
         Memory.room.E46N9.amountMiners0IsLive = 0;
         Memory.room.E46N9.amountMiners1IsLive = 0;
@@ -26,6 +28,7 @@ var amountCreepsIsLive = {
         Memory.room.E46N9.amountWarriorsIsLive = 0;
         Memory.room.E46N9.amountClaimersIsLive = 0;
         Memory.room.E46N9.amountFarBuildersIsLive = 0;
+        Memory.room.E46N9.amountDroneHealersIsLive = 0;
 
         Memory.room.E48N5.amountMiners0IsLive = 0;
         Memory.room.E48N5.amountMiners1IsLive = 0;
@@ -34,6 +37,7 @@ var amountCreepsIsLive = {
         Memory.room.E48N5.amountWarriorsIsLive = 0;
         Memory.room.E48N5.amountClaimersIsLive = 0;
         Memory.room.E48N5.amountFarBuildersIsLive = 0;
+        Memory.room.E48N5.amountDroneHealersIsLive = 0;
 
         Memory.room.W49S26.amountMiners0IsLive = 0;
         Memory.room.W49S26.amountMiners1IsLive = 0;
@@ -42,6 +46,7 @@ var amountCreepsIsLive = {
         Memory.room.W49S26.amountWarriorsIsLive = 0;
         Memory.room.W49S26.amountClaimersIsLive = 0;
         Memory.room.W49S26.amountFarBuildersIsLive = 0;
+        Memory.room.W49S26.amountDroneHealersIsLive = 0;
 
         for (var i in Game.creeps) {
             var creep = Game.creeps[i];
@@ -134,6 +139,11 @@ var amountCreepsIsLive = {
                     roleRefiller.control(creep);
                     if (creep.memory.room == "E45N9") {
                         Memory.room.E45N9.amountRefillersIsLive++;
+                    }
+                case "healer":
+                    DroneHealer.control(creep);
+                    if (creep.memory.room == "E48N5") {
+                        Memory.room.E48N5.amountDroneHealersIsLive++;
                     }
             }
         }
