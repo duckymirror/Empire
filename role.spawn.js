@@ -359,6 +359,10 @@ var roleSpawn = {
                     var newName = "refiller | " + numberCreep;
                     originSpawn2.spawnCreep([MOVE, CARRY, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY], newName,
                         { memory: { role: "refiller" } });
+                } else if (Memory.room.E48N5.amountDroneHealersIsLive < Memory.amountCreeps.amountDroneHealersInE48N5) {
+                    var newName = "DroneHealer | " + numberCreep;
+                    originSpawn2.spawnCreep([HEAL, MOVE], newName,
+                        { memory: { role: "healer" } });
                 }
             } else if (amountEnergy2 > 799 && amountEnergy2 < 1299) {
                 if (Memory.room.E48N5.amountMiners0IsLive < Memory.amountCreeps.amountMiners0InE48N5) {
