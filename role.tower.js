@@ -77,7 +77,13 @@ var roleTower = {
             } else {
                 if (hostileCreeps.length > 0) {
                     if (hostileCreeps.length > 1) {
-                        Memory.amountCreeps.amountWarriorsInE45N9 = 1;
+                        if (tower.room.name == "E45N9") {
+                            Memory.amountCreeps.amountWarriorsInE45N9 = 1;
+                        } else if (tower.room.name == "E46N9") {
+                            Memory.amountCreeps.amountWarriorsInE46N9 = 1;
+                        } else if (tower.room.name == "E48N5") {
+                            Memory.amountCreeps.amountWarriorsInE48N9 = 1;
+                        }
                     }
                     tower.attack(hostileCreeps[0]);
                 }
