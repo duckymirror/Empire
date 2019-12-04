@@ -20,6 +20,11 @@ var DroneHealer = {
 
         } else {
 
+            if (Game.flags.heal) {
+                creep.moveTo(Game.flags.heal);
+                creep.say("02");
+            }
+            
             var target = creep.room.find(FIND_CREEPS, {
                 filter: (creep) => {
                     return (creep.owner.username == "kotyara" || creep.owner.username == "JOURLOY") && creep.hits < creep.hitsMax;
@@ -42,13 +47,6 @@ var DroneHealer = {
                 } else {
                     creep.heal(target[0]);
                     creep.say("99");
-                }
-            } else {
-                if (Game.flags.heal) {
-                    creep.moveTo(Game.flags.heal);
-                    creep.say("02");
-                } else {
-                    creep.say("01");
                 }
             }
 
