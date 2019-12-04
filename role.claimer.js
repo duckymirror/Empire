@@ -5,7 +5,7 @@ var roleClaimer = {
 			creep.memory.room = creep.room.name;
 		}
   
-		targetRoom = "E48N5";
+		targetRoom = Memory.room.claim;
 
 		if (creep.room.name != targetRoom && Game.flags.claim) {
 			creep.moveTo(Game.flags.claim);
@@ -16,7 +16,7 @@ var roleClaimer = {
 				if (!creep.room.controller.my) {
   
 			  		if (creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-				  	creep.moveTo(creep.room.controller);
+				  		creep.moveTo(creep.room.controller);
 			  		} else if (creep.claimController(creep.room.controller) == ERR_FULL) {
 						if(creep.reserveController(creep.room.controller) == ERR_NOT_IN_RANGE) {
 				  			creep.moveTo(creep.room.controller, {visualizePathStyle: {
@@ -27,7 +27,7 @@ var roleClaimer = {
 						}
 			  		}
 				} else {
-			  		if(creep.signController(creep.room.controller, "SCREEPSbot") == ERR_NOT_IN_RANGE) {
+			  		if(creep.signController(creep.room.controller, "HIVE") == ERR_NOT_IN_RANGE) {
 				  		creep.moveTo(creep.room.controller);
 			  		}
 				}
