@@ -23,20 +23,30 @@ var DroneMiner = {
         if (creep.spawning) {
 
             creep.memory.room = creep.room.name;
-            var visualizePath = {
+            creep.memory.visualizePath = {
                 stroke: 'yellow',
                 lineStyle: 'dashed',
                 opacity: 1,
             };
 
         } else {
+            
             var linkInRoom = creep.room.find(FIND_STRUCTURES,{filter:s=>s.structureType == STRUCTURE_LINK});
-            var containerNear = creep.pos.findInRange(FIND_STRUCTURES, 1,{filter:s=>s.structureType == STRUCTURE_CONTAINER});
+            var containerNear = creep.pos.findInRange(FIND_STRUCTURES, 2,{filter:s=>s.structureType == STRUCTURE_CONTAINER});
             var source = Game.getObjectById(creep.memory.sourceId);
 
+            if (creep.store[RESOURCE_ENERGY] === 0) {
+                creep.memory.repair = false;
+            }
+            if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
+                creep.memory.repair = true;
+            }
+
             if (containerNear.length == 1) {
-                if (containerNear[0].hits < containerNear[0].hitsMax) {
-                    creep.repair(containerNear[0])
+                if (containerNear[0].hits < containerNear[0].hitsMax && creep.memory.repair) {
+                    creep.repair(containerNear[0]);
+                } else if (containerNear[0].hits < containerNear[0].hitsMax && !creep.memory.repair) {
+                    creep.harvest(source);
                 }
             }
 
@@ -48,7 +58,7 @@ var DroneMiner = {
 
                         if (creep.store[RESOURCE_ENERGY] < creep.store.getCapacity) {
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(source, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.moveTo(source, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                                 creep.say("98")
                             } else if (creep.harvest(source) == ERR_NOT_OWNER) {
                                 creep.say("1")
@@ -69,9 +79,9 @@ var DroneMiner = {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                                 creep.say("98")
-                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 2000) {
+                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                                 if (creep.harvest(source) == ERR_NOT_OWNER) {
                                     creep.say("1")
                                 } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
@@ -93,9 +103,9 @@ var DroneMiner = {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                                 creep.say("98")
-                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 2000) {
+                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                                 if (creep.harvest(source) == ERR_NOT_OWNER) {
                                     creep.say("1")
                                 } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
@@ -109,7 +119,7 @@ var DroneMiner = {
                             }
                         } else {
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(source, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.moveTo(source, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                                 creep.say("98")
                             } else {
                                 creep.harvest(source);
@@ -121,9 +131,9 @@ var DroneMiner = {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                                 creep.say("98")
-                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 2000) {
+                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                                 if (creep.harvest(source) == ERR_NOT_OWNER) {
                                     creep.say("1")
                                 } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
@@ -139,7 +149,7 @@ var DroneMiner = {
                             if (creep.pos.findInRange(source, 1)) {
                                 creep.say("0")
                             } else {
-                                creep.moveTo(source, {reusePath: 50, visualizePathStyle: visualizePath});
+                                creep.moveTo(source, {rignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                                 creep.say("98")
                             }
                         }
@@ -150,9 +160,9 @@ var DroneMiner = {
             } else {
                 if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                     if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                        creep.moveTo(containerNear[0].pos, {reusePath: 50, visualizePathStyle: visualizePath});
+                        creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                         creep.say("98")
-                    } else if (containerNear[0].store[RESOURCE_ENERGY] < 2000) {
+                    } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                         if (creep.harvest(source) == ERR_NOT_OWNER) {
                             creep.say("1")
                         } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
@@ -164,9 +174,16 @@ var DroneMiner = {
                     } else {
                         creep.say("02")
                     }
+                } else if (containerNear.length == 2 && creep.pos.isNearTo(source)) {
+                    if (containerNear[0].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[0].pos)) {
+                        creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                    } else if (containerNear[1].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[1].pos)) {
+                        creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                    }
+                    
                 } else {
                     if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(source, {reusePath: 50, visualizePathStyle: visualizePath});
+                        creep.moveTo(source, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                         creep.say("98")
                     } else {
                         creep.harvest(source);
