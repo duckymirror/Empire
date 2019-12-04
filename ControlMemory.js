@@ -60,10 +60,10 @@ function amountCreeps () {
         Memory.room.One.Creeps.Amount.Builders            = 2; //Default: 2
         if (Game.flags.claim) {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 1
-            Memory.room.One.Creeps.Amount.FarBuilders     = 0; //Default: 2
+            Memory.room.One.Creeps.Amount.FarBuilders     = 2; //Default: 2
         } else {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 0
-            Memory.room.One.Creeps.Amount.FarBuilders     = 0; //Default: 0
+            Memory.room.One.Creeps.Amount.FarBuilders     = 2; //Default: 0
         }
         Memory.room.One.Creeps.Amount.Refillers           = 1; //Default: 1
         if (Game.flags.attack) {
@@ -78,8 +78,8 @@ function amountCreeps () {
     if (Game.spawns["RT-SP2"]) {
         Memory.room.Two.Creeps.Amount.Miners0             = 1; //Default: 1
         Memory.room.Two.Creeps.Amount.Miners1             = 1; //Default: 1
-        Memory.room.Two.Creeps.Amount.DroneTransporters   = 0; //Default: 2
-        Memory.room.Two.Creeps.Amount.Builders            = 4; //Default: 2
+        Memory.room.Two.Creeps.Amount.DroneTransporters   = 2; //Default: 2
+        Memory.room.Two.Creeps.Amount.Builders            = 1; //Default: 2
         Memory.room.Two.Creeps.Amount.Claimers            = 0; //Default: 0
         Memory.room.Two.Creeps.Amount.FarBuilders         = 0; //Default: 0
         Memory.room.Two.Creeps.Amount.Refillers           = 1; //Default: 1
@@ -113,7 +113,7 @@ function amountCreeps () {
         Memory.room.Four.Creeps.Amount.Miners0           = 1; //Default: 1
         Memory.room.Four.Creeps.Amount.Miners1           = 1; //Default: 1
         Memory.room.Four.Creeps.Amount.DroneTransporters = 2; //Default: 2
-        Memory.room.Four.Creeps.Amount.Builders          = 2; //Default: 2
+        Memory.room.Four.Creeps.Amount.Builders          = 1; //Default: 2
         Memory.room.Four.Creeps.Amount.Claimers          = 0; //Default: 0
         Memory.room.Four.Creeps.Amount.FarBuilders       = 0; //Default: 0
         Memory.room.Four.Creeps.Amount.Refillers         = 1; //Default: 1
