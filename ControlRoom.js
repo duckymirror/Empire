@@ -1,9 +1,9 @@
 function Visual() {
 
-    let firstX = -0.4;
-    let lastX = 7.3;
+    const firstX = -0.4;
+    const lastX = 7.3;
     let step = (lastX - firstX) / 100;
-    let Y = -0.4;
+    const Y = -0.4;
 
     if (Game.spawns["SP-R1"]) {
         let X = firstX + step * Memory.room.One.Controller.progress;
@@ -45,14 +45,14 @@ function Visual() {
 
 function amountCreepsIsLive() {
 
-    let DroneMiner = require("DroneMiner");
-    let roleBuilder = require("role.builder");
-    let DroneTransporter = require("DroneTransporter");
-    let roleClaimer = require("role.claimer");
-    let roleFarBuilder = require("role.farBuilder");
-    let zergling = require("zergling");
-    let DroneRefiller = require("./DroneRefiller");
-    let DroneHealer = require("DroneHealer");
+    const DroneMiner = require("DroneMiner");
+    const roleBuilder = require("role.builder");
+    const DroneTransporter = require("DroneTransporter");
+    const roleClaimer = require("role.claimer");
+    const roleFarBuilder = require("role.farBuilder");
+    const zergling = require("zergling");
+    const DroneRefiller = require("./DroneRefiller");
+    const DroneHealer = require("DroneHealer");
 
     if (Game.spawns['SP-R1']) {
         Memory.room.One.Creeps.AmountIsLive.Miners0 = 0;
