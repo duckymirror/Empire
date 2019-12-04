@@ -28,14 +28,6 @@ var roleTower = {
                     return (structure.structureType == STRUCTURE_RAMPART) && structure.pos.inRangeTo(tower.pos, 10);
                 }
             });
-            
-            if (friendsCreeps.length > 0 && rampartsNear) {
-                if (rampartsNear[0].isPublic == false) {
-                    rampartsNear[0].setPublic(true)
-                }
-            } else if (rampartsNear && rampartsNear[0].isPublic == true) {
-                rampartsNear[0].setPublic(false)
-            }
 
             var roads = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -76,15 +68,6 @@ var roleTower = {
                 }
             } else {
                 if (hostileCreeps.length > 0) {
-                    if (hostileCreeps.length > 1) {
-                        if (tower.room.name == "E45N9") {
-                            Memory.amountCreeps.amountWarriorsInE45N9 = 1;
-                        } else if (tower.room.name == "E46N9") {
-                            Memory.amountCreeps.amountWarriorsInE46N9 = 1;
-                        } else if (tower.room.name == "E48N5") {
-                            Memory.amountCreeps.amountWarriorsInE48N9 = 1;
-                        }
-                    }
                     tower.attack(hostileCreeps[0]);
                 }
             }
