@@ -16,11 +16,11 @@
 
 */
 
-let Console = require("Console");
-let ControlMemory = require("ControlMemory");
-let ControlRoom = require("ControlRoom");
-var roleSpawn = require("role.spawn");
-var roleTower = require("role.tower");
+const Console = require("Console");
+const ControlMemory = require("ControlMemory");
+const ControlRoom = require("ControlRoom");
+const roleSpawn = require("role.spawn");
+const roleTower = require("role.tower");
 
 Memory.room = {};
 
@@ -55,7 +55,7 @@ function stats () {
 
 module.exports.loop = function () {
 
-    Memory.room.claim = "E47N3";
+    Memory.room.claim = "E46N8";
 
 
     ControlMemory.setting();
