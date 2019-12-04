@@ -55,7 +55,7 @@ var roleBuilder = {
 					if(creep.withdraw(ruin[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 						creep.moveTo(ruin[0]);
 					}
-				} else if (containerNear.length == 2 && (containerNear[0].store[RESOURCE_ENERGY] > 0 || containerNear[1].store[RESOURCE_ENERGY] > 0)) {
+				} else if (containerNear.length == 2 && (containerNear[0].store[RESOURCE_ENERGY] > 0 || containerNear[1].store[RESOURCE_ENERGY] > 0) && !creep.room.storage) {
                     if (containerNear[0].store[RESOURCE_ENERGY] > 0 && containerNear[0].store[RESOURCE_ENERGY] > containerNear[1].store[RESOURCE_ENERGY]) {
                         if (creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(containerNear[0]);
@@ -65,7 +65,7 @@ var roleBuilder = {
                             creep.moveTo(containerNear[1]);
                         }
                     }
-                } else if (containerNear.length == 1 && containerNear[0].store[RESOURCE_ENERGY] > 0) {
+                } else if (containerNear.length == 1 && containerNear[0].store[RESOURCE_ENERGY] > 0 && !creep.room.storage) {
                     if (creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(containerNear[0]);
                     }
