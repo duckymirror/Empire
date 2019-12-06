@@ -46,6 +46,7 @@ function Visual() {
 function amountCreepsIsLive() {
 
     const DroneMiner = require("DroneMiner");
+    const Drone = require("Drone");
     const roleBuilder = require("role.builder");
     const DroneTransporter = require("DroneTransporter");
     const roleClaimer = require("role.claimer");
@@ -57,6 +58,7 @@ function amountCreepsIsLive() {
     if (Game.spawns['SP-R1']) {
         Memory.room.One.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.One.Creeps.AmountIsLive.Miners1 = 0;
+        Memory.room.One.Creeps.AmountIsLive.Drone = 0;
         Memory.room.One.Creeps.AmountIsLive.Builders = 0;
         Memory.room.One.Creeps.AmountIsLive.DroneTransporters = 0;
         Memory.room.One.Creeps.AmountIsLive.Warriors = 0;
@@ -153,6 +155,11 @@ function amountCreepsIsLive() {
                     Memory.room.Five.Creeps.AmountIsLive.Miners1++;
                 }
                 break;
+            case "Drone":
+                Drone.control(creep);
+                if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
+                    Memory.room.One.Creeps.AmountIsLive.Drone++;
+                }
             case "builder":
                 roleBuilder.control(creep);
                 if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
