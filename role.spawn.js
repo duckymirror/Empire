@@ -34,7 +34,7 @@ function creepBody(energy, role) {
         }
     }
 
-    if (role == "transporter" || role == "builder" || role == "FarBuilder") {
+    if (role == "transporter" || role == "builder" || role == "FarBuilder" || role == "Drone") {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
@@ -276,6 +276,10 @@ var roleSpawn = {
                 body = creepBody(amountEnergy, 'transporter');
                 originSpawn.spawnCreep(body, newName,
                     { memory: { role: "transporter" } });
+            } else if (Memory.room.One.Creeps.AmountIsLive.Drone < Memory.room.One.Creeps.Amount.Drone) {
+                var newName = "Drone";
+                body = creepBody(amountEnergy, 'Drone');
+                originSpawn.spawnCreep(body, newName, { memory: {role: "Drone"}});
             } else if (Memory.room.One.Creeps.AmountIsLive.Miners1 < Memory.room.One.Creeps.Amount.Miners1) {
                 var newName = "miner1 | " + numberCreep;
                 body = creepBody(amountEnergy, 'miner1');
