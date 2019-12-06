@@ -57,8 +57,6 @@ function amountCreeps () {
         Memory.room.One.Creeps.Amount.Miners0             = 1; //Default: 1
         Memory.room.One.Creeps.Amount.Miners1             = 1; //Default: 1
         Memory.room.One.Creeps.Amount.Drone               = 1; //Default: 1
-        Memory.room.One.Creeps.Amount.DroneTransporters   = 0; //Default: 2
-        Memory.room.One.Creeps.Amount.Builders            = 0; //Default: 2
         if (Game.flags.claim) {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 1
             Memory.room.One.Creeps.Amount.FarBuilders     = 2; //Default: 2
@@ -66,7 +64,6 @@ function amountCreeps () {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 0
             Memory.room.One.Creeps.Amount.FarBuilders     = 0; //Default: 0
         }
-        Memory.room.One.Creeps.Amount.Refillers           = 0; //Default: 1
         if (Game.flags.attack) {
             Memory.room.One.Creeps.Amount.zerglings       = 0; //Default: 1
             Memory.room.One.Creeps.Amount.Healers         = 0; //Default: 1
@@ -79,11 +76,9 @@ function amountCreeps () {
     if (Game.spawns["RT-SP2"]) {
         Memory.room.Two.Creeps.Amount.Miners0             = 1; //Default: 1
         Memory.room.Two.Creeps.Amount.Miners1             = 1; //Default: 1
-        Memory.room.Two.Creeps.Amount.DroneTransporters   = 2; //Default: 2
-        Memory.room.Two.Creeps.Amount.Builders            = 1; //Default: 2
+        Memory.room.Two.Creeps.Amount.Drone               = 1; //Default: 1
         Memory.room.Two.Creeps.Amount.Claimers            = 0; //Default: 0
         Memory.room.Two.Creeps.Amount.FarBuilders         = 0; //Default: 0
-        Memory.room.Two.Creeps.Amount.Refillers           = 1; //Default: 1
         if (Game.flags.attack) {
             Memory.room.Two.Creeps.Amount.zerglings        = 0; //Default: 1
             Memory.room.Two.Creeps.Amount.Healers          = 0; //Default: 1
@@ -96,11 +91,9 @@ function amountCreeps () {
     if (Game.spawns["SP-R3"]) {
         Memory.room.Three.Creeps.Amount.Miners0           = 1; //Default: 1
         Memory.room.Three.Creeps.Amount.Miners1           = 1; //Default: 1
-        Memory.room.Three.Creeps.Amount.DroneTransporters = 2; //Default: 2
-        Memory.room.Three.Creeps.Amount.Builders          = 1; //Default: 2
+        Memory.room.Three.Creeps.Amount.Drone             = 1; //Default: 1
         Memory.room.Three.Creeps.Amount.Claimers          = 0; //Default: 0
         Memory.room.Three.Creeps.Amount.FarBuilders       = 0; //Default: 0
-        Memory.room.Three.Creeps.Amount.Refillers         = 1; //Default: 1
         if (Game.flags.attack) {
             Memory.room.Three.Creeps.Amount.zerglings      = 0; //Default: 1
             //Memory.room.Three.Creeps.Amount.Healers       = 0; //Default: 1
@@ -113,11 +106,9 @@ function amountCreeps () {
     if (Game.spawns["SP-R"]) {
         Memory.room.Four.Creeps.Amount.Miners0           = 1; //Default: 1
         Memory.room.Four.Creeps.Amount.Miners1           = 1; //Default: 1
-        Memory.room.Four.Creeps.Amount.DroneTransporters = 2; //Default: 2
-        Memory.room.Four.Creeps.Amount.Builders          = 1; //Default: 2
+        Memory.room.Four.Creeps.Amount.Drone             = 1; //Default: 1
         Memory.room.Four.Creeps.Amount.Claimers          = 0; //Default: 0
         Memory.room.Four.Creeps.Amount.FarBuilders       = 0; //Default: 0
-        Memory.room.Four.Creeps.Amount.Refillers         = 1; //Default: 1
         if (Game.flags.attack) {
             Memory.room.Four.Creeps.Amount.zerglings      = 0; //Default: 1
             //Memory.room.Four.Creeps.Amount.Healers       = 0; //Default: 1
@@ -130,11 +121,9 @@ function amountCreeps () {
     if (Game.spawns["SP-R5"]) {
         Memory.room.Five.Creeps.Amount.Miners0           = 1; //Default: 1
         Memory.room.Five.Creeps.Amount.Miners1           = 1; //Default: 1
-        Memory.room.Five.Creeps.Amount.DroneTransporters = 2; //Default: 2
-        Memory.room.Five.Creeps.Amount.Builders          = 1; //Default: 2
+        Memory.room.Five.Creeps.Amount.Drone             = 1; //Default: 1
         Memory.room.Five.Creeps.Amount.Claimers          = 0; //Default: 0
         Memory.room.Five.Creeps.Amount.FarBuilders       = 0; //Default: 0
-        Memory.room.Five.Creeps.Amount.Refillers         = 1; //Default: 1
         if (Game.flags.attack) {
             Memory.room.Five.Creeps.Amount.zerglings      = 0; //Default: 1
             //Memory.room.Five.Creeps.Amount.Healers       = 0; //Default: 1
