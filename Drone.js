@@ -43,11 +43,11 @@ var Drone = {
                     if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(container, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
-                } else if (creep.room.storage.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity()) {
+                } else if (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity() && creep.room.storage.store[RESOURCE_ENERGY] > 100000) {
                     if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.room.storage, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
-                } else if (creep.room.terminal.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity()) {
+                } else if (creep.room.terminal && creep.room.terminal.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity()) {
                     if (creep.withdraw(creep.room.terminal, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.room.terminal, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
@@ -67,10 +67,16 @@ var Drone = {
                 });
                 let tower = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_TOWER) && structure.store[RESOURCE_ENERGY] < 1000;
+                        return (structure.structureType == STRUCTURE_TOWER) && structure.store[RESOURCE_ENERGY] < 700;
                     }
                 });
                 let constructionSite = creep.room.find(FIND_MY_CONSTRUCTION_SITES);
+                let constructionSiteWallAndRampart = creep.room.find(FIND_MY_CONSTRUCTION_SITES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_WALL ||
+                                structure.structureType == STRUCTURE_RAMPART);
+                    }
+                });
 
                 if (spawnEnergy) {
                     if (creep.transfer(spawnEnergy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -80,7 +86,11 @@ var Drone = {
                     if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.room.controller, {heuristicWeight: 1.2, range: 3, reusePath: 50});
                     }
-                } else if (tower.length > 0) {
+                } else if (constructionSiteWallAndRampart.length > 0) { 
+                    if (creep.build(constructionSiteWallAndRampart[0]) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(constructionSiteWallAndRampart[0], {heuristicWeight: 1.2, range: 3, reusePath: 50});
+                    }
+                }else if (tower.length > 0) {
                     tower.sort((a,b) => a.store[RESOURCE_ENERGY] - b.store[RESOURCE_ENERGY]);
                     if (creep.transfer(tower[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tower[0], {heuristicWeight: 1.2, range: 1, reusePath: 50});
@@ -89,7 +99,7 @@ var Drone = {
                     if (creep.build(constructionSite[0]) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(constructionSite[0], {heuristicWeight: 1.2, range: 3, reusePath: 50});
                     }
-                } else if (creep.room.storage.store[RESOURCE_ENERGY] < 500000) {
+                } else if (creep.room.storage.store[RESOURCE_ENERGY] < 100000) {
                     if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.room.storage, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
