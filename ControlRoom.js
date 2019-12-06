@@ -160,6 +160,7 @@ function amountCreepsIsLive() {
                 if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.Drone++;
                 }
+                break;
             case "builder":
                 roleBuilder.control(creep);
                 if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
