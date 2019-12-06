@@ -93,6 +93,12 @@ var DroneMiner = {
                             } else {
                                 creep.say("02")
                             }
+                        } else if (containerNear.length == 2 && creep.pos.isNearTo(source)) {
+                            if (containerNear[0].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[0].pos)) {
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                            } else if (containerNear[1].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[1].pos)) {
+                                creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                            }
                         }
 
                     }
@@ -116,6 +122,12 @@ var DroneMiner = {
                                 }
                             } else {
                                 creep.say("02")
+                            }
+                        } else if (containerNear.length == 2 && creep.pos.isNearTo(source)) {
+                            if (containerNear[0].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[0].pos)) {
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                            } else if (containerNear[1].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[1].pos)) {
+                                creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                             }
                         } else {
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
@@ -180,7 +192,6 @@ var DroneMiner = {
                     } else if (containerNear[1].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[1].pos)) {
                         creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
                     }
-                    
                 } else {
                     if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(source, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
