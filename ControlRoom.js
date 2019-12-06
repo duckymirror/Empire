@@ -47,24 +47,17 @@ function amountCreepsIsLive() {
 
     const DroneMiner = require("DroneMiner");
     const Drone = require("Drone");
-    const roleBuilder = require("role.builder");
-    const DroneTransporter = require("DroneTransporter");
     const roleClaimer = require("role.claimer");
     const roleFarBuilder = require("role.farBuilder");
     const zergling = require("zergling");
-    const DroneRefiller = require("./DroneRefiller");
     const DroneHealer = require("DroneHealer");
 
     if (Game.spawns['SP-R1']) {
         Memory.room.One.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.One.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.One.Creeps.AmountIsLive.Drone = 0;
-        Memory.room.One.Creeps.AmountIsLive.Builders = 0;
-        Memory.room.One.Creeps.AmountIsLive.DroneTransporters = 0;
-        Memory.room.One.Creeps.AmountIsLive.Warriors = 0;
         Memory.room.One.Creeps.AmountIsLive.Claimers = 0;
         Memory.room.One.Creeps.AmountIsLive.FarBuilders = 0;
-        Memory.room.One.Creeps.AmountIsLive.Refillers = 0;
         Memory.room.One.Creeps.AmountIsLive.Healers = 0;
         Memory.room.One.Creeps.AmountIsLive.zerglings = 0;
     }
@@ -72,12 +65,9 @@ function amountCreepsIsLive() {
     if (Game.spawns['RT-SP2']) {
         Memory.room.Two.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.Two.Creeps.AmountIsLive.Miners1 = 0;
-        Memory.room.Two.Creeps.AmountIsLive.Builders = 0;
-        Memory.room.Two.Creeps.AmountIsLive.DroneTransporters = 0;
-        Memory.room.Two.Creeps.AmountIsLive.WarriorsIsLive = 0;
+        Memory.room.Two.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Two.Creeps.AmountIsLive.ClaimersIsLive = 0;
         Memory.room.Two.Creeps.AmountIsLive.FarBuilders = 0;
-        Memory.room.Two.Creeps.AmountIsLive.Refillers = 0;
         Memory.room.Two.Creeps.AmountIsLive.Healers = 0;
         Memory.room.Two.Creeps.AmountIsLive.zerglings = 0;
     }
@@ -85,12 +75,9 @@ function amountCreepsIsLive() {
     if (Game.spawns['SP-R3']) {
         Memory.room.Three.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.Three.Creeps.AmountIsLive.Miners1 = 0;
-        Memory.room.Three.Creeps.AmountIsLive.Builders = 0;
-        Memory.room.Three.Creeps.AmountIsLive.DroneTransporters = 0;
-        Memory.room.Three.Creeps.AmountIsLive.Warriors = 0;
+        Memory.room.Three.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Three.Creeps.AmountIsLive.Claimers = 0;
         Memory.room.Three.Creeps.AmountIsLive.FarBuilders = 0;
-        Memory.room.Three.Creeps.AmountIsLive.Refillers = 0;
         Memory.room.Three.Creeps.AmountIsLive.Healers = 0;
         Memory.room.Three.Creeps.AmountIsLive.zerglings = 0;
     }
@@ -98,25 +85,19 @@ function amountCreepsIsLive() {
     if (Game.spawns['SP-R']) {
         Memory.room.Four.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.Four.Creeps.AmountIsLive.Miners1 = 0;
-        Memory.room.Four.Creeps.AmountIsLive.Builders = 0;
-        Memory.room.Four.Creeps.AmountIsLive.DroneTransporters = 0;
-        Memory.room.Four.Creeps.AmountIsLive.WarriorsIsLive = 0;
+        Memory.room.Four.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Four.Creeps.AmountIsLive.ClaimersIsLive = 0;
         Memory.room.Four.Creeps.AmountIsLive.FarBuilders = 0;
         Memory.room.Four.Creeps.AmountIsLive.Healers = 0;
-        Memory.room.Four.Creeps.AmountIsLive.Refillers = 0;
     }
 
     if (Game.spawns['SP-R5']) {
         Memory.room.Five.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.Five.Creeps.AmountIsLive.Miners1 = 0;
-        Memory.room.Five.Creeps.AmountIsLive.Builders = 0;
-        Memory.room.Five.Creeps.AmountIsLive.DroneTransporters = 0;
-        Memory.room.Five.Creeps.AmountIsLive.WarriorsIsLive = 0;
+        Memory.room.Five.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Five.Creeps.AmountIsLive.ClaimersIsLive = 0;
         Memory.room.Five.Creeps.AmountIsLive.FarBuilders = 0;
         Memory.room.Five.Creeps.AmountIsLive.Healers = 0;
-        Memory.room.Five.Creeps.AmountIsLive.Refillers = 0;
     }
 
     if (Game.spawns['SP-R6']) {
@@ -159,34 +140,14 @@ function amountCreepsIsLive() {
                 Drone.control(creep);
                 if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.Drone++;
-                }
-                break;
-            case "builder":
-                roleBuilder.control(creep);
-                if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
-                    Memory.room.One.Creeps.AmountIsLive.Builders++;
                 } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
-                    Memory.room.Two.Creeps.AmountIsLive.Builders++;
+                    Memory.room.Two.Creeps.AmountIsLive.Drone++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
-                    Memory.room.Three.Creeps.AmountIsLive.Builders++;
+                    Memory.room.Three.Creeps.AmountIsLive.Drone++;
                 } else if (Game.spawns['SP-R'] && creep.memory.room == Memory.room.Four.Name) {
-                    Memory.room.Four.Creeps.AmountIsLive.Builders++;
+                    Memory.room.Four.Creeps.AmountIsLive.Drone++;
                 } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
-                    Memory.room.Five.Creeps.AmountIsLive.Builders++;
-                }
-                break;
-            case "transporter":
-                DroneTransporter.control(creep);
-                if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
-                    Memory.room.One.Creeps.AmountIsLive.DroneTransporters++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
-                    Memory.room.Two.Creeps.AmountIsLive.DroneTransporters++;
-                } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
-                    Memory.room.Three.Creeps.AmountIsLive.DroneTransporters++;
-                } else if (Game.spawns['SP-R'] && creep.memory.room == Memory.room.Four.Name) {
-                    Memory.room.Four.Creeps.AmountIsLive.DroneTransporters++;
-                } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
-                    Memory.room.Five.Creeps.AmountIsLive.DroneTransporters++;
+                    Memory.room.Five.Creeps.AmountIsLive.Drone++;
                 }
                 break;
             case "claimer":
@@ -215,20 +176,6 @@ function amountCreepsIsLive() {
                     Memory.room.Four.Creeps.AmountIsLive.FarBuilders0IsLive++;
                 } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
                     Memory.room.Five.Creeps.AmountIsLive.FarBuilders0IsLive++;
-                }
-                break;
-            case "refiller":
-                DroneRefiller.control(creep);
-                if (Game.spawns['SP-R1'] && creep.memory.room == Memory.room.One.Name) {
-                    Memory.room.One.Creeps.AmountIsLive.Refillers++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
-                    Memory.room.Two.Creeps.AmountIsLive.Refillers++;
-                } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
-                    Memory.room.Three.Creeps.AmountIsLive.Refillers++;
-                } else if (Game.spawns['SP-R'] && creep.memory.room == Memory.room.Four.Name) {
-                    Memory.room.Four.Creeps.AmountIsLive.Refillers++;
-                } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
-                    Memory.room.Five.Creeps.AmountIsLive.Refillers++;
                 }
                 break;
             case "healer":
