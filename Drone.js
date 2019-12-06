@@ -73,7 +73,7 @@ var Drone = {
                     });
                     let tower = creep.room.find(FIND_STRUCTURES, {
                         filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_TOWER) && structure.store[RESOURCE_ENERGY] < 700;
+                            return (structure.structureType == STRUCTURE_TOWER) && structure.store[RESOURCE_ENERGY] <= 750;
                         }
                     });
                     let constructionSite = creep.room.find(FIND_MY_CONSTRUCTION_SITES);
