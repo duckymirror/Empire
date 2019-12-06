@@ -31,19 +31,19 @@ var roleBuilder = {
             var constructionSite = creep.room.find(FIND_CONSTRUCTION_SITES);
             if (creep.room.controller && creep.room.controller.ticksToDowngrade <= 3000) {
                 if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.room.controller);
+                    creep.moveTo(creep.room.controller), {range: 3, reusePath: 50};
                 }
             } else if (constructionSite.length != 0) {
                 if (creep.build(constructionSite[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(constructionSite[0]);
+                    creep.moveTo(constructionSite[0], {range: 3, reusePath: 50});
                 }
             } else if (targets) {
               if (creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(targets);
+                  creep.moveTo(targets, {range: 1, reusePath: 50});
               }
             } else {
                 if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.room.controller);
+                    creep.moveTo(creep.room.controller, {range: 3, reusePath: 50});
                 }
             }
         } else {
@@ -58,25 +58,25 @@ var roleBuilder = {
 				} else if (containerNear.length == 2 && (containerNear[0].store[RESOURCE_ENERGY] > 0 || containerNear[1].store[RESOURCE_ENERGY] > 0) && !creep.room.storage) {
                     if (containerNear[0].store[RESOURCE_ENERGY] > 0 && containerNear[0].store[RESOURCE_ENERGY] > containerNear[1].store[RESOURCE_ENERGY]) {
                         if (creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(containerNear[0]);
+                            creep.moveTo(containerNear[0], {range: 1, reusePath: 50});
                         }
                     } else {
                         if (creep.withdraw(containerNear[1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(containerNear[1]);
+                            creep.moveTo(containerNear[1], {range: 1, reusePath: 50});
                         }
                     }
                 } else if (containerNear.length == 1 && containerNear[0].store[RESOURCE_ENERGY] > 0 && !creep.room.storage) {
                     if (creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(containerNear[0]);
+                        creep.moveTo(containerNear[0], {range: 1, reusePath: 50});
                     }
                 } else if (creep.room.storage) {
                     if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.storage);
+                        creep.moveTo(creep.room.storage, {range: 1, reusePath: 50});
                     }
 				} else {
                     const droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
                     if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(droppedEnergy);
+                        creep.moveTo(droppedEnergy, {range: 1, reusePath: 50});
                     }
                 }
             }
