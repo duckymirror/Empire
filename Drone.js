@@ -33,29 +33,29 @@ var Drone = {
             
                 if (droppedEnergy) {
                     if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(droppedEnergy, {reusePath: 50});
+                        creep.moveTo(droppedEnergy, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else if (ruin) {
                     if(creep.withdraw(ruin, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(ruin, {reusePath: 50});
+                        creep.moveTo(ruin, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else if (container) {
                     if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(container, {reusePath: 50});
+                        creep.moveTo(container, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else if (creep.room.storage.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity()) {
                     if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.storage, {reusePath: 50});
+                        creep.moveTo(creep.room.storage, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else if (creep.room.terminal.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity()) {
                     if (creep.withdraw(creep.room.terminal, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.terminal, {reusePath: 50});
+                        creep.moveTo(creep.room.terminal, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else {
                     let source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
             
                     if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(source, {reusePath: 50});
+                        creep.moveTo(source, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 }
             } else if (creep.memory.work == "doWork") {
@@ -74,30 +74,28 @@ var Drone = {
 
                 if (spawnEnergy) {
                     if (creep.transfer(spawnEnergy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(spawnEnergy, {reusePath: 50});
-                    } else {
-                        creep.transfer(spawnEnergy, RESOURCE_ENERGY)
+                        creep.moveTo(spawnEnergy, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else if (creep.room.controller.ticksToDowngrade < 5000) {
                     if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.controller, {reusePath: 50});
+                        creep.moveTo(creep.room.controller, {heuristicWeight: 1.2, range: 3, reusePath: 50});
                     }
                 } else if (tower.length > 0) {
                     tower.sort((a,b) => a.store[RESOURCE_ENERGY] - b.store[RESOURCE_ENERGY]);
                     if (creep.transfer(tower[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(tower[0], {reusePath: 50});
+                        creep.moveTo(tower[0], {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else if (constructionSite.length > 0) {
                     if (creep.build(constructionSite[0]) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(constructionSite[0], {reusePath: 50});
+                        creep.moveTo(constructionSite[0], {heuristicWeight: 1.2, range: 3, reusePath: 50});
                     }
                 } else if (creep.room.storage.store[RESOURCE_ENERGY] < 500000) {
                     if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.storage, {reusePath: 50});
+                        creep.moveTo(creep.room.storage, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
                 } else {
                     if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.controller, {reusePath: 50});
+                        creep.moveTo(creep.room.controller, {heuristicWeight: 1.2, range: 3, reusePath: 50});
                     }
                 }
             }
