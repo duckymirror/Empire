@@ -74,7 +74,7 @@ var DroneRefiller = {
                     if (tower) {
                         tower.sort((a,b) => a.store[RESOURCE_ENERGY] - b.store[RESOURCE_ENERGY]);
                         if (creep.transfer(tower[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(tower[0], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
+                            creep.moveTo(tower[0], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
                             creep.say("93");
                         }
                     } else {
@@ -88,36 +88,36 @@ var DroneRefiller = {
                     if (containerNear.length == 2 && (containerNear[0].store[RESOURCE_ENERGY] > 0 || containerNear[1].store[RESOURCE_ENERGY] > 0) && hostileCreeps.length == 0) {
                         if (containerNear[0].store[RESOURCE_ENERGY] > 0 && containerNear[0].store[RESOURCE_ENERGY] > containerNear[1].store[RESOURCE_ENERGY]) {
                             if (creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(containerNear[0], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+                                creep.moveTo(containerNear[0], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
                                 creep.say("98");
                             }
                         } else {
                             if (creep.withdraw(containerNear[1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(containerNear[1], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+                                creep.moveTo(containerNear[1], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
                                 creep.say("98");
                             }
                         }
                     } else if (containerNear.length == 1 && containerNear[0].store[RESOURCE_ENERGY] > 0 && hostileCreeps.length == 0) {
                         
                         if (creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(containerNear[0], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+                            creep.moveTo(containerNear[0], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
                             creep.say("97");
                         }
                     } else if (creep.room.storage) {
                         
                         if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(creep.room.storage, {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+                            creep.moveTo(creep.room.storage, {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
                             creep.say("96");
                         }
                     } else if (ruin && ruin.length > 0) {
                         if(creep.withdraw(ruin[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(ruin[0], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+                            creep.moveTo(ruin[0], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
                             creep.say("95");
                         }
                     } else {
                         const droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
                         if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(droppedEnergy, {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+                            creep.moveTo(droppedEnergy, {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
                             creep.say("94");
                         }
                     }
