@@ -65,18 +65,18 @@ var DroneTransporter = {
 
 					if (ruin.length > 0) {
 						if(creep.withdraw(ruin[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-							creep.moveTo(ruin[0], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+							creep.moveTo(ruin[0], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
 							creep.say("80");
 						}
 					} else if (containerNear.length > 0 && (containerNear[0] && containerNear[0].store[RESOURCE_ENERGY] > 50 || containerNear[1] && containerNear[1].store[RESOURCE_ENERGY] > 50)) {
 						if (containerNear[1].store[RESOURCE_ENERGY] > 50) {
 							if(creep.withdraw(containerNear[1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-								creep.moveTo(containerNear[1], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+								creep.moveTo(containerNear[1], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
 								creep.say("81");
 							}
 						} else {
 							if(creep.withdraw(containerNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-								creep.moveTo(containerNear[0], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+								creep.moveTo(containerNear[0], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
 								creep.say("81");
 							}
 						}
@@ -93,12 +93,12 @@ var DroneTransporter = {
 
 						if (creep.memory.source == 1 && droppedEnergy[0].amount > 150) {
 							if (creep.pickup(droppedEnergy[0]) == ERR_NOT_IN_RANGE) {
-								creep.moveTo(droppedEnergy[0], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+								creep.moveTo(droppedEnergy[0], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
 								creep.say("82");
 							}
 						} else if (creep.memory.source == 2 && droppedEnergy[1].amount > 150) {
 							if (creep.pickup(droppedEnergy[1]) == ERR_NOT_IN_RANGE) {
-								creep.moveTo(droppedEnergy[1], {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
+								creep.moveTo(droppedEnergy[1], {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForGetStore});
 								creep.say("82");
 							}
 						} else {
@@ -114,7 +114,7 @@ var DroneTransporter = {
 				case 1:
 
 					if (creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(targets, {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
+						creep.moveTo(targets, {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
 						creep.say("90");
 					}
 					break;
@@ -122,7 +122,7 @@ var DroneTransporter = {
 				case 2:
 
 					if (creep.transfer(storageInRoom, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(storageInRoom, {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
+						creep.moveTo(storageInRoom, {range: 1, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
 						creep.say("91");
 					}
 					break;
@@ -130,7 +130,7 @@ var DroneTransporter = {
 				case 3:
 
 					if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(creep.room.controller, {reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
+						creep.moveTo(creep.room.controller, {range: 3, reusePath: 30, visualizePathStyle: creep.memory.visualizePathForWork});
 						creep.say("92");
 					}
 					break;
