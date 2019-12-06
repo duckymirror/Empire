@@ -87,13 +87,13 @@ var Drone = {
                     if (creep.transfer(tower[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tower[0], {reusePath: 50});
                     }
-                } else if (creep.room.storage.store[RESOURCE_ENERGY] < 500000) {
-                    if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.storage, {reusePath: 50});
-                    }
                 } else if (constructionSite.length > 0) {
                     if (creep.build(constructionSite[0]) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(constructionSite[0], {reusePath: 50});
+                    }
+                } else if (creep.room.storage.store[RESOURCE_ENERGY] < 500000) {
+                    if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(creep.room.storage, {reusePath: 50});
                     }
                 } else {
                     if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
