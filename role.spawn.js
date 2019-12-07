@@ -212,6 +212,13 @@ var roleSpawn = {
             var amountEnergy4 = originRoom4.energyCapacityAvailable;
         }
 
+        if (Game.spawns["SP-R6"]) {
+            var originSpawn5 = Game.spawns["SP-R6"];
+            var originRoom5 = originSpawn5.room;
+            var sources5 = originRoom5.find(FIND_SOURCES);
+            var amountEnergy5 = originRoom5.energyCapacityAvailable;
+        }
+
         var numberCreep = Game.time;
 
         if (Game.spawns['SP-R1']) {
@@ -274,9 +281,19 @@ var roleSpawn = {
                     { memory: { role: "zergling" } });
             } else if (Memory.room.Two.Creeps.AmountIsLive.Healers < Memory.room.Two.Creeps.Amount.Healers) {
                 var newName = "healer | " + numberCreep;
-                body = creepBody(amountEnergy2, 'healer');
-                originSpawn2.spawnCreep(body, newName,
+                body = creepBody(amountEnergy1, 'healer');
+                originSpawn1.spawnCreep(body, newName,
                     { memory: { role: "healer" } });
+            } else if (Memory.room.Two.Creeps.AmountIsLive.Claimers < Memory.room.Two.Creeps.Amount.Claimers) {
+                var newName = "claimer | " + numberCreep;
+                body = creepBody(amountEnergy1, 'claimer');
+                originSpawn1.spawnCreep(body, newName,
+                    { memory: { role: "claimer" } });
+            } else if (Memory.room.Two.Creeps.AmountIsLive.FarBuilders < Memory.room.Two.Creeps.Amount.FarBuilders) {
+                var newName = "FarBuilder | " + numberCreep;
+                body = creepBody(amountEnergy1, 'FarBuilder');
+                originSpawn1.spawnCreep(body, newName,
+                    { memory: { role: "FarBuilder" } });
             }
         }
 
@@ -333,6 +350,16 @@ var roleSpawn = {
                 body = creepBody(amountEnergy3, 'zergling');
                 originSpawn3.spawnCreep(body, newName,
                     { memory: { role: "zergling" } });
+            } else if (Memory.room.Four.Creeps.AmountIsLive.Claimers < Memory.room.Four.Creeps.Amount.Claimers) {
+                var newName = "claimer | " + numberCreep;
+                body = creepBody(amountEnergy3, 'claimer');
+                originSpawn3.spawnCreep(body, newName,
+                    { memory: { role: "claimer" } });
+            } else if (Memory.room.Four.Creeps.AmountIsLive.FarBuilders < Memory.room.Four.Creeps.Amount.FarBuilders) {
+                var newName = "FarBuilder | " + numberCreep;
+                body = creepBody(amountEnergy3, 'FarBuilder');
+                originSpawn3.spawnCreep(body, newName,
+                    { memory: { role: "FarBuilder" } });
             }
         }
 
@@ -356,6 +383,34 @@ var roleSpawn = {
                 body = creepBody(amountEnergy4, 'zergling');
                 originSpawn4.spawnCreep(body, newName,
                     { memory: { role: "zergling" } });
+            }
+        }
+
+        if (Game.spawns['SP-R6']) {
+            if (Memory.room.Six.Creeps.AmountIsLive.Miners0 < Memory.room.Six.Creeps.Amount.Miners0) {
+                let newName = 'DroneMiner | ' + numberCreep;
+                let body = creepBody(amountEnergy5, 'miner0');
+                originSpawn5.spawnCreep(body, newName,
+                    { memory: { role: "miner0", sourceId: sources1[0].id } });
+            } else if (Memory.room.Six.Creeps.AmountIsLive.Drone < Memory.room.Six.Creeps.Amount.Drone) {
+                var newName = "Drone" + numberCreep;
+                body = creepBody(amountEnergy5, 'Drone');
+                originSpawn5.spawnCreep(body, newName, { memory: {role: "Drone"}});
+            } else if (Memory.room.Six.Creeps.AmountIsLive.Miners1 < Memory.room.Six.Creeps.Amount.Miners1 && Memory.room.Two.Creeps.AmountIsLive.DroneTransporters == Memory.room.Two.Creeps.Amount.DroneTransporters) {
+                let newName = 'DroneMiner | ' + numberCreep;
+                let body = creepBody(amountEnergy5, 'miner1');
+                originSpawn5.spawnCreep(body, newName,
+                    { memory: { role: "miner1", sourceId: sources1[1].id } });
+            } else if (Memory.room.Six.Creeps.AmountIsLive.zerglings < Memory.room.Six.Creeps.Amount.zerglings) {
+                var newName = "zergling | " + numberCreep;
+                body = creepBody(amountEnergy5, 'zergling');
+                originSpawn5.spawnCreep(body, newName,
+                    { memory: { role: "zergling" } });
+            } else if (Memory.room.Six.Creeps.AmountIsLive.Healers < Memory.room.Six.Creeps.Amount.Healers) {
+                var newName = "healer | " + numberCreep;
+                body = creepBody(amountEnergy5, 'healer');
+                originSpawn5.spawnCreep(body, newName,
+                    { memory: { role: "healer" } });
             }
         }
 
