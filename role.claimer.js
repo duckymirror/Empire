@@ -14,18 +14,24 @@ var roleClaimer = {
 		} else {
 		  	if (creep.room.controller) {
 				if (!creep.room.controller.my) {
-  
-			  		if (creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-				  		creep.moveTo(creep.room.controller);
-			  		} else if (creep.claimController(creep.room.controller) == ERR_FULL) {
-						if(creep.reserveController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-				  			creep.moveTo(creep.room.controller, {visualizePathStyle: {
-							stroke: 'purple',
-							lineStyle: 'dashed',
-							opacity: 1,
-				  			}, reusePath: 50});
+					
+					if (creep.room.controller.reservation && creep.room.controller.reservation.username != "JOURLOY" && creep.room.controller.reservation.ticksToEnd > 0) {
+						if (creep.attackController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+							creep.moveTo(creep.room.controller);
 						}
-			  		}
+					} else {
+						if (creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+							creep.moveTo(creep.room.controller);
+						} else if (creep.claimController(creep.room.controller) == ERR_FULL) {
+						  if(creep.reserveController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+								creep.moveTo(creep.room.controller, {visualizePathStyle: {
+							  stroke: 'purple',
+							  lineStyle: 'dashed',
+							  opacity: 1,
+								}, reusePath: 50});
+						  }
+						}
+					}
 				} else {
 			  		if(creep.signController(creep.room.controller, "HIVE") == ERR_NOT_IN_RANGE) {
 				  		creep.moveTo(creep.room.controller);
