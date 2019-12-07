@@ -25,10 +25,10 @@ const roleTower = require("role.tower");
 Memory.room = {};
 
 function stats () {
-    if (Game.spawns['SP-R1']) {
-        Memory.room.One.Name = Game.spawns['SP-R1'].room.name;
-        Memory.room.One.Controller.level = Game.spawns['SP-R1'].room.controller.level;
-        Memory.room.One.Controller.progress = Math.round(Game.spawns['SP-R1'].room.controller.progress / Game.spawns['SP-R1'].room.controller.progressTotal * 100);
+    if (Game.spawns['Spawn1']) {
+        Memory.room.One.Name = Game.spawns['Spawn1'].room.name;
+        Memory.room.One.Controller.level = Game.spawns['Spawn1'].room.controller.level;
+        Memory.room.One.Controller.progress = Math.round(Game.spawns['Spawn1'].room.controller.progress / Game.spawns['Spawn1'].room.controller.progressTotal * 100);
     }
     if (Game.spawns['RT-SP2']) {
         Memory.room.Two.Name = Game.spawns['RT-SP2'].room.name;
@@ -50,13 +50,15 @@ function stats () {
         Memory.room.Five.Controller.level = Game.spawns['SP-R5'].room.controller.level;
         Memory.room.Five.Controller.progress = Math.round(Game.spawns['SP-R5'].room.controller.progress / Game.spawns['SP-R5'].room.controller.progressTotal * 100);
     }
+    if (Game.spawns['SP-R6']) {
+        Memory.room.Six.Name = Game.spawns['SP-R6'].room.name;
+        Memory.room.Six.Controller.level = Game.spawns['SP-R6'].room.controller.level;
+        Memory.room.Six.Controller.progress = Math.round(Game.spawns['SP-R6'].room.controller.progress / Game.spawns['SP-R6'].room.controller.progressTotal * 100);
+    }
     
 }
 
 module.exports.loop = function () {
-
-    Memory.room.claim = "E46N8";
-
 
     ControlMemory.setting();
     stats();
