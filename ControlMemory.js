@@ -59,7 +59,7 @@ function amountCreeps () {
         Memory.room.One.Creeps.Amount.Drone               = 1; //Default: 1
         if (Game.flags.claim) {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 1
-            Memory.room.One.Creeps.Amount.FarBuilders     = 2; //Default: 2
+            Memory.room.One.Creeps.Amount.FarBuilders     = 0; //Default: 2
         } else {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 0
             Memory.room.One.Creeps.Amount.FarBuilders     = 0; //Default: 0
@@ -77,8 +77,13 @@ function amountCreeps () {
         Memory.room.Two.Creeps.Amount.Miners0             = 1; //Default: 1
         Memory.room.Two.Creeps.Amount.Miners1             = 1; //Default: 1
         Memory.room.Two.Creeps.Amount.Drone               = 1; //Default: 1
-        Memory.room.Two.Creeps.Amount.Claimers            = 0; //Default: 0
-        Memory.room.Two.Creeps.Amount.FarBuilders         = 0; //Default: 0
+        if (Game.flags.claim) {
+            Memory.room.Two.Creeps.Amount.Claimers        = 0; //Default: 1
+            Memory.room.Two.Creeps.Amount.FarBuilders     = 0; //Default: 2
+        } else {
+            Memory.room.Two.Creeps.Amount.Claimers        = 0; //Default: 0
+            Memory.room.Two.Creeps.Amount.FarBuilders     = 0; //Default: 0
+        }
         if (Game.flags.attack) {
             Memory.room.Two.Creeps.Amount.zerglings        = 0; //Default: 1
             Memory.room.Two.Creeps.Amount.Healers          = 0; //Default: 1
@@ -90,10 +95,15 @@ function amountCreeps () {
 
     if (Game.spawns["SP-R3"]) {
         Memory.room.Three.Creeps.Amount.Miners0           = 1; //Default: 1
-        Memory.room.Three.Creeps.Amount.Miners1           = 1; //Default: 1
+        Memory.room.Three.Creeps.Amount.Miners1           = 0; //Default: 1
         Memory.room.Three.Creeps.Amount.Drone             = 1; //Default: 1
-        Memory.room.Three.Creeps.Amount.Claimers          = 0; //Default: 0
-        Memory.room.Three.Creeps.Amount.FarBuilders       = 0; //Default: 0
+        if (Game.flags.claim) {
+            Memory.room.Three.Creeps.Amount.Claimers        = 0; //Default: 1
+            Memory.room.Three.Creeps.Amount.FarBuilders     = 0; //Default: 2
+        } else {
+            Memory.room.Three.Creeps.Amount.Claimers        = 0; //Default: 0
+            Memory.room.Three.Creeps.Amount.FarBuilders     = 0; //Default: 0
+        }
         if (Game.flags.attack) {
             Memory.room.Three.Creeps.Amount.zerglings      = 0; //Default: 1
             //Memory.room.Three.Creeps.Amount.Healers       = 0; //Default: 1
@@ -107,8 +117,13 @@ function amountCreeps () {
         Memory.room.Four.Creeps.Amount.Miners0           = 1; //Default: 1
         Memory.room.Four.Creeps.Amount.Miners1           = 1; //Default: 1
         Memory.room.Four.Creeps.Amount.Drone             = 1; //Default: 1
-        Memory.room.Four.Creeps.Amount.Claimers          = 0; //Default: 0
-        Memory.room.Four.Creeps.Amount.FarBuilders       = 0; //Default: 0
+        if (Game.flags.claim) {
+            Memory.room.Four.Creeps.Amount.Claimers        = 1; //Default: 1
+            Memory.room.Four.Creeps.Amount.FarBuilders     = 0; //Default: 2
+        } else {
+            Memory.room.Four.Creeps.Amount.Claimers        = 0; //Default: 0
+            Memory.room.Four.Creeps.Amount.FarBuilders     = 0; //Default: 0
+        }
         if (Game.flags.attack) {
             Memory.room.Four.Creeps.Amount.zerglings      = 0; //Default: 1
             //Memory.room.Four.Creeps.Amount.Healers       = 0; //Default: 1
@@ -132,6 +147,12 @@ function amountCreeps () {
             //Memory.room.Five.Creeps.Amount.Healers       = 0; //Default: 0
         }
     }
+
+    if (Game.spawns["SP-R6"]) {
+        Memory.room.Six.Creeps.Amount.Miners0 = 1;
+        Memory.room.Six.Creeps.Amount.Miners1 = 1;
+        Memory.room.Six.Creeps.Amount.Drone = 1;
+    }
     
 }
 
@@ -144,6 +165,7 @@ var ControlMemory = {
             }
         }
 
+        Memory.room.claim = "E46N7"
         MemorySetting();
         amountCreeps();
         
