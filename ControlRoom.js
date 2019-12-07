@@ -86,7 +86,7 @@ function amountCreepsIsLive() {
         Memory.room.Four.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.Four.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Four.Creeps.AmountIsLive.Drone = 0;
-        Memory.room.Four.Creeps.AmountIsLive.ClaimersIsLive = 0;
+        Memory.room.Four.Creeps.AmountIsLive.Claimers = 0;
         Memory.room.Four.Creeps.AmountIsLive.FarBuilders = 0;
         Memory.room.Four.Creeps.AmountIsLive.Healers = 0;
     }
@@ -95,13 +95,15 @@ function amountCreepsIsLive() {
         Memory.room.Five.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.Five.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Five.Creeps.AmountIsLive.Drone = 0;
-        Memory.room.Five.Creeps.AmountIsLive.ClaimersIsLive = 0;
+        Memory.room.Five.Creeps.AmountIsLive.Claimers = 0;
         Memory.room.Five.Creeps.AmountIsLive.FarBuilders = 0;
         Memory.room.Five.Creeps.AmountIsLive.Healers = 0;
     }
 
     if (Game.spawns['SP-R6']) {
-
+        Memory.room.Six.Creeps.AmountIsLive.Miners0 = 0;
+        Memory.room.Six.Creeps.AmountIsLive.Miners1 = 0;
+        Memory.room.Six.Creeps.AmountIsLive.Drone = 0;
     }
 
     for (var i in Game.creeps) {
@@ -119,6 +121,8 @@ function amountCreepsIsLive() {
                     Memory.room.Four.Creeps.AmountIsLive.Miners0++;
                 } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
                     Memory.room.Five.Creeps.AmountIsLive.Miners0++;
+                } else if (Game.spawns['SP-R6'] && creep.memory.room == Memory.room.Six.Name) {
+                    Memory.room.Six.Creeps.AmountIsLive.Miners0++;
                 }
                 break;
 
@@ -134,6 +138,8 @@ function amountCreepsIsLive() {
                     Memory.room.Four.Creeps.AmountIsLive.Miners1++;
                 } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
                     Memory.room.Five.Creeps.AmountIsLive.Miners1++;
+                } else if (Game.spawns['SP-R6'] && creep.memory.room == Memory.room.Six.Name) {
+                    Memory.room.Six.Creeps.AmountIsLive.Miners1++;
                 }
                 break;
             case "Drone":
@@ -148,6 +154,8 @@ function amountCreepsIsLive() {
                     Memory.room.Four.Creeps.AmountIsLive.Drone++;
                 } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
                     Memory.room.Five.Creeps.AmountIsLive.Drone++;
+                } else if (Game.spawns['SP-R6'] && creep.memory.room == Memory.room.Six.Name) {
+                    Memory.room.Six.Creeps.AmountIsLive.Drone++;
                 }
                 break;
             case "claimer":
