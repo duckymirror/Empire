@@ -52,7 +52,7 @@ var DroneMiner = {
 
             if (creep.room.storage) {
 
-                if (linkInRoom.length > 0) {
+                if (linkInRoom.length == 47) {
 
                     if (creep.store.getCapacity > 0) {
 
