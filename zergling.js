@@ -5,39 +5,45 @@ var zergling = {
             creep.memory.room = creep.room.name;
         } else {
 
-            var hostileCreeps = creep.room.find(FIND_HOSTILE_CREEPS, {
+            var hostileCreeps = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS, {
                 filter: (creep) => {
                     return (creep.owner.username != "kotyara");
                 }
             });
-
             
-            var invaderCore = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_INVADER_CORE);
-                }
-            });
-
-            var hostileStructures = creep.room.find(FIND_HOSTILE_STRUCTURES, {
+            var hostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_TOWER ||
                         structure.structureType == STRUCTURE_SPAWN ||
-                        structure.structureType == STRUCTURE_EXTENSION)
+                        structure.structureType == STRUCTURE_EXTENSION) && structure.owner.username != "Kotyara";
                 }
             });
 
-            if (Game.flags.attack || hostileCreeps.length >= 0 || invaderCore.length >= 0) {
-                if (hostileCreeps.length == 0 && invaderCore.length == 0) {
-                    creep.moveTo(Game.flags.attack, {reusePath: 30, visualizePathStyle: creep.memory.visualizePathPrepare});
-                } else if (hostileCreeps.length > 0) {
-                    if(creep.attack(hostileCreeps[0]) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(hostileCreeps[0]);
-                        creep.say("ZERGS!", true)
+            if (hostileCreeps) {
+                var hostileAttackCreeps = creep.room.find(FIND_HOSTILE_CREEPS, {
+                    filter: (creep) => {
+                        return (creep.owner.username != "kotyara") && (creep.body.type == "ATTACK" || creep.body.type == "RANGED_ATTACK");
                     }
-                } else if (invaderCore.length > 0) {
-                    if(creep.attack(invaderCore[0]) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(invaderCore[0]);
+                });
+
+                if (hostileAttackCreeps.length > 0) {
+                    if (creep.attack(hostileAttackCreeps[0]) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(hostileAttackCreeps[0], {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     }
+                } else {
+                    if (creep.attack(hostileCreeps) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(hostileCreeps, {heuristicWeight: 1.2, range: 1, reusePath: 50});
+                    }
+                }
+            } else if (hostileStructures) {
+                if (creep.attack(hostileStructures) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(hostileStructures, {heuristicWeight: 1.2, range: 1, reusePath: 50});
+                }
+            } else {
+                if (Game.flags.attack) {
+                    creep.moveTo(Game.flags.attack, {heuristicWeight: 1.2, range: 1, reusePath: 50});
+                } else {
+
                 }
             }
 
