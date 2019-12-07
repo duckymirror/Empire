@@ -105,7 +105,7 @@ var Drone = {
                         if (creep.build(constructionSite[0]) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(constructionSite[0], {heuristicWeight: 1.2, range: 3, reusePath: 50});
                         }
-                    } else if (creep.room.storage.store[RESOURCE_ENERGY] < 100000) {
+                    } else if (creep.room.storage.store[RESOURCE_ENERGY] < 50000) {
                         if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(creep.room.storage, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                         }
