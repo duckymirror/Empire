@@ -41,7 +41,7 @@ var roleTower = {
             });
             var ramparts = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 1000000;
+                    return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 150000;
                 }
             });
             var brokenRamparts = tower.room.find(FIND_STRUCTURES, {
