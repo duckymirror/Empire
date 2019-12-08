@@ -24,6 +24,12 @@ const roleTower = require("role.tower");
 
 Memory.room = {};
 
+// Костыль
+Memory.group = {};
+Memory.group.attack = {};
+Memory.group.attack.flag1 = {};
+Memory.group.attack.flag2 = {};
+
 function stats () {
     if (Game.spawns['Spawn1']) {
         Memory.room.One.Name = Game.spawns['Spawn1'].room.name;
