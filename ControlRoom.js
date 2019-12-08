@@ -45,6 +45,7 @@ function Visual() {
 
 function amountCreepsIsLive() {
 
+    const Overlord = require("Overlord")
     const DroneMiner = require("DroneMiner");
     const Drone = require("Drone");
     const roleClaimer = require("role.claimer");
@@ -61,6 +62,7 @@ function amountCreepsIsLive() {
         Memory.room.One.Creeps.AmountIsLive.Healers = 0;
         Memory.room.One.Creeps.AmountIsLive.zerglings1 = 0;
         Memory.room.One.Creeps.AmountIsLive.zerglings2 = 0;
+        Memory.room.One.Creeps.AmountIsLive.Overlords = 0;
     }
 
     if (Game.spawns['RT-SP2']) {
@@ -214,6 +216,11 @@ function amountCreepsIsLive() {
                     Memory.room.Five.Creeps.AmountIsLive.zerglings++;
                 }
                 break;
+            case "overlord":
+                Overlord.control(creep);
+                if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
+                    Memory.room.One.Creeps.AmountIsLive.Overlords++;
+                }
 
         }
     }
