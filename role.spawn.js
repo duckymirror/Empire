@@ -98,6 +98,10 @@ function creepBody(energy, role) {
         }
     }
 
+    if (role == 'Overlord') {
+        return [MOVE]
+    }
+
     if (role == 'hydralisk') {
         if (energy == 300) {
             return [MOVE, RANGED_ATTACK]
@@ -147,7 +151,9 @@ function creepBody(energy, role) {
     }
 
     if (role == "healer") {
-        if (energy == 1000) {
+        if (energy >= 400 && energy < 1000) {
+            return [TOUGH, MOVE, MOVE, HEAL]
+        } else if (energy == 1000) {
             return [MOVE, MOVE, MOVE, HEAL, HEAL, HEAL]
         } else if (energy == 1050) {
             return [MOVE, MOVE, MOVE, HEAL, HEAL, HEAL]
@@ -220,6 +226,79 @@ var roleSpawn = {
             var amountEnergy5 = originRoom5.energyCapacityAvailable;
         }
 
+        if (Game.spawns["Spawn1"]) {
+            Memory.stats["room." + "One." + "amountEnergy"] = originRoom.energyCapacityAvailable;
+            Memory.stats["room." + "One." + "freeEnergy"] = originRoom.energyAvailable;
+            Memory.stats["room." + "One." + "controllerLevel"] = Memory.room.One.Controller.level;
+            Memory.stats["room." + "One." + "controllerProgress"] = Memory.room.One.Controller.progress;
+        } else {
+            Memory.stats["room." + "One." + "amountEnergy"] = 0;
+            Memory.stats["room." + "One." + "freeEnergy"] = 0;
+            Memory.stats["room." + "One." + "controllerLevel"] = 0;
+            Memory.stats["room." + "One." + "controllerProgress"] = 0;
+        }
+
+        if (Game.spawns["Spawn2"]) {
+            Memory.stats["room." + "Two." + "amountEnergy"] = amountEnergy;
+            Memory.stats["room." + "Two." + "freeEnergy"] = originRoom1.energyAvailable;
+            Memory.stats["room." + "Two." + "controllerLevel"] = Memory.room.Two.Controller.level;
+            Memory.stats["room." + "Two." + "controllerProgress"] = Memory.room.Two.Controller.progress;
+        } else {
+            Memory.stats["room." + "Two." + "amountEnergy"] = 0;
+            Memory.stats["room." + "Two." + "freeEnergy"] = 0;
+            Memory.stats["room." + "Two." + "controllerLevel"] = 0;
+            Memory.stats["room." + "Two." + "controllerProgress"] = 0;
+        }
+
+        if (Game.spawns["Spawn3"]) {
+            Memory.stats["room." + "Three." + "amountEnergy"] = amountEnergy;
+            Memory.stats["room." + "Three." + "freeEnergy"] = originRoom2.energyAvailable;
+            Memory.stats["room." + "Three." + "controllerLevel"] = Memory.room.Three.Controller.level;
+            Memory.stats["room." + "Three." + "controllerProgress"] = Memory.room.Three.Controller.progress;
+        } else {
+            Memory.stats["room." + "Three." + "amountEnergy"] = 0;
+            Memory.stats["room." + "Three." + "freeEnergy"] = 0;
+            Memory.stats["room." + "Three." + "controllerLevel"] = 0;
+            Memory.stats["room." + "Three." + "controllerProgress"] = 0;
+        }
+
+        if (Game.spawns["Spawn4"]) {
+            Memory.stats["room." + "Four." + "amountEnergy"] = amountEnergy;
+            Memory.stats["room." + "Four." + "freeEnergy"] = originRoom3.energyAvailable;
+            Memory.stats["room." + "Four." + "controllerLevel"] = Memory.room.Four.Controller.level;
+            Memory.stats["room." + "Four." + "controllerProgress"] = Memory.room.Four.Controller.progress;
+        } else {
+            Memory.stats["room." + "Four." + "amountEnergy"] = 0;
+            Memory.stats["room." + "Four." + "freeEnergy"] = 0;
+            Memory.stats["room." + "Four." + "controllerLevel"] = 0;
+            Memory.stats["room." + "Four." + "controllerProgress"] = 0;
+        }
+
+        if (Game.spawns["Spawn5"]) {
+            Memory.stats["room." + "Five." + "amountEnergy"] = amountEnergy;
+            Memory.stats["room." + "Five." + "freeEnergy"] = originRoom4.energyAvailable;
+            Memory.stats["room." + "Five." + "controllerLevel"] = Memory.room.Five.Controller.level;
+            Memory.stats["room." + "Five." + "controllerProgress"] = Memory.room.Five.Controller.progress;
+        } else {
+            Memory.stats["room." + "Five." + "amountEnergy"] = 0;
+            Memory.stats["room." + "Five." + "freeEnergy"] = 0;
+            Memory.stats["room." + "Five." + "controllerLevel"] = 0;
+            Memory.stats["room." + "Five." + "controllerProgress"] = 0;
+        }
+
+        if (Game.spawns["Spawn6"]) {
+            Memory.stats["room." + "Six." + "amountEnergy"] = amountEnergy;
+            Memory.stats["room." + "Six." + "freeEnergy"] = originRoom5.energyAvailable;
+            Memory.stats["room." + "Six." + "controllerLevel"] = Memory.room.Six.Controller.level;
+            Memory.stats["room." + "Six." + "controllerProgress"] = Memory.room.Six.Controller.progress;
+        } else {
+            Memory.stats["room." + "Six." + "amountEnergy"] = 0;
+            Memory.stats["room." + "Six." + "freeEnergy"] = 0;
+            Memory.stats["room." + "Six." + "controllerLevel"] = 0;
+            Memory.stats["room." + "Six." + "controllerProgress"] = 0;
+        }
+
+
         var numberCreep = Game.time;
 
         if (Game.spawns['Spawn1']) {
@@ -247,21 +326,26 @@ var roleSpawn = {
                 body = creepBody(amountEnergy, 'zergling');
                 originSpawn.spawnCreep(body, newName,
                     { memory: { role: "zergling", flagPos: Game.flags.attack2 } });
-            } else if (Memory.room.One.Creeps.AmountIsLive.Claimers < Memory.room.One.Creeps.Amount.Claimers) {
-                var newName = "claimer | " + numberCreep;
-                body = creepBody(amountEnergy, 'claimer');
-                originSpawn.spawnCreep(body, newName,
-                    { memory: { role: "claimer" } });
-            } else if (Memory.room.One.Creeps.AmountIsLive.FarBuilders < Memory.room.One.Creeps.Amount.FarBuilders) {
-                var newName = "FarBuilder | " + numberCreep;
-                body = creepBody(amountEnergy, 'FarBuilder');
-                originSpawn.spawnCreep(body, newName,
-                    { memory: { role: "FarBuilder" } });
+            //} else if (Memory.room.One.Creeps.AmountIsLive.Claimers < Memory.room.One.Creeps.Amount.Claimers) {
+            //    var newName = "claimer | " + numberCreep;
+            //    body = creepBody(amountEnergy, 'claimer');
+            //    originSpawn.spawnCreep(body, newName,
+            //        { memory: { role: "claimer" } });
+            //} else if (Memory.room.One.Creeps.AmountIsLive.FarBuilders < Memory.room.One.Creeps.Amount.FarBuilders) {
+            //    var newName = "FarBuilder | " + numberCreep;
+            //    body = creepBody(amountEnergy, 'FarBuilder');
+            //    originSpawn.spawnCreep(body, newName,
+            //        { memory: { role: "FarBuilder" } });
             } else if (Memory.room.One.Creeps.AmountIsLive.Healers < Memory.room.One.Creeps.Amount.Healers) {
                 var newName = "healer | " + numberCreep;
                 body = creepBody(amountEnergy, 'healer');
                 originSpawn.spawnCreep(body, newName,
                     { memory: { role: "healer" } });
+            } else if (Memory.room.One.Creeps.AmountIsLive.Overlords < Memory.room.One.Creeps.Amount.Overlords) {
+                var newName = "Overlord | " + numberCreep;
+                body = creepBody(amountEnergy, 'Overlord');
+                originSpawn.spawnCreep(body, newName,
+                    { memory: { role: "overlord" } });
             }
         }
 
