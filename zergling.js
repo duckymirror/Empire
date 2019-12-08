@@ -7,6 +7,13 @@ var zergling = {
             
         } else {
 
+            if (creep.ticksToLive < 150) {
+                if (creep.memory.flagPos.name == Game.flags.attack1.name) {
+                    Memory.room.One.Creeps.AmountIsLive.zerglings1--;
+                } else {
+                    Memory.room.One.Creeps.AmountIsLive.zerglings2--;
+                }
+            }
             var hostileCreeps = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS, {
                 filter: (creep) => {
                     return (creep.owner.username != "kotyara");
@@ -36,7 +43,7 @@ var zergling = {
                 if (creep.attack(hostileStructures) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(hostileStructures, {heuristicWeight: 1.2, reusePath: 10});
                 }
-            } else if (hostileCreeps && creep.room.name == creep.memory.flagPos.room.name) {
+            } else if (hostileCreeps) {
                 
                 speak = ['FOR', 'THE', 'HIVE'];
                 speakNow = speak[Game.time % speak.length];
