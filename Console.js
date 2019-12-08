@@ -36,6 +36,7 @@ function params() {
             info.push("Имя комнаты: " + Memory.room.One.Name)
             info.push("Уровень контроллера: " + Memory.room.One.Controller.level);
             info.push("Прогресс контроллера: " + Memory.room.One.Controller.progress);
+            info.push("Количество энергии: " + Memory.room.One.Stats.energyCapacityAvailable);
         } else if (roomNumber == 2) {
             info.push("Имя комнаты: " + Memory.room.Two.Name)
             info.push("Уровень контроллера: " + Memory.room.Two.Controller.level);
