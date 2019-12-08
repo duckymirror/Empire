@@ -59,7 +59,8 @@ function amountCreepsIsLive() {
         Memory.room.One.Creeps.AmountIsLive.Claimers = 0;
         Memory.room.One.Creeps.AmountIsLive.FarBuilders = 0;
         Memory.room.One.Creeps.AmountIsLive.Healers = 0;
-        Memory.room.One.Creeps.AmountIsLive.zerglings = 0;
+        Memory.room.One.Creeps.AmountIsLive.zerglings1 = 0;
+        Memory.room.One.Creeps.AmountIsLive.zerglings2 = 0;
     }
 
     if (Game.spawns['RT-SP2']) {
@@ -198,7 +199,11 @@ function amountCreepsIsLive() {
             case "zergling":
                 zergling.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
-                    Memory.room.One.Creeps.AmountIsLive.zerglings++;
+                    if (creep.memory.flagPos.name == Game.flags.attack1.name) {
+                        Memory.room.One.Creeps.AmountIsLive.zerglings1++;
+                    } else {
+                        Memory.room.One.Creeps.AmountIsLive.zerglings2++;
+                    }
                 } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.zerglings++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
