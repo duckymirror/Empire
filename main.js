@@ -23,12 +23,7 @@ const roleSpawn = require("role.spawn");
 const roleTower = require("role.tower");
 
 Memory.room = {};
-
-// Костыль
-Memory.group = {};
-Memory.group.attack = {};
-Memory.group.attack.flag1 = {};
-Memory.group.attack.flag2 = {};
+Memory.stats = {};
 
 function stats () {
     if (Game.spawns['Spawn1']) {
@@ -65,6 +60,8 @@ function stats () {
 }
 
 module.exports.loop = function () {
+
+    Memory.stats["colony.usedCpu"] = Game.cpu.getUsed()
 
     ControlMemory.setting();
     stats();
