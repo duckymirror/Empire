@@ -4,23 +4,23 @@ function creepBody(energy, role) {
         if (energy == 300) {
             return [MOVE, CARRY, WORK]
         } else if (energy == 350) {
-            return [MOVE, MOVE, CARRY, WORK]
+            return [MOVE, MOVE, CARRY, WORK, WORK]
         } else if (energy == 400) {
-            return [MOVE, MOVE, CARRY, WORK]
+            return [MOVE, MOVE, CARRY, WORK, WORK]
         } else if (energy == 450) {
-            return [MOVE, MOVE, CARRY, WORK]
+            return [MOVE, MOVE, CARRY, WORK, WORK]
         } else if (energy == 500) {
-            return [MOVE, MOVE, CARRY, WORK]
+            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
         } else if (energy == 550) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
         } else if (energy == 600) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
         } else if (energy == 650) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
         } else if (energy == 700) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
         } else if (energy == 750) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
         } else if (energy == 800) {
             return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK, WORK]
         } else if (energy == 850) {
@@ -38,9 +38,9 @@ function creepBody(energy, role) {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
-            return [MOVE, MOVE, CARRY, WORK]
+            return [MOVE, MOVE, CARRY, WORK, CARRY, MOVE]
         } else if (energy == 400) {
-            return [MOVE, MOVE, CARRY, WORK]
+            return [MOVE, MOVE, CARRY, WORK, CARRY, MOVE]
         } else if (energy == 450) {
             return [MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
         } else if (energy == 500) {
@@ -86,13 +86,13 @@ function creepBody(energy, role) {
         if (energy == 300) {
             return [MOVE, ATTACK]
         } else if (energy == 350) {
-            return [MOVE, ATTACK]
+            return [MOVE, ATTACK, MOVE, ATTACK]
         } else if (energy == 400) {
-            return [MOVE, ATTACK]
+            return [MOVE, ATTACK, MOVE, ATTACK]
         } else if (energy == 450) {
-            return [MOVE, ATTACK]
+            return [MOVE, ATTACK, MOVE, ATTACK]
         } else if (energy == 500) {
-            return [MOVE, ATTACK]
+            return [MOVE, ATTACK, MOVE, ATTACK]
         } else if (energy >= 550) {
             return [TOUGH, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK]
         }
@@ -182,6 +182,7 @@ var roleSpawn = {
             var originRoom = originSpawn.room;
             var sources = originRoom.find(FIND_SOURCES);
             var amountEnergy = originRoom.energyCapacityAvailable;
+            Memory.room.One.Stats.energyCapacityAvailable =  originRoom.energyCapacityAvailable;
         }
 
         if (Game.spawns["RT-SP2"]) {
@@ -236,11 +237,16 @@ var roleSpawn = {
                 body = creepBody(amountEnergy, 'miner1');
                 originSpawn.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources[1].id } });
-            } else if (Memory.room.One.Creeps.AmountIsLive.zerglings < Memory.room.One.Creeps.Amount.zerglings) {
+            } else if (Memory.room.One.Creeps.AmountIsLive.zerglings1 < Memory.room.One.Creeps.Amount.zerglings1) {
                 var newName = "zergling | " + numberCreep;
                 body = creepBody(amountEnergy, 'zergling');
                 originSpawn.spawnCreep(body, newName,
-                    { memory: { role: "zergling" } });
+                    { memory: { role: "zergling", flagPos: Game.flags.attack1 } });
+            } else if (Memory.room.One.Creeps.AmountIsLive.zerglings2 < Memory.room.One.Creeps.Amount.zerglings2) {
+                var newName = "zergling | " + numberCreep;
+                body = creepBody(amountEnergy, 'zergling');
+                originSpawn.spawnCreep(body, newName,
+                    { memory: { role: "zergling", flagPos: Game.flags.attack2 } });
             } else if (Memory.room.One.Creeps.AmountIsLive.Claimers < Memory.room.One.Creeps.Amount.Claimers) {
                 var newName = "claimer | " + numberCreep;
                 body = creepBody(amountEnergy, 'claimer');
