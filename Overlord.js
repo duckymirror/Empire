@@ -7,7 +7,7 @@ var Overlord = {
             
         } else {
 
-            
+            creep.moveTo(Game.flags.overlord, {heuristicWeight: 1.2, range: 1, reusePath: 10});
 
         }
     }
