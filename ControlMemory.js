@@ -56,7 +56,7 @@ function amountCreeps () {
     if (Game.spawns["Spawn1"]) {
         Memory.room.One.Creeps.Amount.Miners0             = 1; //Default: 1
         Memory.room.One.Creeps.Amount.Miners1             = 1; //Default: 1
-        Memory.room.One.Creeps.Amount.Drone               = 4; //Default: 1
+        Memory.room.One.Creeps.Amount.Drone               = 1; //Default: 1
         if (Game.flags.claim) {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 1
             Memory.room.One.Creeps.Amount.FarBuilders     = 0; //Default: 2
@@ -64,9 +64,10 @@ function amountCreeps () {
             Memory.room.One.Creeps.Amount.Claimers        = 0; //Default: 0
             Memory.room.One.Creeps.Amount.FarBuilders     = 0; //Default: 0
         }
-        Memory.room.One.Creeps.Amount.zerglings1       = 3; //Default: 1
-        Memory.room.One.Creeps.Amount.zerglings2       = 3; //Default: 1
+        Memory.room.One.Creeps.Amount.zerglings1       = 0; //Default: 1
+        Memory.room.One.Creeps.Amount.zerglings2       = 0; //Default: 1
         Memory.room.One.Creeps.Amount.Healers         = 0; //Default: 1
+        Memory.room.One.Creeps.Amount.Overlords       = 0;
     }
 
     if (Game.spawns["RT-SP2"]) {
