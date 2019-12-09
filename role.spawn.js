@@ -34,23 +34,23 @@ function creepBody(energy, role) {
         }
     }
 
-    if (role == "FarBuilder" || role == "Drone") {
+    if (role == "FarBuilder" || role == "Drone" || role == "DroneRemoute") {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
-            return [MOVE, MOVE, CARRY, WORK, CARRY, MOVE]
+            return [MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
         } else if (energy == 400) {
-            return [MOVE, MOVE, CARRY, WORK, CARRY, MOVE]
+            return [MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
         } else if (energy == 450) {
             return [MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
         } else if (energy == 500) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, WORK]
         } else if (energy == 550) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, WORK]
         } else if (energy == 600) {
             return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, WORK]
         } else if (energy == 650) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, WORK]
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK]
         } else if (energy == 700) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK]
         } else if (energy == 750) {
@@ -180,6 +180,26 @@ function creepBody(energy, role) {
 
 }
 
+function calculateCreeps (energy, role, target) {
+    creep = creepBody(energy, role);
+    
+    let price = 0;
+    if (target == 'spawnTime') {
+        time = creep.length * 3;
+        return time
+    } else if (target == 'spawnPrice') {
+        for (var i in creep) {
+            if (creep[i] == "move" || creep[i] == "carry") {
+                price = price + 50;
+            } else if (creep[i] == "work") {
+                price = price + 100;
+            }
+        }
+
+        return price
+    }
+}
+
 var roleSpawn = {
     run(spawn) {
 
@@ -188,7 +208,6 @@ var roleSpawn = {
             var originRoom = originSpawn.room;
             var sources = originRoom.find(FIND_SOURCES);
             var amountEnergy = originRoom.energyCapacityAvailable;
-            Memory.room.One.Stats.energyCapacityAvailable =  originRoom.energyCapacityAvailable;
         }
 
         if (Game.spawns["RT-SP2"]) {
@@ -226,87 +245,13 @@ var roleSpawn = {
             var amountEnergy5 = originRoom5.energyCapacityAvailable;
         }
 
-        if (Game.spawns["Spawn1"]) {
-            Memory.stats["room." + "One." + "amountEnergy"] = originRoom.energyCapacityAvailable;
-            Memory.stats["room." + "One." + "freeEnergy"] = originRoom.energyAvailable;
-            Memory.stats["room." + "One." + "controllerLevel"] = Memory.room.One.Controller.level;
-            Memory.stats["room." + "One." + "controllerProgress"] = Memory.room.One.Controller.progress;
-        } else {
-            Memory.stats["room." + "One." + "amountEnergy"] = 0;
-            Memory.stats["room." + "One." + "freeEnergy"] = 0;
-            Memory.stats["room." + "One." + "controllerLevel"] = 0;
-            Memory.stats["room." + "One." + "controllerProgress"] = 0;
-        }
-
-        if (Game.spawns["Spawn2"]) {
-            Memory.stats["room." + "Two." + "amountEnergy"] = amountEnergy;
-            Memory.stats["room." + "Two." + "freeEnergy"] = originRoom1.energyAvailable;
-            Memory.stats["room." + "Two." + "controllerLevel"] = Memory.room.Two.Controller.level;
-            Memory.stats["room." + "Two." + "controllerProgress"] = Memory.room.Two.Controller.progress;
-        } else {
-            Memory.stats["room." + "Two." + "amountEnergy"] = 0;
-            Memory.stats["room." + "Two." + "freeEnergy"] = 0;
-            Memory.stats["room." + "Two." + "controllerLevel"] = 0;
-            Memory.stats["room." + "Two." + "controllerProgress"] = 0;
-        }
-
-        if (Game.spawns["Spawn3"]) {
-            Memory.stats["room." + "Three." + "amountEnergy"] = amountEnergy;
-            Memory.stats["room." + "Three." + "freeEnergy"] = originRoom2.energyAvailable;
-            Memory.stats["room." + "Three." + "controllerLevel"] = Memory.room.Three.Controller.level;
-            Memory.stats["room." + "Three." + "controllerProgress"] = Memory.room.Three.Controller.progress;
-        } else {
-            Memory.stats["room." + "Three." + "amountEnergy"] = 0;
-            Memory.stats["room." + "Three." + "freeEnergy"] = 0;
-            Memory.stats["room." + "Three." + "controllerLevel"] = 0;
-            Memory.stats["room." + "Three." + "controllerProgress"] = 0;
-        }
-
-        if (Game.spawns["Spawn4"]) {
-            Memory.stats["room." + "Four." + "amountEnergy"] = amountEnergy;
-            Memory.stats["room." + "Four." + "freeEnergy"] = originRoom3.energyAvailable;
-            Memory.stats["room." + "Four." + "controllerLevel"] = Memory.room.Four.Controller.level;
-            Memory.stats["room." + "Four." + "controllerProgress"] = Memory.room.Four.Controller.progress;
-        } else {
-            Memory.stats["room." + "Four." + "amountEnergy"] = 0;
-            Memory.stats["room." + "Four." + "freeEnergy"] = 0;
-            Memory.stats["room." + "Four." + "controllerLevel"] = 0;
-            Memory.stats["room." + "Four." + "controllerProgress"] = 0;
-        }
-
-        if (Game.spawns["Spawn5"]) {
-            Memory.stats["room." + "Five." + "amountEnergy"] = amountEnergy;
-            Memory.stats["room." + "Five." + "freeEnergy"] = originRoom4.energyAvailable;
-            Memory.stats["room." + "Five." + "controllerLevel"] = Memory.room.Five.Controller.level;
-            Memory.stats["room." + "Five." + "controllerProgress"] = Memory.room.Five.Controller.progress;
-        } else {
-            Memory.stats["room." + "Five." + "amountEnergy"] = 0;
-            Memory.stats["room." + "Five." + "freeEnergy"] = 0;
-            Memory.stats["room." + "Five." + "controllerLevel"] = 0;
-            Memory.stats["room." + "Five." + "controllerProgress"] = 0;
-        }
-
-        if (Game.spawns["Spawn6"]) {
-            Memory.stats["room." + "Six." + "amountEnergy"] = amountEnergy;
-            Memory.stats["room." + "Six." + "freeEnergy"] = originRoom5.energyAvailable;
-            Memory.stats["room." + "Six." + "controllerLevel"] = Memory.room.Six.Controller.level;
-            Memory.stats["room." + "Six." + "controllerProgress"] = Memory.room.Six.Controller.progress;
-        } else {
-            Memory.stats["room." + "Six." + "amountEnergy"] = 0;
-            Memory.stats["room." + "Six." + "freeEnergy"] = 0;
-            Memory.stats["room." + "Six." + "controllerLevel"] = 0;
-            Memory.stats["room." + "Six." + "controllerProgress"] = 0;
-        }
-
-
         var numberCreep = Game.time;
 
         if (Game.spawns['Spawn1']) {
             if (Memory.room.One.Creeps.AmountIsLive.Miners0 < Memory.room.One.Creeps.Amount.Miners0) {
                 var newName = "miner0 | " + numberCreep;
                 body = creepBody(amountEnergy, 'miner0');
-                originSpawn.spawnCreep(body, newName,
-                    { memory: { role: "miner0", sourceId: sources[0].id } });
+                originSpawn.spawnCreep(body, newName, {memory: {role: "miner0", sourceId: sources[0].id}});
             } else if (Memory.room.One.Creeps.AmountIsLive.Drone < Memory.room.One.Creeps.Amount.Drone) {
                 var newName = "Drone" + numberCreep;
                 body = creepBody(amountEnergy, 'Drone');
@@ -316,26 +261,11 @@ var roleSpawn = {
                 body = creepBody(amountEnergy, 'miner1');
                 originSpawn.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources[1].id } });
-            } else if (Memory.room.One.Creeps.AmountIsLive.zerglings1 < Memory.room.One.Creeps.Amount.zerglings1) {
+            } else if (Memory.room.One.Creeps.AmountIsLive.zerglings < Memory.room.One.Creeps.Amount.zerglings) {
                 var newName = "zergling | " + numberCreep;
                 body = creepBody(amountEnergy, 'zergling');
                 originSpawn.spawnCreep(body, newName,
-                    { memory: { role: "zergling", flagPos: Game.flags.attack1 } });
-            } else if (Memory.room.One.Creeps.AmountIsLive.zerglings2 < Memory.room.One.Creeps.Amount.zerglings2) {
-                var newName = "zergling | " + numberCreep;
-                body = creepBody(amountEnergy, 'zergling');
-                originSpawn.spawnCreep(body, newName,
-                    { memory: { role: "zergling", flagPos: Game.flags.attack2 } });
-            //} else if (Memory.room.One.Creeps.AmountIsLive.Claimers < Memory.room.One.Creeps.Amount.Claimers) {
-            //    var newName = "claimer | " + numberCreep;
-            //    body = creepBody(amountEnergy, 'claimer');
-            //    originSpawn.spawnCreep(body, newName,
-            //        { memory: { role: "claimer" } });
-            //} else if (Memory.room.One.Creeps.AmountIsLive.FarBuilders < Memory.room.One.Creeps.Amount.FarBuilders) {
-            //    var newName = "FarBuilder | " + numberCreep;
-            //    body = creepBody(amountEnergy, 'FarBuilder');
-            //    originSpawn.spawnCreep(body, newName,
-            //        { memory: { role: "FarBuilder" } });
+                    { memory: { role: "zergling"} });
             } else if (Memory.room.One.Creeps.AmountIsLive.Healers < Memory.room.One.Creeps.Amount.Healers) {
                 var newName = "healer | " + numberCreep;
                 body = creepBody(amountEnergy, 'healer');
@@ -346,6 +276,15 @@ var roleSpawn = {
                 body = creepBody(amountEnergy, 'Overlord');
                 originSpawn.spawnCreep(body, newName,
                     { memory: { role: "overlord" } });
+            } else if (Memory.room.One.Creeps.AmountIsLive.DroneRemoute < Memory.room.One.Creeps.Amount.DroneRemoute) {
+                var newName = "Drone | " + numberCreep;
+                body = creepBody(amountEnergy, 'DroneRemoute');
+                originSpawn.spawnCreep(body, newName,
+                    { memory: { role: "DroneRemoute" } });
+            }
+            
+            if ((Memory.room.One.Creeps.AmountIsLive.Drone == 0) && originRoom.energyAvailable < calculateCreeps(amountEnergy, 'Drone', 'spawnPrice')) {
+                originSpawn.spawnCreep([MOVE, MOVE, CARRY, WORK], 'helper', {memory: {role: "Drone"}});
             }
         }
 
