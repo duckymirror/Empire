@@ -44,6 +44,10 @@ var DroneRemoute = {
                                 speak = ['OPEN', 'THE', 'GATES'];
                                 speakNow = speak[Game.time % speak.length];
                                 creep.say(speakNow, true);
+
+                                creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 50});
+                            } else {
+                                creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                             }
                         }
                         
