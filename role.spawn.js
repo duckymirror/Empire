@@ -193,6 +193,16 @@ function calculateCreeps (energy, role, target) {
                 price = price + 50;
             } else if (creep[i] == "work") {
                 price = price + 100;
+            } else if (creep[i] == "attack") {
+                price = price + 80;
+            } else if (creep[i] == "ranged_attack") {
+                price = price + 250;
+            } else if (creep[i] == "heal") {
+                price = price + 150;
+            } else if (creep[i] == "tough") {
+                price = price + 10;
+            } else if (creep[i] == "claim") {
+                price = price + 600;
             }
         }
 
@@ -249,7 +259,7 @@ var roleSpawn = {
 
         if (Game.spawns['Spawn1']) {
             if (Memory.room.One.Creeps.AmountIsLive.Miners0 < Memory.room.One.Creeps.Amount.Miners0) {
-                var newName = "miner0 | " + numberCreep;
+                var newName = "Drone | " + numberCreep;
                 body = creepBody(amountEnergy, 'miner0');
                 originSpawn.spawnCreep(body, newName, {memory: {role: "miner0", sourceId: sources[0].id}});
             } else if (Memory.room.One.Creeps.AmountIsLive.Drone < Memory.room.One.Creeps.Amount.Drone) {
@@ -257,7 +267,7 @@ var roleSpawn = {
                 body = creepBody(amountEnergy, 'Drone');
                 originSpawn.spawnCreep(body, newName, { memory: {role: "Drone"}});
             } else if (Memory.room.One.Creeps.AmountIsLive.Miners1 < Memory.room.One.Creeps.Amount.Miners1) {
-                var newName = "miner1 | " + numberCreep;
+                var newName = "Drone | " + numberCreep;
                 body = creepBody(amountEnergy, 'miner1');
                 originSpawn.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources[1].id } });
@@ -284,13 +294,13 @@ var roleSpawn = {
             }
             
             if ((Memory.room.One.Creeps.AmountIsLive.Drone == 0) && originRoom.energyAvailable < calculateCreeps(amountEnergy, 'Drone', 'spawnPrice')) {
-                originSpawn.spawnCreep([MOVE, MOVE, CARRY, WORK], 'helper', {memory: {role: "Drone"}});
+                originSpawn.spawnCreep([MOVE, MOVE, CARRY, WORK], 'helper |' + Game.time, {memory: {role: "Drone"}});
             }
         }
 
         if (Game.spawns['RT-SP2']) {
             if (Memory.room.Two.Creeps.AmountIsLive.Miners0 < Memory.room.Two.Creeps.Amount.Miners0) {
-                let newName = 'DroneMiner | ' + numberCreep;
+                let newName = 'Drone | ' + numberCreep;
                 let body = creepBody(amountEnergy1, 'miner0');
                 originSpawn1.spawnCreep(body, newName,
                     { memory: { role: "miner0", sourceId: sources1[0].id } });
@@ -299,7 +309,7 @@ var roleSpawn = {
                 body = creepBody(amountEnergy1, 'Drone');
                 originSpawn1.spawnCreep(body, newName, { memory: {role: "Drone"}});
             } else if (Memory.room.Two.Creeps.AmountIsLive.Miners1 < Memory.room.Two.Creeps.Amount.Miners1 && Memory.room.Two.Creeps.AmountIsLive.DroneTransporters == Memory.room.Two.Creeps.Amount.DroneTransporters) {
-                let newName = 'DroneMiner | ' + numberCreep;
+                let newName = 'Drone | ' + numberCreep;
                 let body = creepBody(amountEnergy1, 'miner1');
                 originSpawn1.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources1[1].id } });
@@ -328,7 +338,7 @@ var roleSpawn = {
 
         if (Game.spawns['SP-R3']) {
             if (Memory.room.Three.Creeps.AmountIsLive.Miners0 < Memory.room.Three.Creeps.Amount.Miners0) {
-                var newName = "miner0 | " + numberCreep;
+                var newName = "Drone | " + numberCreep;
                 body = creepBody(amountEnergy2, 'miner0');
                 originSpawn2.spawnCreep(body, newName,
                     { memory: { role: "miner0", sourceId: sources2[0].id } });
@@ -337,7 +347,7 @@ var roleSpawn = {
                 body = creepBody(amountEnergy2, 'Drone');
                 originSpawn2.spawnCreep(body, newName, { memory: {role: "Drone"}});
             } else if (Memory.room.Three.Creeps.AmountIsLive.Miners1 < Memory.room.Three.Creeps.Amount.Miners1) {
-                var newName = "miner1 | " + numberCreep;
+                var newName = "Drone | " + numberCreep;
                 body = creepBody(amountEnergy2, 'miner1');
                 originSpawn2.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources2[1].id } });
@@ -370,7 +380,7 @@ var roleSpawn = {
                 body = creepBody(amountEnergy3, 'Drone');
                 originSpawn3.spawnCreep(body, newName, { memory: {role: "Drone"}});
             } else if (Memory.room.Four.Creeps.AmountIsLive.Miners1 < Memory.room.Four.Creeps.Amount.Miners1) {
-                var newName = "miner1 | " + numberCreep;
+                var newName = "Drone | " + numberCreep;
                 body = creepBody(amountEnergy3, 'miner1');
                 originSpawn3.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources3[1].id } });
@@ -399,7 +409,7 @@ var roleSpawn = {
 
         if (Game.spawns['SP-R5']) {
             if (Memory.room.Five.Creeps.AmountIsLive.Miners0 < Memory.room.Five.Creeps.Amount.Miners0) {
-                var newName = "miner0 | " + numberCreep;
+                var newName = "minDroneer0 | " + numberCreep;
                 body = creepBody(amountEnergy4, 'miner0');
                 originSpawn4.spawnCreep(body, newName,
                     { memory: { role: "miner0", sourceId: sources4[0].id } });
@@ -408,7 +418,7 @@ var roleSpawn = {
                 body = creepBody(amountEnergy4, 'Drone');
                 originSpawn4.spawnCreep(body, newName, { memory: {role: "Drone"}});
             } else if (Memory.room.Five.Creeps.AmountIsLive.Miners1 < Memory.room.Five.Creeps.Amount.Miners1) {
-                var newName = "miner1 | " + numberCreep;
+                var newName = "Drone | " + numberCreep;
                 body = creepBody(amountEnergy4, 'miner1');
                 originSpawn4.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources4[1].id } });
@@ -422,7 +432,7 @@ var roleSpawn = {
 
         if (Game.spawns['SP-R6']) {
             if (Memory.room.Six.Creeps.AmountIsLive.Miners0 < Memory.room.Six.Creeps.Amount.Miners0) {
-                let newName = 'DroneMiner | ' + numberCreep;
+                let newName = 'Drone | ' + numberCreep;
                 let body = creepBody(amountEnergy5, 'miner0');
                 originSpawn5.spawnCreep(body, newName,
                     { memory: { role: "miner0", sourceId: sources5[0].id } });
@@ -431,7 +441,7 @@ var roleSpawn = {
                 body = creepBody(amountEnergy5, 'Drone');
                 originSpawn5.spawnCreep(body, newName, { memory: {role: "Drone"}});
             } else if (Memory.room.Six.Creeps.AmountIsLive.Miners1 < Memory.room.Six.Creeps.Amount.Miners1 && Memory.room.Two.Creeps.AmountIsLive.DroneTransporters == Memory.room.Two.Creeps.Amount.DroneTransporters) {
-                let newName = 'DroneMiner | ' + numberCreep;
+                let newName = 'Drone | ' + numberCreep;
                 let body = creepBody(amountEnergy5, 'miner1');
                 originSpawn5.spawnCreep(body, newName,
                     { memory: { role: "miner1", sourceId: sources5[1].id } });
