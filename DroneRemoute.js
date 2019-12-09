@@ -21,7 +21,7 @@ var DroneRemoute = {
                 }
 
                 if (creep.memory.task == 'clearRoom') {
-                    if (creep.room.name != creep.memory.taskRoom.name) {
+                    if (creep.room != creep.memory.taskRoom) {
                         creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                     } else {
 
