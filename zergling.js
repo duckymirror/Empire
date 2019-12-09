@@ -7,12 +7,14 @@ var zergling = {
             
         } else {
 
+            if (Game.flags.attack) {
+                creep.memory.task = 'attack';
+            } else if (Game.flags.clearRoom) {
+                creep.memory.task = 'clear';
+            }
+
             if (creep.ticksToLive < 150) {
-                if (creep.memory.flagPos.name == Game.flags.attack1.name) {
-                    Memory.room.One.Creeps.AmountIsLive.zerglings1--;
-                } else {
-                    Memory.room.One.Creeps.AmountIsLive.zerglings2--;
-                }
+                Memory.room.One.Creeps.AmountIsLive.zerglings--;
             }
             var hostileCreeps = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS, {
                 filter: (creep) => {
@@ -20,15 +22,27 @@ var zergling = {
                 }
             });
             
-            var hostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_TOWER ||
-                            structure.structureType == STRUCTURE_SPAWN ||
-                            structure.structureType == STRUCTURE_EXTENSION ||
-                            structure.structureType == STRUCTURE_STORAGE || 
-                            structure.structureType == STRUCTURE_RAMPART) && structure.owner.username != "Kotyara";
-                }
-            });
+            if (creep.memory.task == 'clear') {
+                var hostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_TOWER ||
+                                structure.structureType == STRUCTURE_SPAWN ||
+                                structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_RAMPART) && structure.owner.username != "Kotyara";
+                    }
+                });
+            } else {
+                var hostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_TOWER ||
+                                structure.structureType == STRUCTURE_SPAWN ||
+                                structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_STORAGE || 
+                                structure.structureType == STRUCTURE_RAMPART) && structure.owner.username != "Kotyara";
+                    }
+                });
+            }
+            
             var dangerHostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_TOWER) && structure.owner.username != "Kotyara";
@@ -74,10 +88,10 @@ var zergling = {
                     creep.moveTo(hostileStructures, {heuristicWeight: 1.2, reusePath: 10});
                 }
             } else {
-                if (creep.memory.flagPos.name == Game.flags.attack1.name) {
-                    creep.moveTo(Game.flags.attack1, {heuristicWeight: 1.2, range: 1, reusePath: 10});
-                } else {
-                    creep.moveTo(Game.flags.attack2, {heuristicWeight: 1.2, range: 1, reusePath: 10});
+                if (creep.memory.task == 'attack') {
+                    creep.moveTo(Game.flags.attack, {heuristicWeight: 1.2, range: 1, reusePath: 10});
+                } else if (creep.memory.task == 'clear') {
+                    creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 10});
                 }
             }
 
