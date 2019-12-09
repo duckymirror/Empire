@@ -17,7 +17,7 @@ function Visual() {
         Game.rooms[Memory.room.One.Name].visual.line(-0.35, 0.5, 6.95, 0.5, { opacity: 0.5 })
     }
 
-    if (Game.spawns["RT-SP2"]) {
+    if (Game.spawns["Spawn2"]) {
         let X = firstX + step * Memory.room.Two.Controller.progress;
 
         Game.rooms[Memory.room.Two.Name].visual.rect(-0.35, -0.35, X, 0.8, { opacity: 0.3 })
@@ -66,7 +66,7 @@ function amountCreepsIsLive() {
         Memory.room.One.Creeps.AmountIsLive.Overlords = 0;
     }
 
-    if (Game.spawns['RT-SP2']) {
+    if (Game.spawns['Spawn2']) {
         Memory.room.Two.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.Two.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Two.Creeps.AmountIsLive.Drone = 0;
@@ -118,7 +118,7 @@ function amountCreepsIsLive() {
                 DroneMiner.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.Miners0++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
+                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.Miners0++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
                     Memory.room.Three.Creeps.AmountIsLive.Miners0++;
@@ -135,7 +135,7 @@ function amountCreepsIsLive() {
                 DroneMiner.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.Miners1++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
+                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.Miners1++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
                     Memory.room.Three.Creeps.AmountIsLive.Miners1++;
@@ -151,7 +151,7 @@ function amountCreepsIsLive() {
                 Drone.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.Drone++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
+                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.Drone++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
                     Memory.room.Three.Creeps.AmountIsLive.Drone++;
@@ -167,7 +167,7 @@ function amountCreepsIsLive() {
                 roleClaimer.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.Claimers++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
+                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.Claimers++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
                     Memory.room.Three.Creeps.AmountIsLive.Claimers++;
@@ -181,7 +181,7 @@ function amountCreepsIsLive() {
                 roleFarBuilder.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.FarBuilders++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
+                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.FarBuilders++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
                     Memory.room.Three.Creeps.AmountIsLive.FarBuilders++;
@@ -203,7 +203,7 @@ function amountCreepsIsLive() {
                 zergling.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.zerglings++;
-                } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
+                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.zerglings++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
                     Memory.room.Three.Creeps.AmountIsLive.zerglings++;
