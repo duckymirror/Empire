@@ -9,7 +9,7 @@ function MemorySetting () {
         Memory.room.One.Creeps.AmountIsLive   = {};
     }
 
-    if (Game.spawns["RT-SP2"]) {
+    if (Game.spawns["Spawn2"]) {
         Memory.room.Two                       = {};
         Memory.room.Two.Controller            = {};
         Memory.room.Two.Creeps                = {};
@@ -59,10 +59,10 @@ function stats () {
         Memory.room.One.Stats.Controller.progress = Math.round(Game.spawns['Spawn1'].room.controller.progress / Game.spawns['Spawn1'].room.controller.progressTotal * 100);
         Memory.room.One.Stats.sourcesLength = Game.spawns['Spawn1'].room.find(FIND_SOURCES).length;
     }
-    if (Game.spawns['RT-SP2']) {
-        Memory.room.Two.Name = Game.spawns['RT-SP2'].room.name;
-        Memory.room.Two.Controller.level = Game.spawns['RT-SP2'].room.controller.level;
-        Memory.room.Two.Controller.progress = Math.round(Game.spawns['RT-SP2'].room.controller.progress / Game.spawns['RT-SP2'].room.controller.progressTotal * 100);
+    if (Game.spawns['Spawn2']) {
+        Memory.room.Two.Name = Game.spawns['Spawn2'].room.name;
+        Memory.room.Two.Controller.level = Game.spawns['Spawn2'].room.controller.level;
+        Memory.room.Two.Controller.progress = Math.round(Game.spawns['Spawn2'].room.controller.progress / Game.spawns['Spawn2'].room.controller.progressTotal * 100);
     }
     if (Game.spawns['SP-R3']) {
         Memory.room.Three.Name = Game.spawns['SP-R3'].room.name;
@@ -140,7 +140,7 @@ function amountCreeps () {
         }
     }
 
-    if (Game.spawns["RT-SP2"]) {
+    if (Game.spawns["Spawn2"]) {
         Memory.room.Two.Creeps.Amount.Miners0             = 1;
         Memory.room.Two.Creeps.Amount.Miners1             = 1;
         Memory.room.Two.Creeps.Amount.Drone               = 1;
