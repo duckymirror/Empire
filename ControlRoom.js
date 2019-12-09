@@ -48,6 +48,7 @@ function amountCreepsIsLive() {
     const Overlord = require("Overlord")
     const DroneMiner = require("DroneMiner");
     const Drone = require("Drone");
+    const DroneRemoute = require("DroneRemoute");
     const roleClaimer = require("role.claimer");
     const roleFarBuilder = require("role.farBuilder");
     const zergling = require("zergling");
@@ -57,11 +58,11 @@ function amountCreepsIsLive() {
         Memory.room.One.Creeps.AmountIsLive.Miners0 = 0;
         Memory.room.One.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.One.Creeps.AmountIsLive.Drone = 0;
+        Memory.room.One.Creeps.AmountIsLive.DroneRemoute = 0;
         Memory.room.One.Creeps.AmountIsLive.Claimers = 0;
         Memory.room.One.Creeps.AmountIsLive.FarBuilders = 0;
         Memory.room.One.Creeps.AmountIsLive.Healers = 0;
-        Memory.room.One.Creeps.AmountIsLive.zerglings1 = 0;
-        Memory.room.One.Creeps.AmountIsLive.zerglings2 = 0;
+        Memory.room.One.Creeps.AmountIsLive.zerglings = 0;
         Memory.room.One.Creeps.AmountIsLive.Overlords = 0;
     }
 
@@ -201,11 +202,7 @@ function amountCreepsIsLive() {
             case "zergling":
                 zergling.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
-                    if (creep.memory.flagPos.name == Game.flags.attack1.name) {
-                        Memory.room.One.Creeps.AmountIsLive.zerglings1++;
-                    } else {
-                        Memory.room.One.Creeps.AmountIsLive.zerglings2++;
-                    }
+                    Memory.room.One.Creeps.AmountIsLive.zerglings++;
                 } else if (Game.spawns['RT-SP2'] && creep.memory.room == Memory.room.Two.Name) {
                     Memory.room.Two.Creeps.AmountIsLive.zerglings++;
                 } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
@@ -220,6 +217,11 @@ function amountCreepsIsLive() {
                 Overlord.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
                     Memory.room.One.Creeps.AmountIsLive.Overlords++;
+                }
+            case "DroneRemoute":
+                DroneRemoute.control(creep);
+                if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
+                    Memory.room.One.Creeps.AmountIsLive.DroneRemoute++;
                 }
 
         }
