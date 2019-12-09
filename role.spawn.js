@@ -196,9 +196,9 @@ function calculateCreeps (energy, role, target) {
             } else if (creep[i] == "attack") {
                 price = price + 80;
             } else if (creep[i] == "ranged_attack") {
-                price = price + 250;
-            } else if (creep[i] == "heal") {
                 price = price + 150;
+            } else if (creep[i] == "heal") {
+                price = price + 250;
             } else if (creep[i] == "tough") {
                 price = price + 10;
             } else if (creep[i] == "claim") {
@@ -218,10 +218,14 @@ var roleSpawn = {
             var originRoom = originSpawn.room;
             var sources = originRoom.find(FIND_SOURCES);
             var amountEnergy = originRoom.energyCapacityAvailable;
+            
+            if (!Game.flags.RoomOne) {
+                originRoom.createFlag(originSpawn, 'RoomOne');
+            }
         }
 
-        if (Game.spawns["RT-SP2"]) {
-            var originSpawn1 = Game.spawns["RT-SP2"];
+        if (Game.spawns["Spawn2"]) {
+            var originSpawn1 = Game.spawns["Spawn2"];
             var originRoom1 = originSpawn1.room;
             var sources1 = originRoom1.find(FIND_SOURCES);
             var amountEnergy1 = originRoom1.energyCapacityAvailable;
@@ -298,7 +302,7 @@ var roleSpawn = {
             }
         }
 
-        if (Game.spawns['RT-SP2']) {
+        if (Game.spawns['Spawn2']) {
             if (Memory.room.Two.Creeps.AmountIsLive.Miners0 < Memory.room.Two.Creeps.Amount.Miners0) {
                 let newName = 'Drone | ' + numberCreep;
                 let body = creepBody(amountEnergy1, 'miner0');
