@@ -4,7 +4,7 @@ var DroneRemoute = {
         if (creep.spawning) {
 
             creep.memory.room = creep.room.name;
-            
+
         } else {
 
             if (creep.ticksToLive < 100) {
@@ -17,16 +17,19 @@ var DroneRemoute = {
                 creep.memory.work = 'doWork';
             }
 
-            if (creep.memory.work == 'getResource') {
+            if (Game.flags.clearRoom) {
+                creep.memory.task = 'clearRoom';
+                creep.memory.taskRoom = Game.flags.clearRoom.room;
+            } else if (Game.flags.claim) {
+                creep.memory.task = 'claim';
+                creep.memory.taskRoom = Game.flags.claim.room;
+            }
 
-                if (Game.flags.clearRoom) {
-                    creep.memory.task = 'clearRoom';
-                    creep.memory.taskRoom = Game.flags.clearRoom.room;
-                }
+            if (creep.memory.task == 'clearRoom') {
 
-                if (creep.memory.task == 'clearRoom') {
+                if (creep.memory.work == 'getResource') {
                     if (creep.room != creep.memory.taskRoom) {
-                        creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 50});
+                        creep.moveTo(Game.flags.clearRoom, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
                     } else {
 
                         storage = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
@@ -41,7 +44,7 @@ var DroneRemoute = {
                             creep.say(speakNow, true);
 
                             if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(creep.room.storage, {ignoreRoads: true, heuristicWeight: 1.2, range: 1, reusePath: 50});
+                                creep.moveTo(creep.room.storage, { ignoreRoads: true, heuristicWeight: 1.2, range: 1, reusePath: 50 });
                             }
                         } else {
                             if (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity()) {
@@ -55,9 +58,9 @@ var DroneRemoute = {
                                     }
                                 });
 
-                                if(hostileStructures) {
+                                if (hostileStructures) {
                                     if (creep.dismantle(hostileStructures) == ERR_NOT_IN_RANGE) {
-                                        creep.moveTo(hostileStructures, {heuristicWeight: 1.2, reusePath: 10});
+                                        creep.moveTo(hostileStructures, { heuristicWeight: 1.2, reusePath: 10 });
                                     }
 
                                     let droppedEnergy = creep.room.find(FIND_DROPPED_RESOURCES, {
@@ -70,33 +73,87 @@ var DroneRemoute = {
                                         creep.pickup(droppedEnergy);
                                     }
                                 }
-                                
+
                             } else {
                                 Memory.room.One.Creeps.Amount.zerglings = 2;
                                 Memory.room.One.Creeps.Amount.DroneRemoute = 0;
-                                creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 50});
+                                creep.moveTo(Game.flags.clearRoom, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                            }
+
+                        }
+                    }
+                } else {
+
+                    if (creep.room.name != creep.memory.room) {
+                        creep.moveTo(new RoomPosition(25, 25, creep.memory.room), { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                    } else {
+                        if (creep.room.storage) {
+                            if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(creep.room.storage, { ignoreRoads: true, euristicWeight: 1.2, range: 1, reusePath: 50 });
+                            }
+                        } else {
+                            if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(creep.room.controller, { ignoreRoads: true, heuristicWeight: 1.2, range: 3, reusePath: 30 });
                             }
                         }
-                        
                     }
+
                 }
-
-            } else {
-
-                if (creep.room.name != creep.memory.room) {
-                    creep.moveTo(new RoomPosition(25, 25, creep.memory.room), {heuristicWeight: 1.2, range: 1, reusePath: 50});
-                } else {
-                    if (creep.room.storage) {
-                        if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(creep.room.storage, {ignoreRoads: true, euristicWeight: 1.2, range: 1, reusePath: 50});
+            } else if (creep.memory.task == 'claim') {
+                if (creep.memory.work == 'getResource') {
+                    if (creep.memory.room.name == creep.memory.taskRoom) {
+                        storage = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
+                            filter: (structure) => {
+                                return (structure.structureType == STRUCTURE_STORAGE) && structure.owner.username != "Kotyara" && structure.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity();
+                            }
+                        });
+                        if (storage) {
+                            if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(creep.room.storage, { ignoreRoads: true, heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                            }
+                        } else {
+                            const droppedEnergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
+                            if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE && droppedEnergy.amount > 100) {
+                                creep.moveTo(droppedEnergy);
+                            } else if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(source, { reusePath: 20 });
+                            }
                         }
                     } else {
-                        if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(creep.room.controller, {ignoreRoads: true, heuristicWeight: 1.2, range: 3, reusePath: 30});
+                        if (creep.room.name == creep.memory.room && creep.room.storage) {
+                            if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(creep.room.storage);
+                            }
+                        } else {
+                            creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
                         }
                     }
+                } else {
+                    if (creep.room.name == Memory.room.claim) {
+                        let targets = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                            filter: (structure) => {
+                                return (structure.structureType == STRUCTURE_EXTENSION ||
+                                    structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
+                            }
+                        });
+                        var constructionSite = creep.room.find(FIND_CONSTRUCTION_SITES);
+                        if (targets && creep.room.controller.ticksToDowngrade > 3000) {
+                            if (creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(targets, { reusePath: 30 });
+                            }
+                        } else if (constructionSite.length > 0 && creep.room.controller.ticksToDowngrade > 3000) {
+                            if (creep.build(constructionSite[0]) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(constructionSite[0]);
+                            }
+                        } else {
+                            if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(creep.room.controller);
+                            }
+                        }
+                    } else {
+                        creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                    }
                 }
-
             }
         }
     }
