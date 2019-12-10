@@ -109,7 +109,7 @@ function amountCreeps () {
             if (Memory.room.One.Stats.Controller.level == 1) {
                 Memory.room.One.Creeps.Amount.Drone = 1;
             } else if (Memory.room.One.Stats.Controller.level >= 2 && Memory.room.One.Stats.Controller.level <= 4) {
-                Memory.room.One.Creeps.Amount.Drone = 4;
+                Memory.room.One.Creeps.Amount.Drone = 5;
             } else if (Memory.room.One.Stats.Controller.level >= 5) {
                 Memory.room.One.Creeps.Amount.Drone = 1;
             }
@@ -124,8 +124,7 @@ function amountCreeps () {
         }
 
         if (Game.flags.clearRoom) {
-            Memory.room.One.Creeps.Amount.DroneRemoute = 2;
-            Memory.room.One.Creeps.Amount.zerglings = 3;
+            Memory.room.One.Creeps.Amount.DroneRemoute = 4;
         }
 
         if (Game.flags.attack) {
