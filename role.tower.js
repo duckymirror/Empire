@@ -34,16 +34,75 @@ var roleTower = {
                     return (structure.structureType == STRUCTURE_ROAD) && structure.hits < structure.hitsMax;
                 }
             });
-            var walls = tower.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_WALL) && structure.hits < 1000000;
-                }
-            });
-            var ramparts = tower.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 150000;
-                }
-            });
+
+            if (Memory.room.One.Stats.Controller.level == 3) {
+                var walls = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 20000;
+                    }
+                });
+                var ramparts = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 20000;
+                    }
+                });
+            } else if (Memory.room.One.Stats.Controller.level == 4) {
+                var walls = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 50000;
+                    }
+                });
+                var ramparts = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 50000;
+                    }
+                });
+            } else if (Memory.room.One.Stats.Controller.level == 5) {
+                var walls = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 100000;
+                    }
+                });
+                var ramparts = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 100000;
+                    }
+                });
+            } else if (Memory.room.One.Stats.Controller.level == 6) {
+                var walls = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 500000;
+                    }
+                });
+                var ramparts = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 500000;
+                    }
+                });
+            } else if (Memory.room.One.Stats.Controller.level == 7) {
+                var walls = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 1000000;
+                    }
+                });
+                var ramparts = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 1000000;
+                    }
+                });
+            } else if (Memory.room.One.Stats.Controller.level == 8) {
+                var walls = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 5000000;
+                    }
+                });
+                var ramparts = tower.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 5000000;
+                    }
+                });
+            }
+
             var brokenRamparts = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 10000;
