@@ -2,12 +2,15 @@ function params() {
     global.help = function (com) {
         help = []
         if (!com) {
-            help.push("enable_ui()     - Включает интерфейс")
-            help.push("disable_ui()    - Выключает интерфейс")
-            help.push("info(roomNumber)  - Выводит информацио о комнате")
-            help.push("  * roomNumber    - Номер комнаты.")
-            help.push("claim(roomName) - Ставит задачу по захвату указанной комнаты")
-            help.push("  * roomName    - Имя комнаты.")
+            help.push("enable_ui()                     - Включает интерфейс")
+            help.push("disable_ui()                    - Выключает интерфейс")
+            help.push("info(roomNumber)                - Выводит информацио о комнате")
+            help.push("  * roomNumber                  - Номер комнаты. НЕОБЯЗАТЕЛЬНО. По умолчанию: покажет все комнаты")
+            help.push("claim(roomName)                 - Ставит задачу по захвату указанной комнаты")
+            help.push("  * roomName                    - Имя комнаты.")
+            help.push("calculate_time(time, tickRate)  - Конвертирует тики в настоящее время")
+            help.push("  * time                        - Количество тиков.")
+            help.push("  * tickRate                    - Тик рейт сервера. НЕОБЯЗАТЕЛЬНО. По умолчанию: 2.69")
         } else if (com == "info") {
             help.push("1               - Первая комната")
             help.push("2               - Вторая комната")
@@ -20,6 +23,27 @@ function params() {
         help = help.join("\n");
         return help
     };
+    global.calculate_time = function (time, tickRate) {
+        if (tickRate) {
+            ticks = tickRate;
+        } else {
+            ticks = 2.69;
+        }
+        outTime = [];
+        outTime.push("Количество тиков: " + time);
+        outTime.push("Количество секунд: " + time * ticks);
+        if (time * ticks > 60) {
+            outTime.push("Количество минут: " + Math.round(time * ticks / 60));
+            if (time * ticks / 60 > 60) {
+                outTime.push("Количество часов: " + Math.round(time * ticks / 60 / 60));
+                if (time * ticks / 60 /60 > 24) {
+                    outTime.push("Количество дней: " + Math.round(time * ticks / 60 / 60 / 24));
+                }
+            }
+        }
+        outTime = outTime.join("\n");
+        return outTime
+    }
     global.enable_ui = function () {
         Memory.UI = true;
         return "UI теперь включен"
