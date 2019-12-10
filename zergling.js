@@ -56,6 +56,9 @@ var zergling = {
                 speakNow = speak[Game.time % speak.length];
                 creep.say(speakNow, true);
 
+                if (hostileStructures.structureType == STRUCTURE_RAMPART) {
+                    hostileStructures.sort((a,b) => a.hits - b.hits);
+                }
                 if (creep.attack(hostileStructures) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(hostileStructures, {heuristicWeight: 1.2, reusePath: 10});
                 }
