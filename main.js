@@ -24,7 +24,6 @@ const roleTower = require("role.tower");
 
 Memory.room = {};
 
-
 module.exports.loop = function () {
 
     ControlMemory.setting();
