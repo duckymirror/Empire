@@ -31,7 +31,7 @@ function params() {
         }
         outTime = [];
         outTime.push("Количество тиков: " + time);
-        outTime.push("Количество секунд: " + time * ticks);
+        outTime.push("Количество секунд: " + Math.round(time * ticks));
         if (time * ticks > 60) {
             outTime.push("Количество минут: " + Math.round(time * ticks / 60));
             if (time * ticks / 60 > 60) {
@@ -117,3 +117,5 @@ var ConsoleSetting = {
 }
 
 module.exports = ConsoleSetting;
+
+//Game.spawns['Spawn1'].room.find(FIND_STRUCTURES,{filter: {structureType: STRUCTURE_RAMPART}}).forEach(sites => sites.destroy());//Destroy structures
