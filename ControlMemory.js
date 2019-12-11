@@ -11,7 +11,8 @@ function MemorySetting () {
 
     if (Game.spawns["Spawn2"]) {
         Memory.room.Two                       = {};
-        Memory.room.Two.Controller            = {};
+        Memory.room.Two.Stats                 = {};
+        Memory.room.Two.Stats.Controller      = {};
         Memory.room.Two.Creeps                = {};
         Memory.room.Two.Creeps.Amount         = {};
         Memory.room.Two.Creeps.AmountIsLive   = {};
@@ -19,7 +20,8 @@ function MemorySetting () {
 
     if (Game.spawns["SP-R3"]) {
         Memory.room.Three                     = {};
-        Memory.room.Three.Controller          = {};
+        Memory.room.Three.Stats               = {};
+        Memory.room.Three.Stats.Controller    = {};
         Memory.room.Three.Creeps              = {};
         Memory.room.Three.Creeps.Amount       = {};
         Memory.room.Three.Creeps.AmountIsLive = {};
@@ -27,7 +29,7 @@ function MemorySetting () {
 
     if (Game.spawns["SP-R"]) {
         Memory.room.Four                      = {};
-        Memory.room.Four.Controller           = {};
+        Memory.room.Four.Stats.Controller     = {};
         Memory.room.Four.Creeps               = {};
         Memory.room.Four.Creeps.Amount        = {};
         Memory.room.Four.Creeps.AmountIsLive  = {};
@@ -35,7 +37,7 @@ function MemorySetting () {
 
     if (Game.spawns["SP-R5"]) {
         Memory.room.Five                      = {};
-        Memory.room.Five.Controller           = {};
+        Memory.room.Five.Stats.Controller     = {};
         Memory.room.Five.Creeps               = {};
         Memory.room.Five.Creeps.Amount        = {};
         Memory.room.Five.Creeps.AmountIsLive  = {};
@@ -43,7 +45,7 @@ function MemorySetting () {
 
     if (Game.spawns["SP-R6"]) {
         Memory.room.Six                       = {};
-        Memory.room.Six.Controller            = {};
+        Memory.room.Six.Stats.Controller      = {};
         Memory.room.Six.Creeps                = {};
         Memory.room.Six.Creeps.Amount         = {};
         Memory.room.Six.Creeps.AmountIsLive   = {};
@@ -61,28 +63,29 @@ function stats () {
     }
     if (Game.spawns['Spawn2']) {
         Memory.room.Two.Name = Game.spawns['Spawn2'].room.name;
-        Memory.room.Two.Controller.level = Game.spawns['Spawn2'].room.controller.level;
-        Memory.room.Two.Controller.progress = Math.round(Game.spawns['Spawn2'].room.controller.progress / Game.spawns['Spawn2'].room.controller.progressTotal * 100);
+        Memory.room.Two.Stats.Controller.level = Game.spawns['Spawn2'].room.controller.level;
+        Memory.room.Two.Stats.Controller.progress = Math.round(Game.spawns['Spawn2'].room.controller.progress / Game.spawns['Spawn2'].room.controller.progressTotal * 100);
+        Memory.room.Two.Stats.sourcesLength = Game.spawns['Spawn2'].room.find(FIND_SOURCES).length;
     }
     if (Game.spawns['SP-R3']) {
         Memory.room.Three.Name = Game.spawns['SP-R3'].room.name;
-        Memory.room.Three.Controller.level = Game.spawns['SP-R3'].room.controller.level;
-        Memory.room.Three.Controller.progress = Math.round(Game.spawns['SP-R3'].room.controller.progress / Game.spawns['SP-R3'].room.controller.progressTotal * 100);
+        Memory.room.Three.Stats.Controller.level = Game.spawns['SP-R3'].room.controller.level;
+        Memory.room.Three.Stats.Controller.progress = Math.round(Game.spawns['SP-R3'].room.controller.progress / Game.spawns['SP-R3'].room.controller.progressTotal * 100);
     }
     if (Game.spawns['SP-R']) {
         Memory.room.Four.Name = Game.spawns['SP-R'].room.name;
-        Memory.room.Four.Controller.level = Game.spawns['SP-R'].room.controller.level;
-        Memory.room.Four.Controller.progress = Math.round(Game.spawns['SP-R'].room.controller.progress / Game.spawns['SP-R'].room.controller.progressTotal * 100);
+        Memory.room.Four.Stats.Controller.level = Game.spawns['SP-R'].room.controller.level;
+        Memory.room.Four.Stats.Controller.progress = Math.round(Game.spawns['SP-R'].room.controller.progress / Game.spawns['SP-R'].room.controller.progressTotal * 100);
     }
     if (Game.spawns['SP-R5']) {
         Memory.room.Five.Name = Game.spawns['SP-R5'].room.name;
-        Memory.room.Five.Controller.level = Game.spawns['SP-R5'].room.controller.level;
-        Memory.room.Five.Controller.progress = Math.round(Game.spawns['SP-R5'].room.controller.progress / Game.spawns['SP-R5'].room.controller.progressTotal * 100);
+        Memory.room.Five.Stats.Controller.level = Game.spawns['SP-R5'].room.controller.level;
+        Memory.room.Five.Stats.Controller.progress = Math.round(Game.spawns['SP-R5'].room.controller.progress / Game.spawns['SP-R5'].room.controller.progressTotal * 100);
     }
     if (Game.spawns['SP-R6']) {
         Memory.room.Six.Name = Game.spawns['SP-R6'].room.name;
-        Memory.room.Six.Controller.level = Game.spawns['SP-R6'].room.controller.level;
-        Memory.room.Six.Controller.progress = Math.round(Game.spawns['SP-R6'].room.controller.progress / Game.spawns['SP-R6'].room.controller.progressTotal * 100);
+        Memory.room.Six.Stats.Controller.level = Game.spawns['SP-R6'].room.controller.level;
+        Memory.room.Six.Stats.Controller.progress = Math.round(Game.spawns['SP-R6'].room.controller.progress / Game.spawns['SP-R6'].room.controller.progressTotal * 100);
     }
 }
 
@@ -124,38 +127,64 @@ function amountCreeps () {
         }
 
         if (Game.flags.clearRoom) {
-            Memory.room.One.Creeps.Amount.DroneRemoute = 4;
+            Memory.room.One.Creeps.Amount.DroneRemoute = 3;
         }
 
         if (Game.flags.attack) {
-            Memory.room.One.Creeps.Amount.zerglings = 1;
-            Memory.room.One.Creeps.Amount.Healers = 1;
+            Memory.room.One.Creeps.Amount.zerglings = 5;
+            Memory.room.One.Creeps.Amount.Healers = 0;
         }
         
         if (Game.flags.claim) {
-            Memory.room.One.Creeps.Amount.Overlords = 1;
-            Memory.room.One.Creeps.Amount.zerglings = 1;
-            Memory.room.One.Creeps.Amount.DroneRemoute = 1;
+            Memory.room.One.Creeps.Amount.DroneRemoute = 3;
         }
     }
 
     if (Game.spawns["Spawn2"]) {
-        Memory.room.Two.Creeps.Amount.Miners0             = 1;
-        Memory.room.Two.Creeps.Amount.Miners1             = 1;
-        Memory.room.Two.Creeps.Amount.Drone               = 1;
-        if (Game.flags.claim) {
-            Memory.room.Two.Creeps.Amount.Claimers        = 0;
-            Memory.room.Two.Creeps.Amount.FarBuilders     = 0;
-        } else {
-            Memory.room.Two.Creeps.Amount.Claimers        = 0;
-            Memory.room.Two.Creeps.Amount.FarBuilders     = 0;
+        Memory.room.Two.Creeps.Amount.Miners0 = 0; 
+        Memory.room.Two.Creeps.Amount.Miners1 = 0;
+        Memory.room.Two.Creeps.Amount.Drone = 0;
+        Memory.room.Two.Creeps.Amount.DroneRemoute = 0;
+        Memory.room.Two.Creeps.Amount.Overlords = 0;
+        Memory.room.Two.Creeps.Amount.Claimers = 0;
+        Memory.room.Two.Creeps.Amount.FarBuilders = 0;
+
+        if (Memory.room.Two.Stats.sourcesLength == 2) {
+            Memory.room.Two.Creeps.Amount.Miners0             = 1; 
+            Memory.room.Two.Creeps.Amount.Miners1             = 1;
+        } else if (Memory.room.Two.Stats.sourcesLength == 1) {
+            Memory.room.Two.Creeps.Amount.Miners0             = 1;
         }
-        if (Game.flags.attack) {
-            Memory.room.Two.Creeps.Amount.zerglings        = 0;
-            Memory.room.Two.Creeps.Amount.Healers          = 0;
+        
+        if (Memory.room.Two.Creeps.Amount.Miners1 == 1) {
+            if (Memory.room.Two.Stats.Controller.level == 1) {
+                Memory.room.Two.Creeps.Amount.Drone = 1;
+            } else if (Memory.room.Two.Stats.Controller.level >= 2 && Memory.room.One.Stats.Controller.level <= 4) {
+                Memory.room.Two.Creeps.Amount.Drone = 5;
+            } else if (Memory.room.Two.Stats.Controller.level >= 5) {
+                Memory.room.Two.Creeps.Amount.Drone = 1;
+            }
         } else {
-            Memory.room.Two.Creeps.Amount.zerglings        = 0;
-            Memory.room.Two.Creeps.Amount.Healers          = 0;
+            if (Memory.room.Two.Stats.Controller.level == 1) {
+                Memory.room.Two.Creeps.Amount.Drone = 1;
+            } else if (Memory.room.Two.Stats.Controller.level >= 2 && Memory.room.One.Stats.Controller.level <= 4) {
+                Memory.room.Two.Creeps.Amount.Drone = 2;
+            } else if (Memory.room.Two.Stats.Controller.level >= 5) {
+                Memory.room.Two.Creeps.Amount.Drone = 1;
+            }
+        }
+
+        if (Game.flags.clearRoom2) {
+            Memory.room.Two.Creeps.Amount.DroneRemoute = 3;
+        }
+
+        if (Game.flags.attack2) {
+            Memory.room.Two.Creeps.Amount.zerglings = 5;
+            Memory.room.Two.Creeps.Amount.Healers = 0;
+        }
+        
+        if (Game.flags.claim2) {
+            Memory.room.Two.Creeps.Amount.DroneRemoute = 3;
         }
     }
 
@@ -231,7 +260,7 @@ var ControlMemory = {
             }
         }
 
-        Memory.room.claim = "E46N7"
+        Memory.room.claim = "W47N25"
         MemorySetting();
         stats();
         amountCreeps();
