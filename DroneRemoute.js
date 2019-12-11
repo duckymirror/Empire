@@ -48,7 +48,7 @@ var DroneRemoute = {
                             }
                         } else {
                             if (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity()) {
-                                speak = ['FOR', 'THE', 'ZERG'];
+                                speak = ['FOR', 'THE', 'HIVE'];
                                 speakNow = speak[Game.time % speak.length];
                                 creep.say(speakNow, true);
 
@@ -84,24 +84,32 @@ var DroneRemoute = {
                     }
                 } else {
 
-                    if (creep.room.name != creep.memory.room) {
+                    var constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+
+                    if (creep.room.name != creep.memory.room && !constructionSite) {
                         creep.moveTo(new RoomPosition(25, 25, creep.memory.room), { heuristicWeight: 1.2, range: 1, reusePath: 50 });
                     } else {
-                        if (creep.room.storage) {
-                            if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(creep.room.storage, { ignoreRoads: true, euristicWeight: 1.2, range: 1, reusePath: 50 });
+                        if (creep.room.name != creep.memory.room) {
+                            if (creep.build(constructionSite) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(constructionSite);
                             }
                         } else {
-                            if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(creep.room.controller, { ignoreRoads: true, heuristicWeight: 1.2, range: 3, reusePath: 30 });
+                            if (creep.room.storage) {
+                                if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                    creep.moveTo(creep.room.storage, { ignoreRoads: true, euristicWeight: 1.2, range: 1, reusePath: 50 });
+                                }
+                            } else {
+                                if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                                    creep.moveTo(creep.room.controller, { ignoreRoads: true, heuristicWeight: 1.2, range: 3, reusePath: 30 });
+                                }
                             }
-                        }
+                        }   
                     }
 
                 }
             } else if (creep.memory.task == 'claim') {
                 if (creep.memory.work == 'getResource') {
-                    if (creep.memory.room.name == creep.memory.taskRoom) {
+                    if (creep.room == creep.memory.taskRoom) {
                         storage = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                             filter: (structure) => {
                                 return (structure.structureType == STRUCTURE_STORAGE) && structure.owner.username != "Kotyara" && structure.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity();
@@ -129,7 +137,9 @@ var DroneRemoute = {
                         }
                     }
                 } else {
-                    if (creep.room.name == Memory.room.claim) {
+                    if (creep.room.name != Memory.room.claim) {
+                        creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                    } else {
                         let targets = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                             filter: (structure) => {
                                 return (structure.structureType == STRUCTURE_EXTENSION ||
@@ -150,8 +160,6 @@ var DroneRemoute = {
                                 creep.moveTo(creep.room.controller);
                             }
                         }
-                    } else {
-                        creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
                     }
                 }
             }
