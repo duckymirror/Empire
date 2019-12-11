@@ -147,7 +147,7 @@ function creepBody(energy, role) {
     }
 
     if (role == 'Overlord') {
-        return [MOVE]
+        return [MOVE, MOVE, MOVE, MOVE, MOVE, CLAIM]
     }
 
     if (role == 'hydralisk') {
@@ -277,6 +277,10 @@ var roleSpawn = {
             var originRoom1 = originSpawn1.room;
             var sources1 = originRoom1.find(FIND_SOURCES);
             var amountEnergy1 = originRoom1.energyCapacityAvailable;
+
+            if (!Game.flags.RoomTwo) {
+                originRoom1.createFlag(originSpawn1, 'RoomTwo');
+            }
         }
 
         if (Game.spawns["SP-R3"]) {
@@ -284,6 +288,10 @@ var roleSpawn = {
             var originRoom2 = originSpawn2.room;
             var sources2 = originRoom2.find(FIND_SOURCES);
             var amountEnergy2 = originRoom2.energyCapacityAvailable;
+
+            if (!Game.flags.RoomThree) {
+                originRoom2.createFlag(originSpawn2, 'RoomThree');
+            }
         }
 
         if (Game.spawns["SP-R"]) {
@@ -291,6 +299,10 @@ var roleSpawn = {
             var originRoom3 = originSpawn3.room;
             var sources3 = originRoom3.find(FIND_SOURCES);
             var amountEnergy3 = originRoom3.energyCapacityAvailable;
+
+            if (!Game.flags.RoomFour) {
+                originRoom3.createFlag(originSpawn3, 'RoomFour');
+            }
         }
 
         if (Game.spawns["SP-R5"]) {
@@ -298,6 +310,10 @@ var roleSpawn = {
             var originRoom4 = originSpawn4.room;
             var sources4 = originRoom4.find(FIND_SOURCES);
             var amountEnergy4 = originRoom4.energyCapacityAvailable;
+
+            if (!Game.flags.RoomFive) {
+                originRoom4.createFlag(originSpawn4, 'RoomFive');
+            }
         }
 
         if (Game.spawns["SP-R6"]) {
@@ -305,6 +321,10 @@ var roleSpawn = {
             var originRoom5 = originSpawn5.room;
             var sources5 = originRoom5.find(FIND_SOURCES);
             var amountEnergy5 = originRoom5.energyCapacityAvailable;
+
+            if (!Game.flags.RoomSix) {
+                originRoom5.createFlag(originSpawn5, 'RoomSix');
+            }
         }
 
         var numberCreep = Game.time;
