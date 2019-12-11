@@ -51,7 +51,21 @@ var zergling = {
                 }
             });
 
-            if (dangerHostileStructures && creep.room == creep.memory.taskRoom) {
+            var invaderCore = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_INVADER_CORE)
+                }
+            });
+            
+            if (invaderCore && creep.room == creep.memory.taskRoom) {
+                speak = ['FOR', 'THE', 'HIVE'];
+                speakNow = speak[Game.time % speak.length];
+                creep.say(speakNow, true);
+
+                if (creep.attack(invaderCore) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(invaderCore, {heuristicWeight: 1.2, reusePath: 10});
+                }
+            } else if (dangerHostileStructures && creep.room == creep.memory.taskRoom) {
                 speak = ['FOR', 'THE', 'HIVE'];
                 speakNow = speak[Game.time % speak.length];
                 creep.say(speakNow, true);
