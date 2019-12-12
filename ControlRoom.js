@@ -55,8 +55,6 @@ function amountCreepsIsLive() {
     const DroneHealer = require("DroneHealer");
 
     if (Game.spawns['Spawn1']) {
-        Memory.room.One.Creeps.AmountIsLive.Miners0 = 0;
-        Memory.room.One.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.One.Creeps.AmountIsLive.Drone = 0;
         Memory.room.One.Creeps.AmountIsLive.DroneRemoute = 0;
         Memory.room.One.Creeps.AmountIsLive.Healers = 0;
@@ -65,78 +63,35 @@ function amountCreepsIsLive() {
     }
 
     if (Game.spawns['Spawn2']) {
-        Memory.room.Two.Creeps.AmountIsLive.Miners0 = 0;
-        Memory.room.Two.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Two.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Two.Creeps.AmountIsLive.Healers = 0;
         Memory.room.Two.Creeps.AmountIsLive.zerglings = 0;
     }
 
     if (Game.spawns['SP-R3']) {
-        Memory.room.Three.Creeps.AmountIsLive.Miners0 = 0;
-        Memory.room.Three.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Three.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Three.Creeps.AmountIsLive.Healers = 0;
         Memory.room.Three.Creeps.AmountIsLive.zerglings = 0;
     }
 
     if (Game.spawns['SP-R']) {
-        Memory.room.Four.Creeps.AmountIsLive.Miners0 = 0;
-        Memory.room.Four.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Four.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Four.Creeps.AmountIsLive.Healers = 0;
         Memory.room.Four.Creeps.AmountIsLive.zerglings = 0;
     }
 
     if (Game.spawns['SP-R5']) {
-        Memory.room.Five.Creeps.AmountIsLive.Miners0 = 0;
-        Memory.room.Five.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Five.Creeps.AmountIsLive.Drone = 0;
         Memory.room.Five.Creeps.AmountIsLive.Healers = 0;
     }
 
     if (Game.spawns['SP-R6']) {
-        Memory.room.Six.Creeps.AmountIsLive.Miners0 = 0;
-        Memory.room.Six.Creeps.AmountIsLive.Miners1 = 0;
         Memory.room.Six.Creeps.AmountIsLive.Drone = 0;
     }
 
     for (var i in Game.creeps) {
         var creep = Game.creeps[i];
         switch (creep.memory.role) {
-            case "miner0":
-                DroneMiner.control(creep);
-                if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
-                    Memory.room.One.Creeps.AmountIsLive.Miners0++;
-                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
-                    Memory.room.Two.Creeps.AmountIsLive.Miners0++;
-                } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
-                    Memory.room.Three.Creeps.AmountIsLive.Miners0++;
-                } else if (Game.spawns['SP-R'] && creep.memory.room == Memory.room.Four.Name) {
-                    Memory.room.Four.Creeps.AmountIsLive.Miners0++;
-                } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
-                    Memory.room.Five.Creeps.AmountIsLive.Miners0++;
-                } else if (Game.spawns['SP-R6'] && creep.memory.room == Memory.room.Six.Name) {
-                    Memory.room.Six.Creeps.AmountIsLive.Miners0++;
-                }
-                break;
-
-            case "miner1":
-                DroneMiner.control(creep);
-                if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
-                    Memory.room.One.Creeps.AmountIsLive.Miners1++;
-                } else if (Game.spawns['Spawn2'] && creep.memory.room == Memory.room.Two.Name) {
-                    Memory.room.Two.Creeps.AmountIsLive.Miners1++;
-                } else if (Game.spawns['SP-R3'] && creep.memory.room == Memory.room.Three.Name) {
-                    Memory.room.Three.Creeps.AmountIsLive.Miners1++;
-                } else if (Game.spawns['SP-R'] && creep.memory.room == Memory.room.Four.Name) {
-                    Memory.room.Four.Creeps.AmountIsLive.Miners1++;
-                } else if (Game.spawns['SP-R5'] && creep.memory.room == Memory.room.Five.Name) {
-                    Memory.room.Five.Creeps.AmountIsLive.Miners1++;
-                } else if (Game.spawns['SP-R6'] && creep.memory.room == Memory.room.Six.Name) {
-                    Memory.room.Six.Creeps.AmountIsLive.Miners1++;
-                }
-                break;
             case "Drone":
                 Drone.control(creep);
                 if (Game.spawns['Spawn1'] && creep.memory.room == Memory.room.One.Name) {
