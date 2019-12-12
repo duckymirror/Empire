@@ -1,40 +1,6 @@
 function creepBody(energy, role) {
 
-    if (role == 'miner0' || role == 'miner1') {
-        if (energy == 300) {
-            return [MOVE, CARRY, WORK]
-        } else if (energy == 350) {
-            return [MOVE, MOVE, CARRY, WORK, WORK]
-        } else if (energy == 400) {
-            return [MOVE, MOVE, CARRY, WORK, WORK]
-        } else if (energy == 450) {
-            return [MOVE, MOVE, CARRY, WORK, WORK]
-        } else if (energy == 500) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
-        } else if (energy == 550) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
-        } else if (energy == 600) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
-        } else if (energy == 650) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
-        } else if (energy == 700) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
-        } else if (energy == 750) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
-        } else if (energy == 800) {
-            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK, WORK]
-        } else if (energy == 850) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK]
-        } else if (energy == 900) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK, WORK]
-        } else if (energy == 1000) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK, WORK]
-        } else if (energy >= 1050) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK, WORK]
-        }
-    }
-
-    if (role == "DroneRemoute") {
+   if (role == "DroneRemoute" || role == "Drone") {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
@@ -79,54 +45,6 @@ function creepBody(energy, role) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK]
         } else if (energy >= 1400) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK]
-        }
-    }
-
-    if (role == "FarBuilder" || role == "Drone") {
-        if (energy == 300) {
-            return [MOVE, MOVE, CARRY, WORK]
-        } else if (energy == 350) {
-            return [MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
-        } else if (energy == 400) {
-            return [MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
-        } else if (energy == 450) {
-            return [MOVE, MOVE, MOVE, CARRY, CARRY, WORK]
-        } else if (energy == 500) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 550) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 600) {
-            return [MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 650) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 700) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 750) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 800) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 850) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 900) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1000) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1050) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1100) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1150) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1200) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1250) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1300) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy == 1350) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK]
-        } else if (energy >= 1400) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK]
         }
     }
 
@@ -264,7 +182,6 @@ var roleSpawn = {
         if (Game.spawns["Spawn1"]) {
             var originSpawn = Game.spawns["Spawn1"];
             var originRoom = originSpawn.room;
-            var sources = originRoom.find(FIND_SOURCES);
             var amountEnergy = originRoom.energyCapacityAvailable;
             
             if (!Game.flags.RoomOne) {
@@ -275,7 +192,6 @@ var roleSpawn = {
         if (Game.spawns["Spawn2"]) {
             var originSpawn1 = Game.spawns["Spawn2"];
             var originRoom1 = originSpawn1.room;
-            var sources1 = originRoom1.find(FIND_SOURCES);
             var amountEnergy1 = originRoom1.energyCapacityAvailable;
 
             if (!Game.flags.RoomTwo) {
@@ -286,7 +202,6 @@ var roleSpawn = {
         if (Game.spawns["SP-R3"]) {
             var originSpawn2 = Game.spawns["SP-R3"];
             var originRoom2 = originSpawn2.room;
-            var sources2 = originRoom2.find(FIND_SOURCES);
             var amountEnergy2 = originRoom2.energyCapacityAvailable;
 
             if (!Game.flags.RoomThree) {
@@ -330,19 +245,10 @@ var roleSpawn = {
         var numberCreep = Game.time;
 
         if (Game.spawns['Spawn1']) {
-            if (Memory.room.One.Creeps.AmountIsLive.Miners0 < Memory.room.One.Creeps.Amount.Miners0) {
-                var newName = "Drone | " + numberCreep;
-                body = creepBody(amountEnergy, 'miner0');
-                originSpawn.spawnCreep(body, newName, {memory: {role: "miner0", sourceId: sources[0].id}});
-            } else if (Memory.room.One.Creeps.AmountIsLive.Drone < Memory.room.One.Creeps.Amount.Drone) {
+            if (Memory.room.One.Creeps.AmountIsLive.Drone < Memory.room.One.Creeps.Amount.Drone) {
                 var newName = "Drone" + numberCreep;
                 body = creepBody(amountEnergy, 'Drone');
                 originSpawn.spawnCreep(body, newName, { memory: {role: "Drone"}});
-            } else if (Memory.room.One.Creeps.AmountIsLive.Miners1 < Memory.room.One.Creeps.Amount.Miners1) {
-                var newName = "Drone | " + numberCreep;
-                body = creepBody(amountEnergy, 'miner1');
-                originSpawn.spawnCreep(body, newName,
-                    { memory: { role: "miner1", sourceId: sources[1].id } });
             } else if (Memory.room.One.Creeps.AmountIsLive.zerglings < Memory.room.One.Creeps.Amount.zerglings) {
                 var newName = "zergling | " + numberCreep;
                 body = creepBody(amountEnergy, 'zergling');
@@ -371,20 +277,10 @@ var roleSpawn = {
         }
 
         if (Game.spawns['Spawn2']) {
-            if (Memory.room.Two.Creeps.AmountIsLive.Miners0 < Memory.room.Two.Creeps.Amount.Miners0) {
-                let newName = 'Drone | ' + numberCreep;
-                let body = creepBody(amountEnergy1, 'miner0');
-                originSpawn1.spawnCreep(body, newName,
-                    { memory: { role: "miner0", sourceId: sources1[0].id } });
-            } else if (Memory.room.Two.Creeps.AmountIsLive.Drone < Memory.room.Two.Creeps.Amount.Drone) {
+            if (Memory.room.Two.Creeps.AmountIsLive.Drone < Memory.room.Two.Creeps.Amount.Drone) {
                 var newName = "Drone" + numberCreep;
                 body = creepBody(amountEnergy1, 'Drone');
                 originSpawn1.spawnCreep(body, newName, { memory: {role: "Drone"}});
-            } else if (Memory.room.Two.Creeps.AmountIsLive.Miners1 < Memory.room.Two.Creeps.Amount.Miners1 && Memory.room.Two.Creeps.AmountIsLive.DroneTransporters == Memory.room.Two.Creeps.Amount.DroneTransporters) {
-                let newName = 'Drone | ' + numberCreep;
-                let body = creepBody(amountEnergy1, 'miner1');
-                originSpawn1.spawnCreep(body, newName,
-                    { memory: { role: "miner1", sourceId: sources1[1].id } });
             } else if (Memory.room.Two.Creeps.AmountIsLive.zerglings < Memory.room.Two.Creeps.Amount.zerglings) {
                 var newName = "zergling | " + numberCreep;
                 body = creepBody(amountEnergy1, 'zergling');
