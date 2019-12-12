@@ -35,7 +35,7 @@ var roleTower = {
                 }
             });
 
-            if (Memory.room.One.Stats.Controller.level == 3) {
+            if (tower.room.controller.level == 3) {
                 var walls = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_WALL) && structure.hits < 20000;
@@ -46,7 +46,7 @@ var roleTower = {
                         return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 20000;
                     }
                 });
-            } else if (Memory.room.One.Stats.Controller.level == 4) {
+            } else if (tower.room.controller.level == 4) {
                 var walls = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_WALL) && structure.hits < 50000;
@@ -57,7 +57,7 @@ var roleTower = {
                         return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 50000;
                     }
                 });
-            } else if (Memory.room.One.Stats.Controller.level == 5) {
+            } else if (tower.room.controller.level == 5) {
                 var walls = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_WALL) && structure.hits < 100000;
@@ -68,7 +68,7 @@ var roleTower = {
                         return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 100000;
                     }
                 });
-            } else if (Memory.room.One.Stats.Controller.level == 6) {
+            } else if (tower.room.controller.level == 6) {
                 var walls = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_WALL) && structure.hits < 500000;
@@ -79,7 +79,7 @@ var roleTower = {
                         return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 500000;
                     }
                 });
-            } else if (Memory.room.One.Stats.Controller.level == 7) {
+            } else if (tower.room.controller.level == 7) {
                 var walls = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_WALL) && structure.hits < 1000000;
@@ -90,7 +90,7 @@ var roleTower = {
                         return (structure.structureType == STRUCTURE_RAMPART) && structure.hits < 1000000;
                     }
                 });
-            } else if (Memory.room.One.Stats.Controller.level == 8) {
+            } else if (tower.room.controller.level == 8) {
                 var walls = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_WALL) && structure.hits < 5000000;
