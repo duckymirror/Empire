@@ -108,7 +108,13 @@ var zergling = {
                 }
             } else {
                 if (creep.memory.task == 'attack') {
-                    creep.moveTo(Game.flags.attack, {heuristicWeight: 1.2, range: 1, reusePath: 10});
+                    if (creep.room == creep.memory.taskRoom) {
+                        if(creep.signController(creep.room.controller, "HIVE") == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(creep.room.controller);
+                        }
+                    } else {
+                        creep.moveTo(Game.flags.attack, {heuristicWeight: 1.2, range: 1, reusePath: 10});
+                    }
                 } else if (creep.memory.task == 'clear') {
                     creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 10});
                 }
