@@ -4,7 +4,6 @@ function amountCreepsIsLive() {
     const Drone = require("Drone");
     const DroneRemoute = require("DroneRemoute");
     const zergling = require("zergling");
-    const DroneHealer = require("DroneHealer");
 
     for (var z in Game.rooms) {
         var room = Game.rooms[z];

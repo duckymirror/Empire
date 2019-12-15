@@ -89,7 +89,7 @@ var Drone = {
                             if (creep.transfer(spawnEnergy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(spawnEnergy, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                             }
-                        } else if (creep.room.controller.ticksToDowngrade < 100) {
+                        } else if (creep.room.controller.ticksToDowngrade < 5000) {
                             creep.memory.roleTask = 'fastUpgrade';
                             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(creep.room.controller, {heuristicWeight: 1.2, range: 3, reusePath: 50});
