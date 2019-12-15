@@ -52,7 +52,6 @@ function amountCreepsIsLive() {
     const Drone = require("Drone");
     const DroneRemoute = require("DroneRemoute");
     const zergling = require("zergling");
-    const DroneHealer = require("DroneHealer");
 
     if (Game.spawns['Spawn1']) {
         Memory.room.One.Creeps.AmountIsLive.Drone = 0;
