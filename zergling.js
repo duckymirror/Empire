@@ -6,7 +6,6 @@ var zergling = {
             creep.memory.room = creep.room.name;
             
         } else {
-
             if (Game.flags.attack) {
                 creep.memory.task = 'attack';
                 creep.memory.taskRoom = Game.flags.attack.room
@@ -56,7 +55,6 @@ var zergling = {
                     return (structure.structureType == STRUCTURE_INVADER_CORE)
                 }
             });
-            
             if (invaderCore && creep.room == creep.memory.taskRoom) {
                 speak = ['FOR', 'THE', 'HIVE'];
                 speakNow = speak[Game.time % speak.length];
@@ -107,8 +105,15 @@ var zergling = {
                     creep.moveTo(hostileStructures, {heuristicWeight: 1.2, reusePath: 10});
                 }
             } else {
+                
                 if (creep.memory.task == 'attack') {
-                    creep.moveTo(Game.flags.attack, {heuristicWeight: 1.2, range: 1, reusePath: 10});
+                    if (creep.room == creep.memory.taskRoom) {
+                        if(creep.signController(creep.room.controller, "HIVE") == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(creep.room.controller);
+                        }
+                    } else {
+                        creep.moveTo(Game.flags.attack, {heuristicWeight: 1.2, range: 1, reusePath: 10});
+                    }
                 } else if (creep.memory.task == 'clear') {
                     creep.moveTo(Game.flags.clearRoom, {heuristicWeight: 1.2, range: 1, reusePath: 10});
                 }

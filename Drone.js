@@ -49,7 +49,7 @@ var Drone = {
                         if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(container, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                         }
-                    } else if ((creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity() && creep.room.storage.store[RESOURCE_ENERGY] > 100000) || (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity() && creep.room.storage.store[RESOURCE_ENERGY] > 40000 && !source)) {
+                    } else if (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity() && creep.room.storage.store[RESOURCE_ENERGY] > 100000 && creep.memory.roleTask != "fillStorage") {
                         if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(creep.room.storage, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                         }
@@ -85,31 +85,38 @@ var Drone = {
                         });
         
                         if (spawnEnergy) {
+                            creep.memory.roleTask = 'fillSpawn';
                             if (creep.transfer(spawnEnergy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(spawnEnergy, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                             }
-                        } else if (creep.room.controller.ticksToDowngrade < 5000) {
+                        } else if (creep.room.controller.ticksToDowngrade < 100) {
+                            creep.memory.roleTask = 'fastUpgrade';
                             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(creep.room.controller, {heuristicWeight: 1.2, range: 3, reusePath: 50});
                             }
                         } else if (constructionSiteWallAndRampart.length > 0) { 
+                            creep.memory.roleTask = 'build';
                             if (creep.build(constructionSiteWallAndRampart[0]) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(constructionSiteWallAndRampart[0], {heuristicWeight: 1.2, range: 3, reusePath: 50});
                             }
                         }else if (tower.length > 0) {
+                            creep.memory.roleTask = 'fillTower';
                             tower.sort((a,b) => a.store[RESOURCE_ENERGY] - b.store[RESOURCE_ENERGY]);
                             if (creep.transfer(tower[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(tower[0], {heuristicWeight: 1.2, range: 1, reusePath: 50});
                             }
                         } else if (constructionSite.length > 0) {
+                            creep.memory.roleTask = 'build';
                             if (creep.build(constructionSite[0]) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(constructionSite[0], {heuristicWeight: 1.2, range: 3, reusePath: 50});
                             }
                         } else if (creep.room.storage && creep.room.storage.my && creep.room.storage.store[RESOURCE_ENERGY] < 100000) {
+                            creep.memory.roleTask = 'fillStorage';
                             if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(creep.room.storage, {euristicWeight: 1.2, range: 1, reusePath: 50});
                             }
                         } else {
+                            creep.memory.roleTask = 'upgrade';
                             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(creep.room.controller, {heuristicWeight: 1.2, range: 3, reusePath: 30});
                             }
