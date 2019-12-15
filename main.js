@@ -28,10 +28,10 @@ module.exports.loop = function () {
 
     ControlMemory.setting();
     ControlRoom.control();
-
-    Console.setting();
+    //console.log(Game.gcl.level)
+    //Console.setting();
     
-    roleTower.control();
+    //roleTower.control();
     roleSpawn.run();
 
 };
