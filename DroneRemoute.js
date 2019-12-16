@@ -25,6 +25,8 @@ var DroneRemoute = {
                 creep.memory.taskRoom = Game.flags.claim.room;
             }
 
+            creep.memory.task = 'claim';
+
             if (creep.memory.task == 'clearRoom') {
 
                 if (creep.memory.work == 'getResource') {
@@ -108,8 +110,10 @@ var DroneRemoute = {
 
                 }
             } else if (creep.memory.task == 'claim') {
+                targetRoom = 'W49N25';
+
                 if (creep.memory.work == 'getResource') {
-                    if (creep.room == creep.memory.taskRoom) {
+                    if (creep.room.name == targetRoom) {
                         storage = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                             filter: (structure) => {
                                 return (structure.structureType == STRUCTURE_STORAGE) && structure.owner.username != "Kotyara" && structure.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity();
@@ -121,7 +125,8 @@ var DroneRemoute = {
                             }
                         } else {
                             const droppedEnergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
-                            if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE && droppedEnergy.amount > 100) {
+                            let source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+                            if (droppedEnergy && creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE && droppedEnergy.amount > 100) {
                                 creep.moveTo(droppedEnergy);
                             } else if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(source, { reusePath: 20 });
@@ -137,8 +142,12 @@ var DroneRemoute = {
                         }
                     }
                 } else {
-                    if (creep.room.name != Memory.room.claim) {
-                        creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                    if (creep.room.name != targetRoom) {
+                        if (!Game.flags.claim){
+                            creep.moveTo(new RoomPosition(25, 25, targetRoom), { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                        } else {
+                            creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                        }
                     } else {
                         let targets = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                             filter: (structure) => {
