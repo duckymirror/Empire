@@ -2,6 +2,7 @@ function amountCreepsIsLive() {
 
     const Overlord = require("Overlord")
     const Drone = require("Drone");
+    const DroneMiner = require("DroneMiner")
     const DroneRemoute = require("DroneRemoute");
     const zergling = require("zergling");
 
@@ -26,6 +27,9 @@ function amountCreepsIsLive() {
 
             switch (creep.memory.role) {
 
+                case "DroneMiner":
+                    DroneMiner.control(creep);
+                    break;
                 case "Drone":
                     Drone.control(creep);
                     break;
