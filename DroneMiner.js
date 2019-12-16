@@ -23,17 +23,12 @@ var DroneMiner = {
         if (creep.spawning) {
 
             creep.memory.room = creep.room.name;
-            creep.memory.visualizePath = {
-                stroke: 'yellow',
-                lineStyle: 'dashed',
-                opacity: 1,
-            };
 
         } else {
             
             var linkInRoom = creep.room.find(FIND_STRUCTURES,{filter:s=>s.structureType == STRUCTURE_LINK});
             var containerNear = creep.pos.findInRange(FIND_STRUCTURES, 2,{filter:s=>s.structureType == STRUCTURE_CONTAINER});
-            var source = Game.getObjectById(creep.memory.sourceId);
+            var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
 
             if (creep.store[RESOURCE_ENERGY] === 0) {
                 creep.memory.repair = false;
