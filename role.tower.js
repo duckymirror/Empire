@@ -1,7 +1,6 @@
 var roleTower = {
 
     control(tower) {
-
         var towers = [];
         for (var i in Game.rooms){
             var room = Game.rooms[i];
@@ -9,7 +8,6 @@ var roleTower = {
             towers = towers.concat(roomTowers);
         }
         for (var i in towers){
-            
             var tower = towers[i];
             var hostileCreeps = tower.room.find(FIND_HOSTILE_CREEPS, {
                 filter: (creep) => {
@@ -31,7 +29,8 @@ var roleTower = {
 
             var roads = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_ROAD) && structure.hits < structure.hitsMax;
+                    return (structure.structureType == STRUCTURE_ROAD ||
+                            structure.structureType == STRUCTURE_CONTAINER) && structure.hits < structure.hitsMax;
                 }
             });
 
