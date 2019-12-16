@@ -7,7 +7,7 @@ var Overlord = {
 
 		creep.memory.room = creep.room.name;
   
-		targetRoom = 'W49S26';
+		targetRoom = 'W49N25';
 
 		if (creep.room.name != targetRoom && Game.flags.claim) {
 			creep.moveTo(Game.flags.claim);
