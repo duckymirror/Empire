@@ -146,39 +146,8 @@ function creepBody(energy, role) {
 
 }
 
-function calculateCreeps (energy, role, target) {
-    creep = creepBody(energy, role);
-    
-    let price = 0;
-    if (target == 'spawnTime') {
-        time = creep.length * 3;
-        return time
-    } else if (target == 'spawnPrice') {
-        for (var i in creep) {
-            if (creep[i] == "move" || creep[i] == "carry") {
-                price = price + 50;
-            } else if (creep[i] == "work") {
-                price = price + 100;
-            } else if (creep[i] == "attack") {
-                price = price + 80;
-            } else if (creep[i] == "ranged_attack") {
-                price = price + 150;
-            } else if (creep[i] == "heal") {
-                price = price + 250;
-            } else if (creep[i] == "tough") {
-                price = price + 10;
-            } else if (creep[i] == "claim") {
-                price = price + 600;
-            }
-        }
-
-        return price
-    }
-}
-
 var roleSpawn = {
     run(spawn) {
-        
         var spawns = [];
         for (var i in Game.rooms){
             var room = Game.rooms[i];
@@ -194,6 +163,11 @@ var roleSpawn = {
                     var newName = Game.time;
                     
                     body = creepBody(amountEnergy, Memory.rolies[i]);
+                    
+                    if (Memory.rolies[i] == "Drone" && Memory.room[spawn.room.name + ".amountIsLive." + Memory.rolies[i]] == 0 && spawn.room.energyAvailable < amountEnergy) {
+                        spawn.spawnCreep([MOVE, MOVE, CARRY, WORK], newName,
+                            { memory: { role: Memory.rolies[i] } });
+                    }
                     spawn.spawnCreep(body, newName,
                         { memory: { role: Memory.rolies[i] } });
                 }
@@ -239,7 +213,7 @@ var roleSpawn = {
                 }
             }
         }
-
+        
     }
 };
 module.exports = roleSpawn;
