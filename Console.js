@@ -11,6 +11,8 @@ function params() {
             help.push("calculate_time(time, tickRate)  - Конвертирует тики в настоящее время")
             help.push("  * time                        - Количество тиков.")
             help.push("  * tickRate                    - Тик рейт сервера. НЕОБЯЗАТЕЛЬНО. По умолчанию: 2.69")
+            help.push("calculate_сreeps(body)          - Расчет стоимости и времени строительства крипа")
+            help.push("  * body                        - Массив с телом крипа")
         } else if (com == "info") {
             help.push("1               - Первая комната")
             help.push("2               - Вторая комната")
@@ -36,7 +38,7 @@ function params() {
             outTime.push("Количество минут: " + Math.round(time * ticks / 60));
             if (time * ticks / 60 > 60) {
                 outTime.push("Количество часов: " + Math.round(time * ticks / 60 / 60));
-                if (time * ticks / 60 /60 > 24) {
+                if (time * ticks / 60 / 60 > 24) {
                     outTime.push("Количество дней: " + Math.round(time * ticks / 60 / 60 / 24));
                 }
             }
@@ -48,9 +50,52 @@ function params() {
         Memory.UI = true;
         return "UI теперь включен"
     };
-    global.disable_ui = function() {
+    global.disable_ui = function () {
         Memory.UI = false;
         return "UI теперь выключен"
+    };
+    global.calculate_creeps = function (body) {
+        if (body) {
+            let price = 0;
+            time = body.length * 3;
+
+            for (var i in body) {
+                if (body[i] == "move" || body[i] == "carry") {
+                    price = price + 50;
+                } else if (body[i] == "work") {
+                    price = price + 100;
+                } else if (body[i] == "attack") {
+                    price = price + 80;
+                } else if (body[i] == "ranged_attack") {
+                    price = price + 150;
+                } else if (body[i] == "heal") {
+                    price = price + 250;
+                } else if (body[i] == "tough") {
+                    price = price + 10;
+                } else if (body[i] == "claim") {
+                    price = price + 600;
+                }
+            }
+
+            result = [];
+            result.push("------------------------")
+            result.push("Время появления:");
+            result.push("├ В тиках: " + time);
+            
+            if (time * 2.67 > 60) {
+                result.push("├ В секундах: " + time * 2.67);
+                result.push("└ В минутах: " + time * 2.67 / 60);
+            } else {
+                result.push("└ В секундах: " + time * 2.67);
+            }
+            result.push("Стоимость: " + price + " единиц энергии");
+            result.push("------------------------")
+            result = result.join("\n");
+
+            return result
+        } else {
+            return "Тело не определено"
+        }
     };
     global.info = function (roomNumber) {
         info = [];
