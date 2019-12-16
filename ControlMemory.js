@@ -67,6 +67,14 @@ function amountCreeps() {
                 }
             }
 
+            if ("DroneMiner" == Memory.rolies[i]) {
+                if (room.find(FIND_SOURCES_ACTIVE).length > 1) {
+                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
+                } else {
+                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                }
+            }
+
             if ("Zergling" == Memory.rolies[i]) {
                 if (Game.flags.attack) {
                     Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
@@ -98,7 +106,7 @@ function amountCreeps() {
 
 var ControlMemory = {
     setting(memory) {
-        Memory.rolies = ["Drone", "Zergling", "Overseer", "DroneRemoute"];
+        Memory.rolies = ["Drone", "Zergling", "Overseer", "DroneRemoute", "DroneMiner"];
 
         for (var name in Memory.creeps) {
             if (!Game.creeps[name]) {
