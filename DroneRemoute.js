@@ -7,10 +7,6 @@ var DroneRemoute = {
 
         } else {
 
-            if (creep.ticksToLive < 100) {
-                Memory.room.One.Creeps.Amount.DroneRemoute--;
-            }
-
             if (creep.store.getUsedCapacity() == 0) {
                 creep.memory.work = 'getResource';
             } else if (creep.store.getUsedCapacity() == creep.store.getCapacity()) {
