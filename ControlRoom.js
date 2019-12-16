@@ -35,7 +35,7 @@ function amountCreepsIsLive() {
                 case "Zergling":
                     zergling.control(creep);
                     break;
-                case "overlord":
+                case "Overseer":
                     Overlord.control(creep);
                     break;
                 case "DroneRemoute":
