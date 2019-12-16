@@ -7,25 +7,25 @@ function amountCreeps() {
                 if (room.find(FIND_SOURCES_ACTIVE).length > 1) {
                     switch (room.controller.level) {
                         case 1:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                             break;
                         case 2:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 4;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                             break;
                         case 3:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 4;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                             break;
                         case 4:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 4;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                             break;
                         case 5:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 4;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                             break;
                         case 6:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                             break;
                         case 6:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                             break;
                         case 7:
                             Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
@@ -35,35 +35,7 @@ function amountCreeps() {
                             break;
                     }
                 } else {
-                    switch (room.controller.level) {
-                        case 1:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
-                            break;
-                        case 2:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
-                            break;
-                        case 3:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
-                            break;
-                        case 4:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
-                            break;
-                        case 5:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
-                            break;
-                        case 6:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
-                            break;
-                        case 6:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
-                            break;
-                        case 7:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
-                            break;
-                        case 8:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
-                            break;
-                    }
+                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                 }
             }
 
