@@ -48,6 +48,40 @@ function creepBody(energy, role) {
         }
     }
 
+    if (role == "DroneMiner") {
+        if (energy == 300) {
+            return [MOVE, MOVE, CARRY, WORK]
+        } else if (energy == 350) {
+            return [MOVE, MOVE, CARRY, WORK]
+        } else if (energy == 400) {
+            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+        } else if (energy == 450) {
+            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+        } else if (energy == 500) {
+            return [MOVE, MOVE, MOVE, CARRY, WORK, WORK]
+        } else if (energy == 550) {
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
+        } else if (energy == 600) {
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
+        } else if (energy == 650) {
+            return [MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK]
+        } else if (energy == 700) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
+        } else if (energy == 750) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
+        } else if (energy == 800) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK]
+        } else if (energy == 850) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK]
+        } else if (energy == 900) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK]
+        } else if (energy == 950) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK]
+        } else if (energy >= 1000) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK, WORK]
+        }
+    }
+
     if (role == 'Zergling') {
         if (energy == 300) {
             return [MOVE, ATTACK]
