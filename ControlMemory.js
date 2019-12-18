@@ -19,7 +19,7 @@ function amountCreeps() {
                             Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                             break;
                         case 5:
-                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                            Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                             break;
                         case 6:
                             Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
@@ -35,16 +35,12 @@ function amountCreeps() {
                             break;
                     }
                 } else {
-                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                 }
             }
 
             if ("DroneMiner" == Memory.rolies[i]) {
-                if (room.find(FIND_SOURCES_ACTIVE).length > 1) {
-                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
-                } else {
-                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
-                }
+                Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
             }
 
             if ("Zergling" == Memory.rolies[i]) {
