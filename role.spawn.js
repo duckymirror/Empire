@@ -206,46 +206,6 @@ let roleSpawn = {
                         { memory: { role: Memory.rolies[i] } });
                 }
             }
-            
-            let extensions = spawn.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return structure.structureType == STRUCTURE_EXTENSION;
-                }
-            });
-
-            let tower = spawn.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return structure.structureType == STRUCTURE_TOWER;
-                }
-            });
-
-            if (spawn.room.controller.level == 2 && (!extensions || (extensions && extensions.length < 5))) {
-                x = spawn.pos.x;
-                y = spawn.pos.y;
-
-                let coordForExtensions = [[x+1, y+1], [x+2, y], [x+2, y-1], [x+1, y-2], [x, y-2]]
-                coordForExtensionsNow = coordForExtensions[Game.time % coordForExtensions.length];
-                
-                let constructionSite = spawn.room.find(FIND_MY_CONSTRUCTION_SITES);
-
-                if (constructionSite.length == 0) {
-                    spawn.room.createConstructionSite(coordForExtensionsNow[0], coordForExtensionsNow[1], STRUCTURE_EXTENSION)
-                }
-            } else if (spawn.room.controller.level >= 3 && ((!extensions || (extensions && extensions.length < 15) || !tower))) {
-                x = spawn.pos.x;
-                y = spawn.pos.y;
-
-                if (!extensions || (extensions && extensions.length < 15)) {
-                    let coordForExtensions = [[x, y+1], [x-1, y], [x-1, y-1], [x-1,y+3], [x, y+3], [x+1, y+3], [x+2, y+3], [x+4, y+1], [x+4, y], [x+4, y-1]]
-                    coordForExtensionsNow = coordForExtensions[Game.time % coordForExtensions.length];
-                    
-                    let constructionSite = spawn.room.find(FIND_MY_CONSTRUCTION_SITES);
-                    
-                    if (constructionSite.length == 0) {
-                        spawn.room.createConstructionSite(coordForExtensionsNow[0], coordForExtensionsNow[1], STRUCTURE_EXTENSION)
-                    }
-                }
-            }
         }
         
     }
