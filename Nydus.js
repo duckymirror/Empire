@@ -9,12 +9,16 @@ let Nydus = {
 
         for (let i in nydus){
             let nydusInRoom = nydus[i];
-            if (nydusInRoom.pos.inRangeTo(nydusInRoom.room.storage.pos, 6)) {
-                var mainNydus = nydusInRoom;
+
+            let roomNydus = nydusInRoom.room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
+            nydusTarget = nydus.concat(roomNydus);
+
+            for (let i in nydusTarget){
+                let nydusTar = nydusTarget[i];
+                if (nydusTar.pos.inRangeTo(nydusTar.room.storage.pos, 8)) {
+                    var mainNydus = nydusTar;
+                }
             }
-        }
-        for (let i in nydus){
-            let nydusInRoom = nydus[i];
 
             if (nydusInRoom != mainNydus) {
                 if (nydusInRoom.store[RESOURCE_ENERGY] >= 200) {

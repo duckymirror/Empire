@@ -24,7 +24,7 @@ let Drone = {
 
                     for (let i in nydus){
                         let nydusInRoom = nydus[i];
-                        if (nydusInRoom.pos.inRangeTo(nydusInRoom.room.storage.pos, 6)) {
+                        if (nydusInRoom.pos.inRangeTo(nydusInRoom.room.storage.pos, 8)) {
                             var mainNydus = nydusInRoom;
                         }
                     }
