@@ -20,7 +20,7 @@ function amountCreeps() {
                             break;
                         case 5:
                             let Nydus = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
-                            if (Nydus.length > 2) {
+                            if (Nydus.length > 1) {
                                 Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                             } else {
                                 Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
