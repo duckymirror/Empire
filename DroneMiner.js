@@ -50,9 +50,9 @@ let DroneMiner = {
 
                 if (linkInRoom.length > 1 && linkIsNear.length > 0) {
 
-                    if (creep.store[RESOURCE_ENERGY] == creep.store.getCapacity()) {
+                    if (creep.store.getCapacity() > 0) {
 
-                        if (creep.store[RESOURCE_ENERGY] < creep.store.getCapacity) {
+                        if (creep.store[RESOURCE_ENERGY] < creep.store.getCapacity()) {
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(source, {ignoreCreeps: false, reusePath: 50});
                                 creep.say("98")
@@ -65,9 +65,11 @@ let DroneMiner = {
                                 creep.say("99")
                             }
                         } else {
-                            if (creep.transfer(linkIsNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(linkIsNear[0]);
-                                creep.say("97")
+                            if (linkIsNear[0].store[RESOURCE_ENERGY] < 800) {
+                                if (creep.transfer(linkIsNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                    creep.moveTo(linkIsNear[0]);
+                                    creep.say("97")
+                                }
                             } else {
                                 if (containerNear[0].store[RESOURCE_ENERGY] < 1950 || creep.store[RESOURCE_ENERGY] < creep.store.getCapacity()) {
                                     if (creep.harvest(source) == ERR_NOT_OWNER) {
