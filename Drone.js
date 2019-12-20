@@ -45,7 +45,7 @@ let Drone = {
                         }
                     });
                     
-                    if (mainNydus.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity()) {
+                    if (mainNydus.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity() && mainNydus.room.name == creep.memory.room) {
                         if(creep.withdraw(mainNydus, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(mainNydus, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                         }
