@@ -21,6 +21,7 @@ const ControlMemory = require("ControlMemory");
 const ControlRoom = require("ControlRoom");
 const roleSpawn = require("role.spawn");
 const roleTower = require("role.tower");
+const Nydus = require("Nydus");
 
 Memory.room = {};
 
@@ -30,7 +31,7 @@ module.exports.loop = function () {
     ControlRoom.control();
     //console.log(Game.gcl.level)
     Console.setting();
-    
+    Nydus.run();
     roleTower.control();
     roleSpawn.run();
 };
