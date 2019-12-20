@@ -15,6 +15,19 @@ let Drone = {
                 }
                 creep.say(creep.memory.work)
                 if (creep.memory.work == "getResource") {
+                    let nydus = [];
+                    for (let i in Game.rooms){
+                        let room = Game.rooms[i];
+                        let roomNydus = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
+                        nydus = nydus.concat(roomNydus);
+                    }
+
+                    for (let i in nydus){
+                        let nydusInRoom = nydus[i];
+                        if (nydusInRoom.pos.inRangeTo(nydusInRoom.room.storage.pos, 6)) {
+                            var mainNydus = nydusInRoom;
+                        }
+                    }
                     let source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
                     let droppedEnergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
                         filter: (droppedEnergy) => {
@@ -31,8 +44,12 @@ let Drone = {
                             return (structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity();
                         }
                     });
-                
-                    if ((creep.room.terminal && creep.room.terminal.store[RESOURCE_UTRIUM] > 0) && (creep.room.storage && creep.room.storage.store[RESOURCE_UTRIUM] < 20000)) {
+                    
+                    if (mainNydus.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity()) {
+                        if(creep.withdraw(mainNydus, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(mainNydus, {heuristicWeight: 1.2, range: 1, reusePath: 50});
+                        }
+                    } else if ((creep.room.terminal && creep.room.terminal.store[RESOURCE_UTRIUM] > 0) && (creep.room.storage && creep.room.storage.store[RESOURCE_UTRIUM] < 20000)) {
                         if(creep.withdraw(creep.room.terminal, RESOURCE_UTRIUM) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(creep.room.terminal, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                         }
