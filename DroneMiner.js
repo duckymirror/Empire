@@ -54,7 +54,7 @@ let DroneMiner = {
 
                         if (creep.store[RESOURCE_ENERGY] < creep.store.getCapacity) {
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(source, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(source, {ignoreCreeps: false, reusePath: 50});
                                 creep.say("98")
                             } else if (creep.harvest(source) == ERR_NOT_OWNER) {
                                 creep.say("1")
@@ -69,7 +69,7 @@ let DroneMiner = {
                                 creep.moveTo(linkIsNear[0]);
                                 creep.say("97")
                             } else {
-                                if (containerNear[0].store[RESOURCE_ENERGY] < 1950 || creep.store[RESOURCE_ENERGY] < creep.store.getCapacity) {
+                                if (containerNear[0].store[RESOURCE_ENERGY] < 1950 || creep.store[RESOURCE_ENERGY] < creep.store.getCapacity()) {
                                     if (creep.harvest(source) == ERR_NOT_OWNER) {
                                         creep.say("1")
                                     } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
@@ -83,14 +83,15 @@ let DroneMiner = {
                                 }
                             }
                         }
+                        
 
                     } else {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50});
                                 creep.say("98")
-                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950 || creep.store[RESOURCE_ENERGY] < creep.store.getCapacity) {
+                            } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950 || creep.store[RESOURCE_ENERGY] < creep.store.getCapacity()) {
                                 if (creep.harvest(source) == ERR_NOT_OWNER) {
                                     creep.say("1")
                                 } else if (creep.harvest(source) == ERR_NOT_ENOUGH_RESOURCES) {
@@ -104,9 +105,9 @@ let DroneMiner = {
                             }
                         } else if (containerNear.length == 2 && creep.pos.isNearTo(source)) {
                             if (containerNear[0].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50});
                             } else if (containerNear[1].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[1].pos)) {
-                                creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50});
                             }
                         }
 
@@ -118,7 +119,7 @@ let DroneMiner = {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 10, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 10});
                                 creep.say("98")
                             } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                                 if (creep.harvest(source) == ERR_NOT_OWNER) {
@@ -134,13 +135,13 @@ let DroneMiner = {
                             }
                         } else if (containerNear.length == 2 && creep.pos.isNearTo(source)) {
                             if (containerNear[0].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50});
                             } else if (containerNear[1].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[1].pos)) {
-                                creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50});
                             }
                         } else {
                             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(source, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(source, {ignoreCreeps: false, reusePath: 50});
                                 creep.say("98")
                             } else {
                                 creep.harvest(source);
@@ -152,7 +153,7 @@ let DroneMiner = {
 
                         if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                             if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50});
                                 creep.say("98")
                             } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                                 if (creep.harvest(source) == ERR_NOT_OWNER) {
@@ -170,7 +171,7 @@ let DroneMiner = {
                             if (creep.pos.findInRange(source, 1)) {
                                 creep.say("0")
                             } else {
-                                creep.moveTo(source, {rignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                                creep.moveTo(source, {rignoreCreeps: false, reusePath: 50});
                                 creep.say("98")
                             }
                         }
@@ -181,7 +182,7 @@ let DroneMiner = {
             } else {
                 if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
                     if (!creep.pos.isEqualTo(containerNear[0].pos)) {
-                        creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                        creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50});
                         creep.say("98")
                     } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                         if (creep.harvest(source) == ERR_NOT_OWNER) {
@@ -197,13 +198,13 @@ let DroneMiner = {
                     }
                 } else if (containerNear.length == 2 && creep.pos.isNearTo(source)) {
                     if (containerNear[0].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[0].pos)) {
-                        creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                        creep.moveTo(containerNear[0].pos, {ignoreCreeps: false, reusePath: 50});
                     } else if (containerNear[1].pos.isNearTo(source) && !creep.pos.isEqualTo(containerNear[1].pos)) {
-                        creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                        creep.moveTo(containerNear[1].pos, {ignoreCreeps: false, reusePath: 50});
                     }
                 } else {
                     if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(source, {ignoreCreeps: false, reusePath: 50, visualizePathStyle: creep.memory.visualizePath});
+                        creep.moveTo(source, {ignoreCreeps: false, reusePath: 50});
                         creep.say("98")
                     } else {
                         creep.harvest(source);

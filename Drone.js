@@ -15,12 +15,8 @@ let Drone = {
                 }
                 creep.say(creep.memory.work)
                 if (creep.memory.work == "getResource") {
-                    let nydus = [];
-                    for (let i in Game.rooms){
-                        let room = Game.rooms[i];
-                        let roomNydus = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
-                        nydus = nydus.concat(roomNydus);
-                    }
+                    
+                    let nydus = creep.room.find(FIND_STRUCTURES,{filter:s=>s.structureType == STRUCTURE_LINK});
 
                     for (let i in nydus){
                         let nydusInRoom = nydus[i];
@@ -45,7 +41,7 @@ let Drone = {
                         }
                     });
                     
-                    if (mainNydus.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity() && mainNydus.room.name == creep.memory.room) {
+                    if (mainNydus && mainNydus.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity() && mainNydus.room.name == creep.memory.room) {
                         if(creep.withdraw(mainNydus, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(mainNydus, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                         }
