@@ -16,7 +16,7 @@
 
 */
 
-var DroneMiner = {
+let DroneMiner = {
     /** @param {Creep} creep **/
     control(creep) {
 
@@ -26,9 +26,9 @@ var DroneMiner = {
 
         } else {
             
-            var linkInRoom = creep.room.find(FIND_STRUCTURES,{filter:s=>s.structureType == STRUCTURE_LINK});
-            var containerNear = creep.pos.findInRange(FIND_STRUCTURES, 2,{filter:s=>s.structureType == STRUCTURE_CONTAINER});
-            var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+            let linkInRoom = creep.room.find(FIND_STRUCTURES,{filter:s=>s.structureType == STRUCTURE_LINK});
+            let containerNear = creep.pos.findInRange(FIND_STRUCTURES, 2,{filter:s=>s.structureType == STRUCTURE_CONTAINER});
+            let source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
 
             if (creep.store[RESOURCE_ENERGY] === 0) {
                 creep.memory.repair = false;

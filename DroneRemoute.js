@@ -1,4 +1,4 @@
-var DroneRemoute = {
+let DroneRemoute = {
     /** @param {Creep} creep **/
     control(creep) {
         if (creep.spawning) {
@@ -50,7 +50,7 @@ var DroneRemoute = {
                                 speakNow = speak[Game.time % speak.length];
                                 creep.say(speakNow, true);
 
-                                var hostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
+                                let hostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                                     filter: (structure) => {
                                         return ((structure.structureType == STRUCTURE_RAMPART) && structure.owner.username != "Kotyara") || ((structure.structureType == STRUCTURE_RAMPART) && structure.pos.isEqualTo(creep.room.storage.pos));
                                     }
@@ -82,7 +82,7 @@ var DroneRemoute = {
                     }
                 } else {
 
-                    var constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+                    let constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
 
                     if (creep.room.name != creep.memory.room && !constructionSite) {
                         creep.moveTo(new RoomPosition(25, 25, creep.memory.room), { heuristicWeight: 1.2, range: 1, reusePath: 50 });
@@ -151,7 +151,7 @@ var DroneRemoute = {
                                     structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
                             }
                         });
-                        var constructionSite = creep.room.find(FIND_CONSTRUCTION_SITES);
+                        let constructionSite = creep.room.find(FIND_CONSTRUCTION_SITES);
                         if (targets && creep.room.controller.ticksToDowngrade > 3000) {
                             if (creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(targets, { reusePath: 30 });

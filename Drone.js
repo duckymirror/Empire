@@ -1,4 +1,4 @@
-var Drone = {
+let Drone = {
 	/** @param {Creep} creep **/
   	control(creep) {
 

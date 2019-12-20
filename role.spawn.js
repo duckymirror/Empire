@@ -180,21 +180,21 @@ function creepBody(energy, role) {
 
 }
 
-var roleSpawn = {
+let roleSpawn = {
     run(spawn) {
-        var spawns = [];
-        for (var i in Game.rooms){
-            var room = Game.rooms[i];
-            var roomSpawns = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_SPAWN}});
+        let spawns = [];
+        for (let i in Game.rooms){
+            let room = Game.rooms[i];
+            let roomSpawns = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_SPAWN}});
             spawns = spawns.concat(roomSpawns);
         }
-        for (var i in spawns){
-            var spawn = spawns[i];
-            var amountEnergy = spawn.room.energyCapacityAvailable;
+        for (let i in spawns){
+            let spawn = spawns[i];
+            let amountEnergy = spawn.room.energyCapacityAvailable;
 
-            for (var i in Memory.rolies) {
+            for (let i in Memory.rolies) {
                 if ((!Memory.room[spawn.room.name + ".amountIsLive." + Memory.rolies[i]] && Memory.room[spawn.room.name + ".amount." + Memory.rolies[i]] > 0) || Memory.room[spawn.room.name + ".amountIsLive." + Memory.rolies[i]] < Memory.room[spawn.room.name + ".amount." + Memory.rolies[i]]) {
-                    var newName = Game.time;
+                    let newName = Game.time;
                     
                     body = creepBody(amountEnergy, Memory.rolies[i]);
                     

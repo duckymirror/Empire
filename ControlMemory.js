@@ -1,8 +1,8 @@
 function amountCreeps() {
-    for (var z in Game.rooms) {
-        var room = Game.rooms[z];
+    for (let z in Game.rooms) {
+        let room = Game.rooms[z];
 
-        for (var i in Memory.rolies) {
+        for (let i in Memory.rolies) {
             if ("Drone" == Memory.rolies[i]){
                 if (room.find(FIND_SOURCES_ACTIVE).length > 1) {
                     switch (room.controller.level) {
@@ -45,7 +45,7 @@ function amountCreeps() {
 
             if ("Zergling" == Memory.rolies[i]) {
                 if (Game.flags.attack) {
-                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
+                    Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 } else {
                     Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 }
@@ -72,11 +72,11 @@ function amountCreeps() {
     }
 }
 
-var ControlMemory = {
+let ControlMemory = {
     setting(memory) {
         Memory.rolies = ["Drone", "Zergling", "Overseer", "DroneRemoute", "DroneMiner"];
 
-        for (var name in Memory.creeps) {
+        for (let name in Memory.creeps) {
             if (!Game.creeps[name]) {
                 delete Memory.creeps[name];
             }

@@ -1,4 +1,4 @@
-var zergling = {
+let zergling = {
     /** @param {Creep} creep **/
     control(creep) {
         if (creep.spawning) {
@@ -17,7 +17,7 @@ var zergling = {
             if (creep.ticksToLive < 150) {
                 Memory.room.One.Creeps.AmountIsLive.zerglings--;
             }
-            var hostileCreeps = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS, {
+            let hostileCreeps = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS, {
                 filter: (creep) => {
                     return (creep.owner.username != "kotyara");
                 }
@@ -44,13 +44,13 @@ var zergling = {
                 });
             }
             
-            var dangerHostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
+            let dangerHostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_TOWER) && structure.owner.username != "Kotyara";
                 }
             });
 
-            var invaderCore = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
+            let invaderCore = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_INVADER_CORE)
                 }
@@ -80,7 +80,7 @@ var zergling = {
                 speakNow = speak[Game.time % speak.length];
                 creep.say(speakNow, true);
 
-                var hostileAttackCreeps = creep.room.find(FIND_HOSTILE_CREEPS, {
+                let hostileAttackCreeps = creep.room.find(FIND_HOSTILE_CREEPS, {
                     filter: (creep) => {
                         return (creep.owner.username != "kotyara") && (creep.body.type == "ATTACK" || creep.body.type == "RANGED_ATTACK");
                     }

@@ -59,7 +59,7 @@ function params() {
             let price = 0;
             time = body.length * 3;
 
-            for (var i in body) {
+            for (let i in body) {
                 if (body[i] == "move" || body[i] == "carry") {
                     price = price + 50;
                 } else if (body[i] == "work") {
@@ -153,7 +153,7 @@ function params() {
     }
 }
 
-var ConsoleSetting = {
+let ConsoleSetting = {
     setting(console) {
 
         params();

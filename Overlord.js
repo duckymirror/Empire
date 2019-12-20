@@ -1,4 +1,4 @@
-var Overlord = {
+let Overlord = {
 	/** @param {Creep} creep **/
 	control(creep) {
 		if (creep.spawning) {

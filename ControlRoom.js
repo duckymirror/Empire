@@ -6,20 +6,20 @@ function amountCreepsIsLive() {
     const DroneRemoute = require("DroneRemoute");
     const zergling = require("zergling");
 
-    for (var z in Game.rooms) {
-        var room = Game.rooms[z];
+    for (let z in Game.rooms) {
+        let room = Game.rooms[z];
 
-        for (var i in Game.creeps) {
-            var creep = Game.creeps[i];
+        for (let i in Game.creeps) {
+            let creep = Game.creeps[i];
             Memory.room[room.name + ".amountIsLive." + creep.memory.role] = 0
         }
     }
 
-    for (var z in Game.rooms) {
-        var room = Game.rooms[z];
+    for (let z in Game.rooms) {
+        let room = Game.rooms[z];
 
-        for (var i in Game.creeps) {
-            var creep = Game.creeps[i];
+        for (let i in Game.creeps) {
+            let creep = Game.creeps[i];
 
             if (room.name == creep.memory.room) {
                 Memory.room[room.name + ".amountIsLive." + creep.memory.role]++
@@ -52,7 +52,7 @@ function amountCreepsIsLive() {
 
 }
 
-var ControlRoom = {
+let ControlRoom = {
     control(room) {
 
         amountCreepsIsLive();
