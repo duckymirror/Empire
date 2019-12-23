@@ -29,7 +29,6 @@ module.exports.loop = function () {
 
     ControlMemory.setting();
     ControlRoom.control();
-    //console.log(Game.gcl.level)
     Console.setting();
     Nydus.run();
     roleTower.control();
