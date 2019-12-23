@@ -106,16 +106,37 @@ let DroneRemoute = {
 
                 }
             } else if (creep.memory.task == 'claim') {
-                targetRoom = 'W49N25';
+
+                targetRoom = Game.flags.claim.room;
 
                 if (creep.memory.work == 'getResource') {
-                    if (creep.room.name == targetRoom) {
+                    if (creep.room == targetRoom) {
+                        let energy= creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                            filter: (structure) => {
+                                return (structure.structureType == STRUCTURE_EXTENSION ||
+                                    structure.structureType == STRUCTURE_SPAWN ||
+                                    structure.structureType == STRUCTURE_CONTAINER) && structure.energy > 0 && structure.owner.username != "Kotyara" && structure.owner.username != "JOURLOY";
+                            }
+                        });
+                        let ruin = creep.pos.findClosestByPath(FIND_RUINS, {
+                            filter: (ruin) => {
+                                return ruin.store[RESOURCE_ENERGY] > 0;
+                            }
+                        });
                         storage = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                             filter: (structure) => {
                                 return (structure.structureType == STRUCTURE_STORAGE) && structure.owner.username != "Kotyara" && structure.store[RESOURCE_ENERGY] > creep.store.getFreeCapacity();
                             }
                         });
-                        if (storage) {
+                        if (ruin) {
+                            if (creep.withdraw(ruin, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(ruin, { ignoreRoads: true, heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                            }
+                        } else if (energy) {
+                            if (creep.withdraw(energy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(energy, { ignoreRoads: true, heuristicWeight: 1.2, range: 1, reusePath: 50 });
+                            }
+                        } else if (storage) {
                             if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(creep.room.storage, { ignoreRoads: true, heuristicWeight: 1.2, range: 1, reusePath: 50 });
                             }
@@ -138,12 +159,8 @@ let DroneRemoute = {
                         }
                     }
                 } else {
-                    if (creep.room.name != targetRoom) {
-                        if (!Game.flags.claim){
-                            creep.moveTo(new RoomPosition(25, 25, targetRoom), { heuristicWeight: 1.2, range: 1, reusePath: 50 });
-                        } else {
-                            creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
-                        }
+                    if (creep.room != targetRoom) {
+                        creep.moveTo(Game.flags.claim, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
                     } else {
                         let targets = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                             filter: (structure) => {
