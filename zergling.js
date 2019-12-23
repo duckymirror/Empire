@@ -8,10 +8,13 @@ let zergling = {
         } else {
             if (Game.flags.attack) {
                 creep.memory.task = 'attack';
-                creep.memory.taskRoom = Game.flags.attack.room
+                creep.memory.taskRoom = Game.flags.attack.room;
             } else if (Game.flags.clearRoom) {
                 creep.memory.task = 'clear';
-                creep.memory.taskRoom = Game.flags.clearRoom.room
+                creep.memory.taskRoom = Game.flags.clearRoom.room;
+            } else if (Game.flags.power) {
+                creep.memory.task = 'power';
+                creep.memory.taskRoom = Game.flags.power.room;
             }
 
             if (creep.ticksToLive < 150) {
@@ -23,7 +26,27 @@ let zergling = {
                 }
             });
             
-            if (creep.memory.task == 'clear') {
+            if (creep.memory.task == 'power') { 
+                let powerBank = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_POWER_BANK);
+                    }
+                });
+
+                if (creep.room != Game.flags.power.room) {
+                    creep.moveTo(Game.flags.power, {heuristicWeight: 1.2, range: 1, reusePath: 10});
+                } else {
+                    if (powerBank) {
+                        speak = ['FOR', 'THE', 'HIVE'];
+                        speakNow = speak[Game.time % speak.length];
+                        creep.say(speakNow, true);
+
+                        if (creep.attack(powerBank) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(powerBank, {heuristicWeight: 1.2, reusePath: 10});
+                        }
+                    }
+                }
+            } else if (creep.memory.task == 'clear') {
                 var hostileStructures = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER ||
