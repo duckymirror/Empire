@@ -195,15 +195,15 @@ let roleSpawn = {
             for (let i in Memory.rolies) {
                 if ((!Memory.room[spawn.room.name + ".amountIsLive." + Memory.rolies[i]] && Memory.room[spawn.room.name + ".amount." + Memory.rolies[i]] > 0) || Memory.room[spawn.room.name + ".amountIsLive." + Memory.rolies[i]] < Memory.room[spawn.room.name + ".amount." + Memory.rolies[i]]) {
                     let newName = Game.time;
-                    
                     body = creepBody(amountEnergy, Memory.rolies[i]);
                     
                     if (Memory.rolies[i] == "Drone" && Memory.room[spawn.room.name + ".amountIsLive." + Memory.rolies[i]] == 0 && spawn.room.energyAvailable < amountEnergy) {
                         spawn.spawnCreep([MOVE, MOVE, CARRY, WORK], newName,
                             { memory: { role: Memory.rolies[i] } });
+                    } else {
+                        spawn.spawnCreep(body, newName,
+                            { memory: { role: Memory.rolies[i] } });
                     }
-                    spawn.spawnCreep(body, newName,
-                        { memory: { role: Memory.rolies[i] } });
                 }
             }
         }
