@@ -15,6 +15,7 @@ function amountCreepsIsLive() {
         }
     }
 
+    
     for (let z in Game.rooms) {
         let room = Game.rooms[z];
 
@@ -49,14 +50,13 @@ function amountCreepsIsLive() {
             }
         }
     }
-
 }
 
 let ControlRoom = {
     control(room) {
 
         amountCreepsIsLive();
-
+        
     }
 };
 module.exports = ControlRoom;
