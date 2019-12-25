@@ -12,6 +12,8 @@ function amountCreepsIsLive() {
         for (let i in Game.creeps) {
             let creep = Game.creeps[i];
             Memory.room[room.name + ".amountIsLive." + creep.memory.role] = 0
+            var cpuDrone = 0;
+            var cpuDroneMiner = 0;
         }
     }
 
@@ -29,10 +31,16 @@ function amountCreepsIsLive() {
             switch (creep.memory.role) {
 
                 case "DroneMiner":
+                    let cpu11 = Game.cpu.getUsed();
                     DroneMiner.control(creep);
+                    let cpu22 = Game.cpu.getUsed() - cpu11;
+                    cpuDroneMiner = cpuDrone + cpu22;
                     break;
                 case "Drone":
+                    let cpu1 = Game.cpu.getUsed();
                     Drone.control(creep);
+                    let cpu2 = Game.cpu.getUsed() - cpu1;
+                    cpuDrone = cpuDrone + cpu2;
                     break;
                 case "healer":
                     DroneHealer.control(creep);
@@ -49,6 +57,15 @@ function amountCreepsIsLive() {
 
             }
         }
+    }
+
+    
+    const checkTime = Game.time % 11;
+    if (checkTime == 10) {
+        console.log("CPU роли DroneMiner");
+        console.log("└ " + cpuDroneMiner);
+        console.log("CPU роли Drone");
+        console.log("└ " + cpuDrone);
     }
 }
 
