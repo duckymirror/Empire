@@ -26,11 +26,18 @@ const Nydus = require("Nydus");
 Memory.room = {};
 
 module.exports.loop = function () {
-
+    
     ControlMemory.setting();
     ControlRoom.control();
     Console.setting();
     Nydus.run();
     roleTower.control();
     roleSpawn.run();
+
+    const checkTime = Game.time % 11;
+    if (checkTime == 10) {
+        console.log("CPU всей колонии");
+        console.log("└ " + Game.cpu.getUsed() + " / 20")
+        console.log("------------------------");
+    }
 };
