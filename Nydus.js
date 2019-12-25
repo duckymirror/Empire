@@ -21,7 +21,7 @@ let Nydus = {
             }
 
             if (nydusInRoom != mainNydus) {
-                if (nydusInRoom.store[RESOURCE_ENERGY] >= 200) {
+                if (nydusInRoom.store[RESOURCE_ENERGY] >= 200 && mainNydus.store[RESOURCE_ENERGY] <= 600) {
                     nydusInRoom.transferEnergy(mainNydus);
                 }
             }
