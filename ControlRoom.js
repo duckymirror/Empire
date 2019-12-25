@@ -60,8 +60,8 @@ function amountCreepsIsLive() {
     }
 
     
-    const checkTime = Game.time % 11;
-    if (checkTime == 10) {
+    const checkTime = Game.time % 51;
+    if (checkTime == 50) {
         console.log("CPU роли DroneMiner");
         console.log("└ " + cpuDroneMiner);
         console.log("CPU роли Drone");

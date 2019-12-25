@@ -56,7 +56,7 @@ function params() {
     };
     global.calculate_creeps = function (body) {
         if (body) {
-            
+
             let bodyCount = 0;
             let moveCount = 0;
             let carryCount = 0;
@@ -129,10 +129,9 @@ function params() {
         for (let i in spawns){
             let spawn = spawns[i];
             info.push("Имя комнаты: " + spawn.room.name);
-            info.push("__________________________")
-            info.push("Количество энергии: " + spawn.room.energyCapacityAvailable);
-            info.push("Уровень контроллера: " + spawn.room.controller.level);
-            info.push("Прогресс контроллера: " + spawn.room.controller.progress/spawn.room.controller.progressTotal*100 + "%");
+            info.push("├ Количество энергии: " + spawn.room.energyCapacityAvailable);
+            info.push("├ Уровень контроллера: " + spawn.room.controller.level);
+            info.push("└ Прогресс контроллера: " + spawn.room.controller.progress/spawn.room.controller.progressTotal*100 + "%");
             info.push("--------------------------")
         }
 

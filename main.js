@@ -34,8 +34,8 @@ module.exports.loop = function () {
     roleTower.control();
     roleSpawn.run();
 
-    const checkTime = Game.time % 11;
-    if (checkTime == 10) {
+    const checkTime = Game.time % 51;
+    if (checkTime == 50) {
         console.log("CPU всей колонии");
         console.log("└ " + Game.cpu.getUsed() + " / 20")
         console.log("------------------------");
