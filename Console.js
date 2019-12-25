@@ -56,40 +56,59 @@ function params() {
     };
     global.calculate_creeps = function (body) {
         if (body) {
+            
+            let bodyCount = 0;
+            let moveCount = 0;
+            let carryCount = 0;
+            let workCount = 0;
+            let attackCount = 0;
+            let rangedAttackCount = 0;
+            let healCount = 0;
+            let toughCount = 0;
+            let claimCount = 0;
+
             let price = 0;
             time = body.length * 3;
 
             for (let i in body) {
+                bodyCount++;
                 if (body[i] == "move" || body[i] == "carry") {
                     price = price + 50;
+                    if (body[i] == "move") {
+                        moveCount++;
+                    } else {
+                        carryCount++;
+                    }
                 } else if (body[i] == "work") {
                     price = price + 100;
+                    workCount++;
                 } else if (body[i] == "attack") {
                     price = price + 80;
+                    attackCount++
                 } else if (body[i] == "ranged_attack") {
                     price = price + 150;
+                    rangedAttackCount++;
                 } else if (body[i] == "heal") {
                     price = price + 250;
+                    healCount++;
                 } else if (body[i] == "tough") {
                     price = price + 10;
+                    toughCount++;
                 } else if (body[i] == "claim") {
                     price = price + 600;
+                    claimCount++;
                 }
             }
 
             result = [];
             result.push("------------------------")
-            result.push("Время появления:");
-            result.push("├ В тиках: " + time);
-            
-            if (time * 2.67 > 60) {
-                result.push("├ В секундах: " + time * 2.67);
-                result.push("└ В минутах: " + time * 2.67 / 60);
-            } else {
-                result.push("└ В секундах: " + time * 2.67);
-            }
-            result.push("Стоимость: " + price + " единиц энергии");
-            result.push("------------------------")
+            result.push("Время появления");
+            result.push("└ В тиках: " + time);
+            result.push("Количество");
+            result.push("├ Всех частей тела: " + bodyCount);
+            result.push("Стоимость");
+            result.push("└ " + price + " единиц энергии");
+            result.push("------------------------");
             result = result.join("\n");
 
             return result
@@ -99,54 +118,24 @@ function params() {
     };
     global.info = function (roomNumber) {
         info = [];
-        info.push("------------------------")
+        info.push("--------------------------")
 
-        if (roomNumber == 1) {
-            info.push("Имя комнаты: " + Memory.room.One.Name)
-            info.push("Уровень контроллера: " + Memory.room.One.Stats.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.One.Stats.Controller.progress);
-            info.push("Количество энергии: " + Memory.room.One.Stats.energyCapacityAvailable);
-        } else if (roomNumber == 2) {
-            info.push("Имя комнаты: " + Memory.room.Two.Name)
-            info.push("Уровень контроллера: " + Memory.room.Two.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Two.Controller.progress);
-        } else if (roomNumber == 3) {
-            info.push("Имя комнаты: " + Memory.room.Three.Name)
-            info.push("Уровень контроллера: " + Memory.room.Three.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Three.Controller.progress);
-        } else if (roomNumber == 4) {
-            info.push("Имя комнаты: " + Memory.room.Four.Name)
-            info.push("Уровень контроллера: " + Memory.room.Four.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Four.Controller.progress);
-        } else if (roomNumber == 5) {
-            info.push("Имя комнаты: " + Memory.room.Five.Name)
-            info.push("Уровень контроллера: " + Memory.room.Five.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Five.Controller.progress);
-        } else if (roomNumber == "All") {
-            info.push("Имя комнаты: " + Memory.room.One.Name)
-            info.push("Уровень контроллера: " + Memory.room.One.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.One.Controller.progress);
-            info.push("------------------------")
-            info.push("Имя комнаты: " + Memory.room.Two.Name)
-            info.push("Уровень контроллера: " + Memory.room.Two.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Two.Controller.progress);
-            info.push("------------------------")
-            info.push("Имя комнаты: " + Memory.room.Three.Name)
-            info.push("Уровень контроллера: " + Memory.room.Three.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Three.Controller.progress);
-            info.push("------------------------")
-            info.push("Имя комнаты: " + Memory.room.Four.Name)
-            info.push("Уровень контроллера: " + Memory.room.Four.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Four.Controller.progress);
-            info.push("------------------------")
-            info.push("Имя комнаты: " + Memory.room.Five.Name)
-            info.push("Уровень контроллера: " + Memory.room.Five.Controller.level);
-            info.push("Прогресс контроллера: " + Memory.room.Five.Controller.progress);
-        } else {
-            return "Номер комнаты либо не указан, либо указан неверно"
+        let spawns = [];
+        for (let i in Game.rooms){
+            let room = Game.rooms[i];
+            let roomSpawns = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_SPAWN}});
+            spawns = spawns.concat(roomSpawns);
+        }
+        for (let i in spawns){
+            let spawn = spawns[i];
+            info.push("Имя комнаты: " + spawn.room.name);
+            info.push("__________________________")
+            info.push("Количество энергии: " + spawn.room.energyCapacityAvailable);
+            info.push("Уровень контроллера: " + spawn.room.controller.level);
+            info.push("Прогресс контроллера: " + spawn.room.controller.progress/spawn.room.controller.progressTotal*100 + "%");
+            info.push("--------------------------")
         }
 
-        info.push("------------------------")
         info = info.join("\n");
 
         return info
