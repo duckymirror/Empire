@@ -19,9 +19,10 @@ let DroneRemoute = {
             } else if (Game.flags.claim) {
                 creep.memory.task = 'claim';
                 creep.memory.taskRoom = Game.flags.claim.room;
+            } else if (Game.flags.min) {
+                creep.memory.task = 'min';
+                creep.memory.taskRoom = Game.flags.min.room;
             }
-
-            creep.memory.task = 'claim';
 
             if (creep.memory.task == 'clearRoom') {
 
