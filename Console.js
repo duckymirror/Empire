@@ -106,6 +106,14 @@ function params() {
             result.push("└ В тиках: " + time);
             result.push("Количество");
             result.push("├ Всех частей тела: " + bodyCount);
+            result.push("├ MOVE: " + moveCount);
+            result.push("├ CARRY: " + carryCount);
+            result.push("├ WORK: " + workCount);
+            result.push("├ ATTACK: " + attackCount);
+            result.push("├ RANGED ATTACK: " + rangedAttackCount);
+            result.push("├ HEAL: " + healCount);
+            result.push("├ TOUGH: " + toughCount);
+            result.push("└ CLAIM: " + claimCount);
             result.push("Стоимость");
             result.push("└ " + price + " единиц энергии");
             result.push("------------------------");
