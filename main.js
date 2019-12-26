@@ -33,11 +33,14 @@ module.exports.loop = function () {
     Nydus.run();
     roleTower.control();
     roleSpawn.run();
-
-    const checkTime = Game.time % 51;
-    if (checkTime == 50) {
+    const checkTime = Game.time % 101;
+    if (checkTime == 100) {
         console.log("CPU всей колонии");
         console.log("└ " + Game.cpu.getUsed() + " / 20")
+        console.log("Свободная Memory")
+        console.log("└ " + Math.round((2*1024*1024 - RawMemory.get().length)/1024))
+        console.log("Используемая Memory")
+        console.log("└ " + Math.round(RawMemory.get().length/1024))
         console.log("------------------------");
     }
 };
