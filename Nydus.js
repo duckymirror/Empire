@@ -15,7 +15,7 @@ let Nydus = {
 
             for (let i in nydusTarget){
                 let nydusTar = nydusTarget[i];
-                if (nydusTar.pos.inRangeTo(nydusTar.room.storage.pos, 8)) {
+                if (nydusTar.pos.inRangeTo(nydusTar.room.storage.pos, 3)) {
                     var mainNydus = nydusTar;
                 }
             }
