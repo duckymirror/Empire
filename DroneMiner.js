@@ -44,9 +44,8 @@ let DroneMiner = {
                     }
                 } else {
                     if (linkIsNear[0].store[RESOURCE_ENERGY] < 800) {
-                        if (creep.transfer(linkIsNear[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(linkIsNear[0]);
-                        }
+                        creep.transfer(linkIsNear[0], RESOURCE_ENERGY);
+                        creep.harvest(source);
                     } else {
                         if (containerNear[0].store[RESOURCE_ENERGY] < 1950) {
                             creep.harvest(source);
