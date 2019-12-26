@@ -70,7 +70,7 @@ var roleTower = {
             } else if (tower.room.controller.level == 6) {
                 var walls = tower.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 500000;
+                        return (structure.structureType == STRUCTURE_WALL) && structure.hits < 100000;
                     }
                 });
                 var ramparts = tower.room.find(FIND_STRUCTURES, {
