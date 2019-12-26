@@ -33,10 +33,14 @@ let DroneMiner = {
             if (linkInRoom && linkInRoom.length > 1 && linkIsNear && linkIsNear.length > 0) {
 
                 if (creep.store[RESOURCE_ENERGY] < creep.store.getCapacity()) {
-                    if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(source, { reusePath: 50 });
+                    if (containerNear.length == 1 && creep.pos.isNearTo(source)) {
+                        if (!creep.pos.isEqualTo(containerNear[0].pos)) {
+                            creep.moveTo(containerNear[0].pos, { ignoreCreeps: false, reusePath: 50 });
+                        } else if (containerNear[0].store[RESOURCE_ENERGY] < 1950 || linkIsNear[0].store[RESOURCE_ENERGY] < 800) {
+                            creep.harvest(source);
+                        }
                     } else {
-                        creep.harvest(source);
+                        creep.moveTo(source, { rignoreCreeps: false, reusePath: 50 });
                     }
                 } else {
                     if (linkIsNear[0].store[RESOURCE_ENERGY] < 800) {
