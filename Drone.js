@@ -14,16 +14,15 @@ let Drone = {
                     creep.memory.state = "doWork";
                 }
 
-                creep.say(creep.memory.state)
-
                 if (creep.memory.state == "getResource") {
 
                     let nydus = creep.room.find(FIND_STRUCTURES,{filter:s=>s.structureType == STRUCTURE_LINK});
-
+                    
                     if (nydus.length > 1) {
+                        
                         for (let i in nydus){
                             let nydusInRoom = nydus[i];
-                            if (nydusInRoom.pos.inRangeTo(nydusInRoom.room.storage.pos, 8)) {
+                            if (nydusInRoom.pos.inRangeTo(nydusInRoom.room.storage.pos, 3)) {
                                 var mainNydus = nydusInRoom;
                             }
                         }
@@ -34,17 +33,19 @@ let Drone = {
                         } else {
                             const containerInRoom = creep.room.find(FIND_STRUCTURES, {
                                 filter: (structure) => {
-                                    return (structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity();
+                                    return (structure.structureType == STRUCTURE_CONTAINER)
                                 }
                             });
+                            
                             if (containerInRoom.length == 1) {
                                 if(creep.withdraw(containerInRoom[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                     creep.moveTo(containerInRoom[0], {heuristicWeight: 1.2, range: 1, reusePath: 50});
                                 }
                             } else if (containerInRoom.length >= 2) {
+                                
                                 const container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                                     filter: (structure) => {
-                                        return (structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity();
+                                        return (structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] > 0;
                                     }
                                 });
                                 if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -63,19 +64,20 @@ let Drone = {
                     } else if (nydus.length < 2) {
                         const containerInRoom = creep.room.find(FIND_STRUCTURES, {
                             filter: (structure) => {
-                                return (structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity();
+                                return (structure.structureType == STRUCTURE_CONTAINER);
                             }
                         });
                         if (containerInRoom.length == 1) {
                             if(creep.withdraw(containerInRoom[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(containerInRoom[0], {heuristicWeight: 1.2, range: 1, reusePath: 50});
                             }
-                        } else if (containerInRoom >= 2) {
+                        } else if (containerInRoom.length >= 2) {
                             const container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                                 filter: (structure) => {
-                                    return (structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] >= creep.store.getFreeCapacity();
+                                    return (structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] > 0;
                                 }
                             });
+                            creep.say("2")
                             if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(container, {heuristicWeight: 1.2, range: 1, reusePath: 50});
                             } 
