@@ -26,7 +26,7 @@ function amountCreeps() {
                         }
                         break;
                     case 6:
-                        Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                        Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                         break;
                     case 6:
                         Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;

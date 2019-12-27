@@ -79,8 +79,8 @@ function creepBody(energy, role) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK]
         } else if (energy == 2250) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK]
-        } else if (energy == 2300) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, , WORK, WORK]
+        } else if (energy >= 2300) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK]
         }
     }
 
@@ -279,6 +279,7 @@ let roleSpawn = {
                         spawn.spawnCreep([MOVE, MOVE, CARRY, WORK], newName,
                             { memory: { role: Memory.rolies[i] } });
                     } else {
+                        console.log(spawn.spawnCreep(body, newName, { memory: { role: Memory.rolies[i] } }) + " | " + spawn.room.name)
                         spawn.spawnCreep(body, newName,
                             { memory: { role: Memory.rolies[i] } });
                     }
