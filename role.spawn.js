@@ -1,6 +1,6 @@
 function creepBody(energy, role) {
 
-   if (role == "DroneRemoute" || role == "Drone") {
+   if (role == "DroneBuilder" || role == "DroneUpgrader") {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
@@ -275,14 +275,7 @@ let roleSpawn = {
                     let newName = Game.time;
                     body = creepBody(amountEnergy, Memory.rolies[i]);
                     
-                    if (Memory.rolies[i] == "Drone" && Memory.room[spawn.room.name + ".amountIsLive." + Memory.rolies[i]] == 0 && spawn.room.energyAvailable < amountEnergy) {
-                        spawn.spawnCreep([MOVE, MOVE, CARRY, WORK], newName,
-                            { memory: { role: Memory.rolies[i] } });
-                    } else {
-                        console.log(spawn.spawnCreep(body, newName, { memory: { role: Memory.rolies[i] } }) + " | " + spawn.room.name)
-                        spawn.spawnCreep(body, newName,
-                            { memory: { role: Memory.rolies[i] } });
-                    }
+                    spawn.spawnCreep(body, newName, {memory:{role: Memory.rolies[i]}});
                 }
             }
         }
