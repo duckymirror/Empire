@@ -37,7 +37,7 @@ let zergling = {
                     creep.moveTo(Game.flags.power, {heuristicWeight: 1.2, range: 1, reusePath: 10});
                 } else {
                     if (powerBank) {
-                        speak = ['FOR', 'THE', 'HIVE'];
+                        speak = ['FOR', 'THE', 'HIVE', '   '];
                         speakNow = speak[Game.time % speak.length];
                         creep.say(speakNow, true);
 
@@ -79,7 +79,7 @@ let zergling = {
                 }
             });
             if (invaderCore && creep.room == creep.memory.taskRoom) {
-                speak = ['FOR', 'THE', 'HIVE'];
+                speak = ['FOR', 'THE', 'HIVE', '   '];
                 speakNow = speak[Game.time % speak.length];
                 creep.say(speakNow, true);
 
@@ -87,19 +87,19 @@ let zergling = {
                     creep.moveTo(invaderCore, {heuristicWeight: 1.2, reusePath: 10});
                 }
             } else if (dangerHostileStructures && creep.room == creep.memory.taskRoom) {
-                speak = ['FOR', 'THE', 'HIVE'];
+                speak = ['FOR', 'THE', 'HIVE', '   '];
                 speakNow = speak[Game.time % speak.length];
                 creep.say(speakNow, true);
 
                 if (hostileStructures.structureType == STRUCTURE_RAMPART) {
                     hostileStructures.sort((a,b) => a.hits - b.hits);
                 }
-                if (creep.attack(hostileStructures) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(hostileStructures, {heuristicWeight: 1.2, reusePath: 10});
+                if (creep.attack(dangerHostileStructures) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(dangerHostileStructures, {heuristicWeight: 1.2, reusePath: 10});
                 }
             } else if (hostileCreeps && creep.room == creep.memory.taskRoom) {
                 
-                speak = ['FOR', 'THE', 'HIVE'];
+                speak = ['FOR', 'THE', 'HIVE', '   '];
                 speakNow = speak[Game.time % speak.length];
                 creep.say(speakNow, true);
 
@@ -120,7 +120,7 @@ let zergling = {
                 }
             } else if (hostileStructures && creep.room == creep.memory.taskRoom) {
 
-                speak = ['FOR', 'THE', 'HIVE'];
+                speak = ['FOR', 'THE', 'HIVE', '   '];
                 speakNow = speak[Game.time % speak.length];
                 creep.say(speakNow, true);
 
