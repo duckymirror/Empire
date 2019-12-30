@@ -8,6 +8,7 @@ let Nydus = {
         }
 
         for (let i in nydus){
+            let mainNydus = null;
             let nydusInRoom = nydus[i];
 
             let roomNydus = nydusInRoom.room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
@@ -15,8 +16,10 @@ let Nydus = {
 
             for (let i in nydusTarget){
                 let nydusTar = nydusTarget[i];
-                if (nydusTar.pos.inRangeTo(nydusTar.room.storage.pos, 3)) {
-                    var mainNydus = nydusTar;
+                if (nydusTar.pos.inRangeTo(nydusTar.room.storage.pos, 3)) mainNydus = nydusTar;
+                else {
+                    tower = nydusTar.room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+                    if (nydusTar.pos.inRangeTo(tower[0],5)) mainNydus = nydusTar;
                 }
             }
 
@@ -26,7 +29,6 @@ let Nydus = {
                 }
             }
         }
-        
     }
 };
 module.exports = Nydus;

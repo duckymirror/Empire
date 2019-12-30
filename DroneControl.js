@@ -95,9 +95,6 @@ function doMineMiner(creep) {
 function doBuild(creep, count) {
     const constructionSite = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
 
-    if (count > 2) Memory.room[creep.room.name + ".amount." + "DroneBuilder"] = 2;
-    if (count > 5) Memory.room[creep.room.name + ".amount." + "DroneBuilder"] = 3;
-
     if (creep.build(constructionSite) == ERR_NOT_IN_RANGE) creep.moveTo(constructionSite, { heuristicWeight: 1.2, range: 3, reusePath: 50 });
 }
 
