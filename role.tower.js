@@ -30,7 +30,8 @@ var roleTower = {
 
             var walls = tower.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_WALL) && structure.hits < 20000;
+                    return (structure.structureType == STRUCTURE_WALL ||
+                            structure.structureType == STRUCTURE_RAMPART) && structure.hits < 100000;
                 }
             });
 
