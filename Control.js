@@ -1,10 +1,11 @@
 function amountCreeps() {
-    Memory.rolies = ["DroneBuilder", "DroneMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "Zergling"];
+    Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneRefiller", "DroneSeller", "DroneUpgrader", "Zergling"];
     for (let z in Game.rooms) {
         let room = Game.rooms[z];
         for (let i in Memory.rolies) {
             if ("DroneBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
-            if ("DroneMiner" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]    = 0;
+            if ("DroneMiner1" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
+            if ("DroneMiner2" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
             if ("DroneRefiller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
             if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 0;
             if ("DroneUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 3;
