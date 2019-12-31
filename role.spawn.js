@@ -1,6 +1,6 @@
 function creepBody(energy, role) {
 
-   if (role == "DroneBuilder" || role == "DroneUpgrader") {
+   if (role == "DroneBuilder" || role == "DroneUpgrader" || role == "DroneRefiller") {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
