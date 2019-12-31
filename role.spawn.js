@@ -84,7 +84,7 @@ function creepBody(energy, role) {
         }
     }
 
-    if (role == "DroneMiner") {
+    if (role == "DroneMiner1" || role == "DroneMiner2") {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
