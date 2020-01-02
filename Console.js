@@ -2,10 +2,7 @@ function params() {
     global.help = function (com) {
         help = []
         if (!com) {
-            help.push("enable_ui()                     - Включает интерфейс")
-            help.push("disable_ui()                    - Выключает интерфейс")
-            help.push("info(roomNumber)                - Выводит информацио о комнате")
-            help.push("  * roomNumber                  - Номер комнаты. НЕОБЯЗАТЕЛЬНО. По умолчанию: покажет все комнаты")
+            help.push("info()                          - Выводит информацио о всех комнатах")
             help.push("claim(roomName)                 - Ставит задачу по захвату указанной комнаты")
             help.push("  * roomName                    - Имя комнаты.")
             help.push("calculate_time(time, tickRate)  - Конвертирует тики в настоящее время")
@@ -13,13 +10,6 @@ function params() {
             help.push("  * tickRate                    - Тик рейт сервера. НЕОБЯЗАТЕЛЬНО. По умолчанию: 2.69")
             help.push("calculate_сreeps(body)          - Расчет стоимости и времени строительства крипа")
             help.push("  * body                        - Массив с телом крипа")
-        } else if (com == "info") {
-            help.push("1               - Первая комната")
-            help.push("2               - Вторая комната")
-            help.push("3               - Третья комната")
-            help.push("4               - Четвертая комната")
-            help.push("5               - Пятая комната")
-            help.push("All             - Информация про все комнаты")
         }
 
         help = help.join("\n");
@@ -46,14 +36,6 @@ function params() {
         outTime = outTime.join("\n");
         return outTime
     }
-    global.enable_ui = function () {
-        Memory.UI = true;
-        return "UI теперь включен"
-    };
-    global.disable_ui = function () {
-        Memory.UI = false;
-        return "UI теперь выключен"
-    };
     global.calculate_creeps = function (body) {
         if (body) {
 
