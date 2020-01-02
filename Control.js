@@ -24,9 +24,8 @@ function amountCreepsIsLive() {
     for (let z in Game.rooms) {
         let room = Game.rooms[z];
         if (room.controller && room.controller.my) {
-            for (let i in Game.creeps) {
-                let creep = Game.creeps[i];
-                Memory.room[room.name + ".amountIsLive." + creep.memory.role] = 0
+            for (let i in Memory.rolies) {
+                Memory.room[room.name + ".amountIsLive." + Memory.rolies[i]] = 0
             }
         }
     }
