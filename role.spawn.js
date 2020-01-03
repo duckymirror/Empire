@@ -154,6 +154,14 @@ function creepBody(energy, role) {
         }
     }
 
+    if (role == 'CorruptorMain' || role == 'Corruptor') {
+        return [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK]
+    }
+
+    if (role == 'DroneRemouteHealMain' || role == 'DroneRemouteHeal') {
+        return [MOVE,MOVE,MOVE,MOVE,HEAL,HEAL,HEAL,HEAL]
+    }
+
     if (role == 'Overseer') {
         return [MOVE, MOVE, MOVE, MOVE, MOVE, CLAIM]
     }
