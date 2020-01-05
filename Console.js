@@ -49,6 +49,12 @@ function params() {
             let toughCount = 0;
             let claimCount = 0;
 
+            let capacity = 0;
+            let harvEnergy = 0;
+            let harvMineral = 0;
+            let build = 0;
+            let upgrade = 0;
+
             let price = 0;
             time = body.length * 3;
 
@@ -60,10 +66,15 @@ function params() {
                         moveCount++;
                     } else {
                         carryCount++;
+                        capacity = capacity + 50;
                     }
                 } else if (body[i] == "work") {
                     price = price + 100;
                     workCount++;
+                    harvEnergy = harvEnergy + 2;
+                    harvMineral = harvMineral + 1;
+                    build = build + 5;
+                    upgrade++;
                 } else if (body[i] == "attack") {
                     price = price + 80;
                     attackCount++
@@ -90,7 +101,12 @@ function params() {
             result.push("├ Всех частей тела: " + bodyCount);
             result.push("├ MOVE: " + moveCount);
             result.push("├ CARRY: " + carryCount);
+            result.push("│ └ CAPACITY: " + capacity)
             result.push("├ WORK: " + workCount);
+            result.push("│ └ HARVEST ENERGY: " + harvEnergy)
+            result.push("│ └ HARVESN MINERAL: " + harvMineral)
+            result.push("│ └ BUILD: " + build)
+            result.push("│ └ UPGRADE: " + upgrade)
             result.push("├ ATTACK: " + attackCount);
             result.push("├ RANGED ATTACK: " + rangedAttackCount);
             result.push("├ HEAL: " + healCount);
