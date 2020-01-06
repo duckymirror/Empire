@@ -188,19 +188,49 @@ function creepBody(energy, role) {
         }
     }
 
-    if (role == 'Zergling') {
+    if (role == 'Stormtrooper') {
         if (energy == 300) {
-            return [MOVE, ATTACK]
+            return [MOVE, MOVE, ATTACK, ATTACK]
         } else if (energy == 350) {
-            return [MOVE, ATTACK, MOVE, ATTACK]
+            return [MOVE, MOVE, ATTACK, ATTACK]
         } else if (energy == 400) {
-            return [MOVE, ATTACK, MOVE, ATTACK]
+            return [MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK]
         } else if (energy == 450) {
-            return [MOVE, ATTACK, MOVE, ATTACK]
+            return [MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK]
         } else if (energy == 500) {
-            return [MOVE, ATTACK, MOVE, ATTACK]
-        } else if (energy >= 550) {
-            return [TOUGH, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK]
+            return [MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 550) {
+            return [MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 600) {
+            return [MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 650) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 700) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 750) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 800) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 850) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 900) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 950) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 1000) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 1050) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 1100) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 1150) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 1200) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy == 1250) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
+        } else if (energy >= 1300) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
         }
     }
 
