@@ -10,13 +10,13 @@ function amountCreeps() {
         let room = Game.rooms[z];
         if (room.controller && room.controller.my) {
             for (let i in Memory.rolies) {
-                if ("DroneBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
+                if ("DroneBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 2;
                 if ("DroneMiner1" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
                 if ("DroneMiner2" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
-                if ("DroneRefiller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                if ("DroneRefiller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
                 if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 0;
-                if ("DroneUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
-                if ("Stormtrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 0;
+                if ("DroneUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 2;
+                if ("Stormtrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 2;
                 if (!room.controller.sign || (room.controller.sign && room.controller.sign.text != Memory.code)) { 
                     if ("ScoutTrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
                 } else {
