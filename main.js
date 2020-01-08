@@ -1,19 +1,7 @@
 /*
- ______________________________________
-/                                      \
-|                                      |
-|    ██  ██    ██    ██  ██    ████    |
-|    ██  ██    ██    ██  ██    ██      |
-|    ██████    ██    ██  ██    ████    |
-|    ██  ██    ██    ██  ██    ██      |
-|    ██  ██    ██      ██      ████    |
-|                                      |
-\______________SCREEPS AI______________/
-
 @ Author: Jourloy
 @ Repository: https://github.com/Jourloy/HIVE
 @ How to use: Will be soon
-
 */
 
 const Console = require("Console");
@@ -21,6 +9,7 @@ const Control = require("Control");
 const roleSpawn = require("role.spawn");
 const roleTower = require("role.tower");
 const Nydus = require("Nydus");
+const Terminal = require("Terminal");
 
 Memory.room = {};
 
@@ -33,6 +22,7 @@ module.exports.loop = function () {
     let spawns = [];
     for (let i in Game.rooms) {
         let room = Game.rooms[i];
+        if (room.terminal) Terminal.control(room);
         let roomSpawns = room.find(FIND_MY_STRUCTURES, { filter: { structureType: STRUCTURE_SPAWN } });
         spawns = spawns.concat(roomSpawns);
     }
