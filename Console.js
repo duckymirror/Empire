@@ -93,13 +93,16 @@ function params() {
                 }
             }
 
+            const badBodyParts = carryCount+workCount+attackCount+rangedAttackCount+healCount+toughCount+claimCount
+
             result = [];
             result.push("------------------------")
             result.push("Время появления");
             result.push("└ В тиках: " + time);
             result.push("Количество");
             result.push("├ Всех частей тела: " + bodyCount);
-            result.push("├ MOVE: " + moveCount);
+            if (badBodyParts > moveCount) result.push("├ MOVE: " + moveCount + " (крип будет ходить с задержкой, для ее устранения необходимо еще " + (badBodyParts-moveCount) + " частей MOVE)");
+            else result.push("├ MOVE: " + moveCount);
             result.push("├ CARRY: " + carryCount);
             result.push("│ └ CAPACITY: " + capacity)
             result.push("├ WORK: " + workCount);
