@@ -16,7 +16,7 @@ function amountCreeps() {
                 if ("DroneMiner1" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
                 if ("DroneMiner2" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
                 if ("DroneRefiller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
-                if (room.storage && (room.storage.store[RESOURCE_ENERGY] > 101000 || room.storage.store[RESOURCE_HYDROGEN] > 11000)) {
+                if (room.storage && (room.storage.store[RESOURCE_ENERGY] > 101000 || room.storage.store[RESOURCE_HYDROGEN] > 11000 || room.terminal.store[RESOURCE_ENERGY] < 5000)) {
                     if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                 } else {
                     if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
@@ -86,9 +86,6 @@ function runCreep() {
                         creep.say(speakNow, true);
                         droneTask = require("DroneRefiller");
                         droneTask.control(creep)
-                        break;
-                    case "DroneSeller":
-                        creep.say(speakNow, true);
                         break;
                     case "DroneUpgrader":
                         creep.say(speakNow, true);
