@@ -56,7 +56,7 @@ function params() {
             let upgrade = 0;
 
             let price = 0;
-            time = body.length * 3;
+            let time = body.length * 3;
 
             for (let i in body) {
                 bodyCount++;
@@ -138,9 +138,24 @@ function params() {
         for (let i in spawns){
             let spawn = spawns[i];
             info.push("Имя комнаты: " + spawn.room.name);
-            info.push("├ Количество энергии: " + spawn.room.energyCapacityAvailable);
-            info.push("├ Уровень контроллера: " + spawn.room.controller.level);
-            info.push("└ Прогресс контроллера: " + spawn.room.controller.progress/spawn.room.controller.progressTotal*100 + "%");
+            info.push("├ Основные параметры");
+            info.push("│ ├ Количество энергии: " + spawn.room.energyCapacityAvailable);
+            info.push("│ └ Количество доступной сейчас энергии: " + spawn.room.energyAvailable);
+            info.push("├ Контроллер");
+            info.push("│ ├ Уровень контроллера: " + spawn.room.controller.level);
+            info.push("│ └ Прогресс контроллера: " + spawn.room.controller.progress/spawn.room.controller.progressTotal*100 + "%");
+            info.push("├ Хранилище");
+            if (spawn.room.storage) {
+                info.push("│ ├ Количество свободного места: " + spawn.room.storage.store.getFreeCapacity());
+                info.push("│ └ Количество энергии: " + spawn.room.storage.store[RESOURCE_ENERGY])
+            } else info.push("└ Отсутствует")
+            info.push("└ Терминал");
+            if (spawn.room.terminal) {
+                info.push("  ├ Количество свободного места: " + spawn.room.terminal.store.getFreeCapacity());
+                info.push("  ├ Количество энергии: " + spawn.room.terminal.store[RESOURCE_ENERGY])
+                if (spawn.room.terminal.cooldown) info.push("└ Откат: " + spawn.room.terminal.cooldown)
+                else info.push("  └ Откат: 0")
+            } else info.push("  └ Отсутствует")
             info.push("--------------------------")
         }
 
