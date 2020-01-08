@@ -234,9 +234,9 @@ function creepBody(energy, role) {
         }
     }
 
-    //if (role == "DroneSeller") {
-    //    return [MOVE,CARRY];
-    //}
+    if (role == "DroneSeller") {
+        return [MOVE,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY,CARRY];
+    }
 
     if (role == "DroneMineralMiner") {
         if (energy >= 2300) {
