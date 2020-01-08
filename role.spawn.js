@@ -246,6 +246,14 @@ function creepBody(energy, role) {
         return [MOVE, MOVE, MOVE, MOVE, MOVE, CLAIM]
     }
 
+    if (role == 'EliteStormtrooper') {
+        return [MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK]
+    }
+
+    if (role == "EliteHeal") {
+        return [MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,HEAL,HEAL,HEAL,HEAL,HEAL,HEAL]
+    }
+
     if (role == 'hydralisk') {
         if (energy == 300) {
             return [MOVE, RANGED_ATTACK]
@@ -322,6 +330,11 @@ function creepBody(energy, role) {
         }
     }
 
+    if (role == "DroneMineralMiner") {
+        if (energy >= 2300) {
+            return [MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK]
+        }
+    }
     if (role == "ScoutTrooper") {
         return [MOVE];
     }
@@ -338,6 +351,7 @@ let roleSpawn = {
         if (role == "DroneUpgrader") newName = "AT-AT Walker | ID [" + Game.time%1001 + "]";
         if (role == "Stormtrooper") newName = "Stormtrooper | ID [" + Game.time%1001 + "]";
         if (role == "ScoutTrooper") newName = "Scout trooper | ID [" + Game.time%1001 + "]";
+        if (role == "DroneMineralMiner") newName = "AT-ST Walker | ID [" + Game.time%1001 + "]";
         body = creepBody(amountEnergy, role);
         if (!Memory.room[spawn.room.name + ".amountIsLive." + "DroneRefiller"] && !Memory.room[spawn.room.name + ".amountIsLive." + "DroneBuilder"] && !Memory.room[spawn.room.name + ".amountIsLive." + "DroneUpgrader"] && spawn.room.energyCapacityAvailable > spawn.room.energyAvailable) {
             spawn.spawnCreep([MOVE, MOVE, CARRY, CARRY], newName, { memory: { role: "DroneRefiller" } });
