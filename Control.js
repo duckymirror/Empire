@@ -6,8 +6,10 @@ function amountCreeps() {
     }
     Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "Stormtrooper", "ScoutTrooper"];
     Memory.code = "Sith Empire is our future."
+
     for (let z in Game.rooms) {
         let room = Game.rooms[z];
+        const sourceInRoom = room.find(FIND_MINERALS);
         if (room.controller && room.controller.my) {
             for (let i in Memory.rolies) {
                 if ("DroneBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
@@ -17,7 +19,11 @@ function amountCreeps() {
                 if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 0;
                 if ("DroneUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 if ("Stormtrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 0;
-                if ("DroneMineralMiner" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
+                if (!sourceInRoom[0].ticksToRegeneration) {
+                    if ("DroneMineralMiner" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                } else {
+                    if ("DroneMineralMiner" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
+                }
                 if (!room.controller.sign || (room.controller.sign && room.controller.sign.text != Memory.code)) { 
                     if ("ScoutTrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
                 } else {
