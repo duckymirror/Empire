@@ -16,7 +16,11 @@ function amountCreeps() {
                 if ("DroneMiner1" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
                 if ("DroneMiner2" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 1;
                 if ("DroneRefiller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
-                if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]   = 0;
+                if (room.storage && (room.storage.store[RESOURCE_ENERGY] > 101000 || room.storage.store[RESOURCE_HYDROGEN] > 11000)) {
+                    if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                } else {
+                    if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
+                }
                 if ("DroneUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 if ("Stormtrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 0;
                 if (!sourceInRoom[0].ticksToRegeneration) {
@@ -104,6 +108,11 @@ function runCreep() {
                     case "DroneMineralMiner":
                         creep.say(speakNow, true);
                         droneTask = require("DroneMineralMiner");
+                        droneTask.control(creep)
+                        break;
+                    case "DroneSeller":
+                        creep.say(speakNow, true);
+                        droneTask = require("DroneSeller");
                         droneTask.control(creep)
                         break;
                 }
