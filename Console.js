@@ -3,8 +3,6 @@ function params() {
         help = []
         if (!com) {
             help.push("info()                          - Выводит информацио о всех комнатах")
-            help.push("claim(roomName)                 - Ставит задачу по захвату указанной комнаты")
-            help.push("  * roomName                    - Имя комнаты.")
             help.push("calculate_time(time, tickRate)  - Конвертирует тики в настоящее время")
             help.push("  * time                        - Количество тиков.")
             help.push("  * tickRate                    - Тик рейт сервера. НЕОБЯЗАТЕЛЬНО. По умолчанию: 2.69")
@@ -125,7 +123,7 @@ function params() {
             return "Тело не определено"
         }
     };
-    global.info = function (roomNumber) {
+    global.info = function () {
         info = [];
         info.push("--------------------------")
 
