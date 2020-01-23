@@ -250,6 +250,11 @@ function creepBody(energy, role) {
 }
 
 let roleSpawn = {
+    getBody(energy, creepRole) {
+        body = creepBody(energy, creepRole);
+        return body
+    },
+
     run(spawn, amountEnergy, role) {
         let newName = null;
 
