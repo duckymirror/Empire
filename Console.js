@@ -48,16 +48,17 @@ function params() {
         return body;
     };
 
-    /*
-    TODO: Доделать вывод картинки крипа
-
-    global.CreepSvg = function (width = 32, height = 32) {
+    global.svgCreep = function (width = 16, height = 16) {
         const cx = width / 2;
         const cy = height / 2;
         const r = cx;
-        return "<svg> <path fill=\"none\" stroke=\"yellow\" stroke-width=\"3\" d=\"M10,55 C15,5 100,5 100,55\" /> </svg>"
-        //return "<svg width=" + width + " height=" + height + ">  <rect width=\100%\" height=\"100%\" fill=\"#1F2024\" /> <g>  <circle id=\"fon\" cx=" + cx + " cy=" + cy + " r=" + r + " stroke=\"#673E93\" stroke-width=\"2\" stroke-dasharray = " + (2*3.14*r)/2 + " stroke-dashoffset= " + (2*3.14*r)/2 + " fill=\"none\" /> </g> /> </svg>"
-    }*/
+
+        body = []
+        body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="grey"/></svg>')
+        body = body.join("");
+        return body;
+    };
+    
 
     global.Creeps = function (body = null, creepRole = null) {
         if (body || creepRole) {
@@ -136,27 +137,27 @@ function params() {
 
             for (var i = 0; i < bodyCount; i++) {
                 if (i == 10 || i == 20 || i == 30 || i == 40 || i == 50) result.push("\n")
-                if (body[i] == "move") result.push(svgBody('grey'))
-                if (body[i] == "carry") result.push(svgBody('darkgrey'))
-                if (body[i] == "work") result.push(svgBody('yellow'))
-                if (body[i] == "attack") result.push(svgBody('red'))
-                if (body[i] == "ranged_attack") result.push(svgBody('blue'))
-                if (body[i] == "heal") result.push(svgBody('green'))
-                if (body[i] == "tough") result.push(svgBody('white'))
-                if (body[i] == "claim") result.push(svgBody('purple'))
+                if (body[i] == "move") result.push(svgBody('#A9B7C6'))
+                if (body[i] == "carry") result.push(svgBody('#777777'))
+                if (body[i] == "work") result.push(svgBody('#FFE56D'))
+                if (body[i] == "attack") result.push(svgBody('#F93842'))
+                if (body[i] == "ranged_attack") result.push(svgBody('#5D80B2'))
+                if (body[i] == "heal") result.push(svgBody('#65FD62'))
+                if (body[i] == "tough") result.push(svgBody('#FFFFFF'))
+                if (body[i] == "claim") result.push(svgBody('#B99CFB'))
             }
             result.push("\n\n<table border=\"1\">");
             result.push("<caption>Характеристики крипа</caption>");
             result.push("<tr>");
             result.push("<th></th>");
-            result.push("<th> " + svgBody("grey") + " </th>");
-            result.push("<th> " + svgBody("darkgrey") + " </th>");
-            result.push("<th> " + svgBody("yellow") + " </th>");
-            result.push("<th> " + svgBody("red") + " </th>");
-            result.push("<th> " + svgBody("blue") + " </th>");
-            result.push("<th> " + svgBody("green") + " </th>");
-            result.push("<th> " + svgBody("white") + " </th>");
-            result.push("<th> " + svgBody("purple") + " </th>");
+            result.push("<th> " + svgBody("#A9B7C6") + " </th>");
+            result.push("<th> " + svgBody("#777777") + " </th>");
+            result.push("<th> " + svgBody("#FFE56D") + " </th>");
+            result.push("<th> " + svgBody("#F93842") + " </th>");
+            result.push("<th> " + svgBody("#5D80B2") + " </th>");
+            result.push("<th> " + svgBody("#65FD62") + " </th>");
+            result.push("<th> " + svgBody("#FFFFFF") + " </th>");
+            result.push("<th> " + svgBody("#B99CFB") + " </th>");
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>КОЛИЧЕСТВО </td>");
