@@ -83,6 +83,10 @@ function params() {
             let harvMineral = 0;
             let build = 0;
             let upgrade = 0;
+            let damageAttack = 0;
+            let damageRangedAttack = 0;
+            let healShort = 0;
+            let healDistance = 0;
 
             let price = 0;
             let time = body.length * 3;
@@ -107,12 +111,16 @@ function params() {
                 } else if (body[i] == "attack") {
                     price = price + 80;
                     attackCount++
+                    damageAttack += 30;
                 } else if (body[i] == "ranged_attack") {
                     price = price + 150;
                     rangedAttackCount++;
+                    damageRangedAttack += 10;
                 } else if (body[i] == "heal") {
                     price = price + 250;
                     healCount++;
+                    healShort += 12;
+                    healDistance += 4;
                 } else if (body[i] == "tough") {
                     price = price + 10;
                     toughCount++;
@@ -213,6 +221,39 @@ function params() {
             result.push("<td>  </td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>ATTACK per tick </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>" + damageAttack + "</td>");
+            result.push("<td>" + damageRangedAttack + "</td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>HEAL per tick (short)</td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>" + healShort + "</td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>HEAL per tick (distance)</td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>" + healDistance + "</td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
             result.push("</tr>");
