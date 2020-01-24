@@ -210,7 +210,7 @@ function params() {
 
                 if (carryCount > 0) {
                     movePlainCarry = "-";
-                    moveRoadCarry = bodyCount;
+                    moveRoadCarry = 1;
                     moveSwampCarry = "-";
                 }
             } else {
