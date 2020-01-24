@@ -203,19 +203,31 @@ function params() {
             let moveRoadCarry = 0
             let moveSwampCarry = 0
 
-            movePlain = Math.ceil((badBodyParts * 2) / (moveCount * 2));
-            moveRoad = Math.ceil((badBodyParts * 1) / (moveCount * 2));
-            moveSwamp = Math.ceil((badBodyParts * 10) / (moveCount * 2));
+            if (moveCount == 0) {
+                movePlain = "-";
+                moveRoad = bodyCount;
+                moveSwamp = "-";
+
+                if (carryCount > 0) {
+                    movePlainCarry = "-";
+                    moveRoadCarry = bodyCount;
+                    moveSwampCarry = "-";
+                }
+            } else {
+                movePlain = Math.ceil((badBodyParts * 2) / (moveCount * 2));
+                moveRoad = Math.ceil((badBodyParts * 1) / (moveCount * 2));
+                moveSwamp = Math.ceil((badBodyParts * 10) / (moveCount * 2));
+
+                if (carryCount > 0) {
+                    movePlainCarry = Math.ceil(((badBodyParts - carryCount) * 2) / (moveCount * 2));
+                    moveRoadCarry = Math.ceil(((badBodyParts - carryCount) * 1) / (moveCount * 2));
+                    moveSwampCarry = Math.ceil(((badBodyParts - carryCount) * 5) / (moveCount * 2));
+                }
+            }
            
             if (movePlain < 1) movePlain = 1;
             if (moveRoad < 1) moveRoad = 1;
             if (moveSwamp < 1) moveSwamp = 1
-
-            if (carryCount > 0) {
-                movePlainCarry = Math.ceil(((badBodyParts - carryCount) * 2) / (moveCount * 2));
-                moveRoadCarry = Math.ceil(((badBodyParts - carryCount) * 1) / (moveCount * 2));
-                moveSwampCarry = Math.ceil(((badBodyParts - carryCount) * 5) / (moveCount * 2));
-            }
 
             result = [];
             result.push("[" + body.toString().toUpperCase() + "]\n\n");
