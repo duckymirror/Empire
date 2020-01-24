@@ -1,6 +1,6 @@
 /*
 @ Author: Jourloy
-@ Repository: https://github.com/Jourloy/HIVE
+@ Repository: https://github.com/Jourloy/Empire
 @ How to use: Will be soon
 */
 
