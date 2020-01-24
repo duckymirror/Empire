@@ -2,19 +2,19 @@ function params() {
     global.help = function (com) {
         help = []
         if (!com) {
-            help.push("info()                          - Выводит информацио о всех комнатах")
-            help.push("calculate_time(time, tickRate)  - Конвертирует тики в настоящее время")
-            help.push("  * time                        - Количество TICKS.")
-            help.push("  * tickRate                    - Тик рейт сервера. НЕОБЯЗАТЕЛЬНО. По умолчанию: 2.69")
-            help.push("Creeps(body)                    - Расчет стоимости и времени строительства крипа")
-            help.push("  * body                        - Массив с телом крипа")
-            help.push("CreepBuilder(body)              - Выводит информацию о представлленом крипе");
-            help.push("  * body                        - help(\"CreepBuilder\") чтобы узнать об этом параметре");
+            help.push("info()                          - Print information about all your rooms")
+            help.push("calculate_time(time, tickRate)  - Convert ticks to real time")
+            help.push("  * time                        - amount TICKS.")
+            help.push("  * tickRate                    - Tick rate of server. NOT NECESSARY. Default: 2.69")
+            help.push("Creeps(body)                    - Calculate cost and time of build creep")
+            help.push("  * body                        - List with creep's body")
+            help.push("CreepBuilder(body)              - Build creep");
+            help.push("  * body                        - help(\"CreepBuilder\") for learn about this parameter");
         }
 
         if (com == "CreepBuilder") {
             help.push("CreepBuilder");
-            help.push("\nПринимает количество BODY PARTS:");
+            help.push("\nGet amount BODY PARTS:");
             help.push("MOVE {move:N}");
             help.push("CARRY {carry:N}");
             help.push("WORK {work:N}");
@@ -23,13 +23,22 @@ function params() {
             help.push("HEAL {heal:N}");
             help.push("TOUGH {tough:N}");
             help.push("CLAIM {claim:N}");
-            help.push("По умолчанию все значения равны 0. \nN - желаемое количество.");
-            help.push("\nТо есть, чтобы создать крипа с 2-мя WORK и 2-мя MOVE необходимо написать: CreepBuilder({work:2, move:2})");
+            help.push("Default all parameters is 0. \nN - amount.");
+            help.push("\nSo, if you want create creep with 2 WORK and 2 MOVE, you need write in console: CreepBuilder({work:2, move:2})");
         }
 
         help = help.join("\n");
         return help
     };
+
+    global.progressBar = function(num = 0) {
+        let width = 128;
+        let height = 10;
+
+        let progressBar = '<svg width="' + (width+2) + '" height="' + (height+2) + '"> <rect x="1" y="1" fill="#F93842" width="' + (width/100*num) + '" height="' + height + '"/> <rect x="1" y="1" stroke="#777777" stroke-width="2" fill="transparent" width="' + width + '" height="' + height + '"/> </svg>';
+        return progressBar;
+    }
+
     global.calculate_time = function (time, tickRate) {
         if (tickRate) {
             ticks = tickRate;
@@ -37,14 +46,14 @@ function params() {
             ticks = 2.69;
         }
         outTime = [];
-        outTime.push("Количество TICKS: " + time);
-        outTime.push("Количество секунд: " + Math.round(time * ticks));
+        outTime.push("Amount TICKS: " + time);
+        outTime.push("Amount seconds: " + Math.round(time * ticks));
         if (time * ticks > 60) {
-            outTime.push("Количество минут: " + Math.round(time * ticks / 60));
+            outTime.push("Amount minutes: " + Math.round(time * ticks / 60));
             if (time * ticks / 60 > 60) {
-                outTime.push("Количество часов: " + Math.round(time * ticks / 60 / 60));
+                outTime.push("Amount hours: " + Math.round(time * ticks / 60 / 60));
                 if (time * ticks / 60 / 60 > 24) {
-                    outTime.push("Количество дней: " + Math.round(time * ticks / 60 / 60 / 24));
+                    outTime.push("Amount days: " + Math.round(time * ticks / 60 / 60 / 24));
                 }
             }
         }
@@ -242,10 +251,10 @@ function params() {
             result = [];
             result.push("[" + body.toString().toUpperCase() + "]\n\n");
             result.push("<table border=\"1\">");
-            result.push('<caption>Крип\n\n</caption>');
+            result.push('<caption>CREEP\n\n</caption>');
             result.push("<tr>");
-            result.push("<th> ТЕЛО </th>");
-            result.push("<th> ВНЕШНИЙ ВИД </th>");
+            result.push("<th> BODY </th>");
+            result.push("<th> APPEARANCE </th>");
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>");
@@ -264,40 +273,40 @@ function params() {
             result.push("<td>  \n " + svgCreep() + " \n\n</td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>Стоимось создания крипа </td>");
+            result.push("<td>Cost build creep </td>");
             result.push('<td> ' + price + ' ENERGY </td>');
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>Время создания крипа </td>");
+            result.push("<td>Time build creep </td>");
             result.push('<td> ' + time + ' TICKS </td>');
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>Количество HITS крипа </td>");
+            result.push("<td>Amount HITS of creep </td>");
             result.push("<td> " + hits + " HITS </td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>Общее количество BODY PARTS: </td>");
+            result.push("<td>Amount BODY PARTS: </td>");
             result.push("<td> " + bodyCount + " PARTS </td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>Время передвижения крипа по PLAIN </td>");
+            result.push("<td>Fatigue at PLAIN </td>");
             if (carryCount > 0) result.push('<td> ' + movePlain + ' / ' + movePlainCarry + ' TICKS </td>');
             else result.push('<td> ' + movePlain + ' TICKS </td>');
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>Время передвижения крипа по ROAD </td>");
+            result.push("<td>Fatigue at ROAD </td>");
             if (carryCount > 0) result.push('<td> ' + moveRoad + ' / ' + moveRoadCarry + ' TICKS </td>');
             else result.push('<td> ' + moveRoad + ' TICKS </td>');
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>Время передвижения крипа по SWAMP </td>");
+            result.push("<td>Fatigue at SWAMP </td>");
             if (carryCount > 0) result.push('<td> ' + moveSwamp + ' / ' + moveSwampCarry + ' TICKS </td>');
             else result.push('<td> ' + moveSwamp + ' TICKS </td>');
             result.push("</tr>");
             result.push("</table>");
             result.push("\n\n<table border=\"1\">");
-            if (badBodyParts > moveCount) result.push('<caption>Характеристики крипа\n<p><font color="#FF0000">Крип будет идти с задержкой\nНеобходимо добавить еще ' + (badBodyParts - moveCount) + ' частей MOVE</font></p></caption>');
-            else result.push('<caption>Характеристики крипа\n\n</caption>');
+            if (badBodyParts > moveCount) result.push('<caption>Creep\'s parameters\n<p><font color="#FF0000">Creep will go with fatigue\Need add ' + (badBodyParts - moveCount) + ' MOVE part(s)</font></p></caption>');
+            else result.push('<caption>Creep\'s parameters\n\n</caption>');
             result.push("<tr>");
             result.push("<th></th>");
             result.push("<th> " + svgBody("#A9B7C6") + " </th>");
@@ -310,7 +319,7 @@ function params() {
             result.push("<th> " + svgBody("#B99CFB") + " </th>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>КОЛИЧЕСТВО </td>");
+            result.push("<td>AMOUNT </td>");
             result.push("<td> " + moveCount + " </td>");
             result.push("<td> " + carryCount + " </td>");
             result.push("<td> " + workCount + " </td>");
@@ -413,7 +422,7 @@ function params() {
             result = result.join("");
             return result
         } else {
-            return "Тело не определено"
+            return "Body undefined"
         }
     };
     global.info = function () {
@@ -428,25 +437,30 @@ function params() {
         }
         for (let i in spawns) {
             let spawn = spawns[i];
-            info.push("Имя комнаты: " + spawn.room.name);
-            info.push("├ Основные параметры");
-            info.push("│ ├ Количество энергии: " + spawn.room.energyCapacityAvailable);
-            info.push("│ └ Количество доступной сейчас энергии: " + spawn.room.energyAvailable);
-            info.push("├ Контроллер");
-            info.push("│ ├ Уровень контроллера: " + spawn.room.controller.level);
-            info.push("│ └ Прогресс контроллера: " + spawn.room.controller.progress / spawn.room.controller.progressTotal * 100 + "%");
-            info.push("├ Хранилище");
+            info.push("Room's name: " + spawn.room.name);
+            info.push("├ Energy for spawn  " + progressBar(Math.round(spawn.room.energyAvailable/spawn.room.energyCapacityAvailable*100)) + " (" + (Math.round(spawn.room.energyAvailable/spawn.room.energyCapacityAvailable*100)) + "%)");
+            info.push("│ ├ Capacity: " + spawn.room.energyCapacityAvailable);
+            info.push("│ └ Free capacity: " + spawn.room.energyAvailable);
+            info.push("├ Controller  " + progressBar(Math.round(spawn.room.controller.progress / spawn.room.controller.progressTotal * 100)) + " (" + (Math.round(spawn.room.controller.progress / spawn.room.controller.progressTotal * 100)) + "%)");
+            info.push("│ └ Controller's level: " + spawn.room.controller.level);
             if (spawn.room.storage) {
-                info.push("│ ├ Количество свободного места: " + spawn.room.storage.store.getFreeCapacity());
-                info.push("│ └ Количество энергии: " + spawn.room.storage.store[RESOURCE_ENERGY])
-            } else info.push("└ Отсутствует")
-            info.push("└ Терминал");
+                info.push("├ Storage  " + progressBar(Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + " (" + (Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + "%)");
+                info.push("│ ├ Free capacity: " + spawn.room.storage.store.getFreeCapacity());
+                info.push("│ └ Energy capacity: " + spawn.room.storage.store[RESOURCE_ENERGY])
+            } else {
+                info.push("├ Storage");
+                info.push("└ None")
+            }
             if (spawn.room.terminal) {
-                info.push("  ├ Количество свободного места: " + spawn.room.terminal.store.getFreeCapacity());
-                info.push("  ├ Количество энергии: " + spawn.room.terminal.store[RESOURCE_ENERGY])
-                if (spawn.room.terminal.cooldown) info.push("└ Откат: " + spawn.room.terminal.cooldown)
-                else info.push("  └ Откат: 0")
-            } else info.push("  └ Отсутствует")
+                info.push("└ Terminal  " + progressBar(Math.round(spawn.room.terminal.store.getUsedCapacity() / spawn.room.terminal.store.getCapacity() * 100)) + " (" + (Math.round(spawn.room.terminal.store.getUsedCapacity() / spawn.room.terminal.store.getCapacity() * 100)) + "%)");
+                info.push("  ├ Free capacity: " + spawn.room.terminal.store.getFreeCapacity());
+                info.push("  ├ Energy capacity: " + spawn.room.terminal.store[RESOURCE_ENERGY])
+                if (spawn.room.terminal.cooldown) info.push("└ Cooldown: " + spawn.room.terminal.cooldown)
+                else info.push("  └ Cooldown: 0")
+            } else {
+                info.push("└ Terminal");
+                info.push("  └ None")
+            }
             info.push("--------------------------")
         }
 
