@@ -4,7 +4,7 @@ function params() {
         if (!com) {
             help.push("info()                          - Выводит информацио о всех комнатах")
             help.push("calculate_time(time, tickRate)  - Конвертирует тики в настоящее время")
-            help.push("  * time                        - Количество tiks.")
+            help.push("  * time                        - Количество TICKS.")
             help.push("  * tickRate                    - Тик рейт сервера. НЕОБЯЗАТЕЛЬНО. По умолчанию: 2.69")
             help.push("Creeps(body)                    - Расчет стоимости и времени строительства крипа")
             help.push("  * body                        - Массив с телом крипа")
@@ -37,7 +37,7 @@ function params() {
             ticks = 2.69;
         }
         outTime = [];
-        outTime.push("Количество tiks: " + time);
+        outTime.push("Количество TICKS: " + time);
         outTime.push("Количество секунд: " + Math.round(time * ticks));
         if (time * ticks > 60) {
             outTime.push("Количество минут: " + Math.round(time * ticks / 60));
@@ -254,8 +254,12 @@ function params() {
             result.push("<td>  \n " + svgCreep() + " \n\n</td>");
             result.push("</tr>");
             result.push("<tr>");
+            result.push("<td>Стоимось создания крипа </td>");
+            result.push('<td> ' + price + ' ENERGY </td>');
+            result.push("</tr>");
+            result.push("<tr>");
             result.push("<td>Время создания крипа </td>");
-            result.push('<td> ' + time + ' tiks </td>');
+            result.push('<td> ' + time + ' TICKS </td>');
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>Количество HITS крипа </td>");
@@ -267,18 +271,18 @@ function params() {
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>Время передвижения крипа по PLAIN </td>");
-            if (carryCount > 0) result.push('<td> ' + movePlain + ' / ' + movePlainCarry + ' tiks </td>');
-            else result.push('<td> ' + movePlain + ' tiks </td>');
+            if (carryCount > 0) result.push('<td> ' + movePlain + ' / ' + movePlainCarry + ' TICKS </td>');
+            else result.push('<td> ' + movePlain + ' TICKS </td>');
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>Время передвижения крипа по ROAD </td>");
-            if (carryCount > 0) result.push('<td> ' + moveRoad + ' / ' + moveRoadCarry + ' tiks </td>');
-            else result.push('<td> ' + moveRoad + ' tiks </td>');
+            if (carryCount > 0) result.push('<td> ' + moveRoad + ' / ' + moveRoadCarry + ' TICKS </td>');
+            else result.push('<td> ' + moveRoad + ' TICKS </td>');
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>Время передвижения крипа по SWAMP </td>");
-            if (carryCount > 0) result.push('<td> ' + moveSwamp + ' / ' + moveSwampCarry + ' tiks </td>');
-            else result.push('<td> ' + moveSwamp + ' tiks </td>');
+            if (carryCount > 0) result.push('<td> ' + moveSwamp + ' / ' + moveSwampCarry + ' TICKS </td>');
+            else result.push('<td> ' + moveSwamp + ' TICKS </td>');
             result.push("</tr>");
             result.push("</table>");
             result.push("\n\n<table border=\"1\">");
