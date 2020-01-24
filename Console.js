@@ -78,6 +78,21 @@ function params() {
     
     global.CreepBuilder = function (move = 0, carry = 0, work = 0, attack = 0, rangedAttack = 0, heal = 0, tough = 0, claim = 0) {
         body = []
+        if (tough > 0) {
+            for (var i = 0; i < tough; i++) {
+                body.push(TOUGH);
+            }
+        }
+        if (attack > 0) {
+            for (var i = 0; i < attack; i++) {
+                body.push(ATTACK);
+            }
+        }
+        if (rangedAttack > 0) {
+            for (var i = 0; i < rangedAttack; i++) {
+                body.push(RANGED_ATTACK);
+            }
+        }
         if (move > 0) {
             for (var i = 0; i < move; i++) {
                 body.push(MOVE);
@@ -93,24 +108,9 @@ function params() {
                 body.push(WORK);
             }
         }
-        if (attack > 0) {
-            for (var i = 0; i < attack; i++) {
-                body.push(ATTACK);
-            }
-        }
-        if (rangedAttack > 0) {
-            for (var i = 0; i < rangedAttack; i++) {
-                body.push(RANGED_ATTACK);
-            }
-        }
         if (heal > 0) {
             for (var i = 0; i < heal; i++) {
                 body.push(HEAL);
-            }
-        }
-        if (tough > 0) {
-            for (var i = 0; i < tough; i++) {
-                body.push(TOUGH);
             }
         }
         if (claim > 0) {
