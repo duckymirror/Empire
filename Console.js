@@ -165,7 +165,7 @@ function params() {
 
             for (let i in body) {
                 bodyCount++;
-                hits += 50;
+                hits += 100;
                 if (body[i] == "move" || body[i] == "carry") {
                     price = price + 50;
                     if (body[i] == "move") {
