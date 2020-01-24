@@ -14,17 +14,17 @@ function params() {
 
         if (com == "CreepBuilder") {
             help.push("CreepBuilder");
-            help.push("\nПринимает количество BODY PARTS в таком порядке:");
-            help.push("1. MOVE");
-            help.push("2. CARRY");
-            help.push("3. WORK");
-            help.push("4. ATTACK");
-            help.push("5. RANGED_ATTACK");
-            help.push("6. HEAL");
-            help.push("7. TOUGH");
-            help.push("8. CLAIM");
-            help.push("По умолчанию все значения равны 0.");
-            help.push("\nТо есть, чтобы создать крипа с 2-мя WORK необходимо написать: CreepBuilder(0, 0, 2)");
+            help.push("\nПринимает количество BODY PARTS:");
+            help.push("MOVE {move:N}");
+            help.push("CARRY {carry:N}");
+            help.push("WORK {work:N}");
+            help.push("ATTACK {attack:N}");
+            help.push("RANGED_ATTACK {rangedAttack:N}");
+            help.push("HEAL {heal:N}");
+            help.push("TOUGH {tough:N}");
+            help.push("CLAIM {claim:N}");
+            help.push("По умолчанию все значения равны 0. \nN - желаемое количество.");
+            help.push("\nТо есть, чтобы создать крипа с 2-мя WORK и 2-мя MOVE необходимо написать: CreepBuilder({work:2, move:2})");
         }
 
         help = help.join("\n");
@@ -76,8 +76,18 @@ function params() {
         return body;
     };
     
-    global.CreepBuilder = function (move = 0, carry = 0, work = 0, attack = 0, rangedAttack = 0, heal = 0, tough = 0, claim = 0) {
-        body = []
+    global.CreepBuilder = function (bodyBuild) {
+
+        let tough = bodyBuild.tough || 0;
+        let attack = bodyBuild.attack || 0;
+        let rangedAttack = bodyBuild.rangedAttack || 0;
+        let move = bodyBuild.move || 0;
+        let carry = bodyBuild.carry || 0;
+        let work = bodyBuild.work || 0;
+        let heal = bodyBuild.heal || 0;
+        let claim = bodyBuild.claim || 0;
+
+        body = [];
         if (tough > 0) {
             for (var i = 0; i < tough; i++) {
                 body.push(TOUGH);
