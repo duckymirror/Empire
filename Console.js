@@ -71,7 +71,7 @@ function params() {
         const r = cx;
 
         body = [];
-        body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r*2 + '" stroke="black" stroke-width="1" fill="yellow"/> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="#202020"/></svg>');
+        body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="#202020"/></svg>');
         body = body.join("");
         return body;
     };
@@ -239,7 +239,7 @@ function params() {
                 if (body[i] == "claim") result.push(svgBody('#B99CFB'))
             }
             result.push("</td>");
-            result.push("<td>  </td>");
+            result.push("<td>  \n " + svgCreep() + " \n\n</td>");
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>Время создания крипа </td>");
