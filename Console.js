@@ -4,10 +4,27 @@ function params() {
         if (!com) {
             help.push("info()                          - Выводит информацио о всех комнатах")
             help.push("calculate_time(time, tickRate)  - Конвертирует тики в настоящее время")
-            help.push("  * time                        - Количество тиков.")
+            help.push("  * time                        - Количество tiks.")
             help.push("  * tickRate                    - Тик рейт сервера. НЕОБЯЗАТЕЛЬНО. По умолчанию: 2.69")
-            help.push("Creeps(body)          - Расчет стоимости и времени строительства крипа")
+            help.push("Creeps(body)                    - Расчет стоимости и времени строительства крипа")
             help.push("  * body                        - Массив с телом крипа")
+            help.push("CreepBuilder(body)              - Выводит информацию о представлленом крипе");
+            help.push("  * body                        - help(\"CreepBuilder\") чтобы узнать об этом параметре");
+        }
+
+        if (com == "CreepBuilder") {
+            help.push("CreepBuilder");
+            help.push("\nПринимает количество BODY PARTS в таком порядке:");
+            help.push("1. MOVE");
+            help.push("2. CARRY");
+            help.push("3. WORK");
+            help.push("4. ATTACK");
+            help.push("5. RANGED_ATTACK");
+            help.push("6. HEAL");
+            help.push("7. TOUGH");
+            help.push("8. CLAIM");
+            help.push("По умолчанию все значения равны 0.");
+            help.push("\nТо есть, чтобы создать крипа с 2-мя WORK необходимо написать: CreepBuilder(0, 0, 2)");
         }
 
         help = help.join("\n");
@@ -20,7 +37,7 @@ function params() {
             ticks = 2.69;
         }
         outTime = [];
-        outTime.push("Количество тиков: " + time);
+        outTime.push("Количество tiks: " + time);
         outTime.push("Количество секунд: " + Math.round(time * ticks));
         if (time * ticks > 60) {
             outTime.push("Количество минут: " + Math.round(time * ticks / 60));
@@ -59,10 +76,53 @@ function params() {
         return body;
     };
     
+    global.CreepBuilder = function (move = 0, carry = 0, work = 0, attack = 0, rangedAttack = 0, heal = 0, tough = 0, claim = 0) {
+        body = []
+        if (move > 0) {
+            for (var i = 0; i < move; i++) {
+                body.push(MOVE);
+            }
+        }
+        if (carry > 0) {
+            for (var i = 0; i < carry; i++) {
+                body.push(CARRY);
+            }
+        }
+        if (work > 0) {
+            for (var i = 0; i < work; i++) {
+                body.push(WORK);
+            }
+        }
+        if (attack > 0) {
+            for (var i = 0; i < attack; i++) {
+                body.push(ATTACK);
+            }
+        }
+        if (rangedAttack > 0) {
+            for (var i = 0; i < rangedAttack; i++) {
+                body.push(RANGED_ATTACK);
+            }
+        }
+        if (heal > 0) {
+            for (var i = 0; i < heal; i++) {
+                body.push(HEAL);
+            }
+        }
+        if (tough > 0) {
+            for (var i = 0; i < tough; i++) {
+                body.push(TOUGH);
+            }
+        }
+        if (claim > 0) {
+            for (var i = 0; i < claim; i++) {
+                body.push(CLAIM);
+            }
+        }
+        return Creeps(body)
+    }
 
     global.Creeps = function (body = null, creepRole = null) {
         if (body || creepRole) {
-
             if (creepRole && !body) {
                 spawnFile = require("role.spawn");
                 energy = 9999999999
@@ -135,18 +195,40 @@ function params() {
 
             const badBodyParts = carryCount + workCount + attackCount + rangedAttackCount + healCount + toughCount + claimCount
 
-            result = [];
+            let movePlain = 0;
+            let moveRoad = 0;
+            let moveSwamp = 0;
 
-            result.push("\n\n<table border=\"1\">");
+            let movePlainCarry = 0;
+            let moveRoadCarry = 0
+            let moveSwampCarry = 0
+
+            movePlain = Math.ceil((badBodyParts * 2) / (moveCount * 2));
+            moveRoad = Math.ceil((badBodyParts * 1) / (moveCount * 2));
+            moveSwamp = Math.ceil((badBodyParts * 10) / (moveCount * 2));
+           
+            if (movePlain < 1) movePlain = 1;
+            if (moveRoad < 1) moveRoad = 1;
+            if (moveSwamp < 1) moveSwamp = 1
+
+            if (carryCount > 0) {
+                movePlainCarry = Math.ceil(((badBodyParts - carryCount) * 2) / (moveCount * 2));
+                moveRoadCarry = Math.ceil(((badBodyParts - carryCount) * 1) / (moveCount * 2));
+                moveSwampCarry = Math.ceil(((badBodyParts - carryCount) * 5) / (moveCount * 2));
+            }
+
+            result = [];
+            result.push("[" + body.toString().toUpperCase() + "]\n\n");
+            result.push("<table border=\"1\">");
             result.push('<caption>Крип\n\n</caption>');
             result.push("<tr>");
             result.push("<th> ТЕЛО </th>");
             result.push("<th> ВНЕШНИЙ ВИД </th>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td> ");
+            result.push("<td>");
             for (var i = 0; i < bodyCount; i++) {
-                if (i == 10 || i == 20 || i == 30 || i == 40 || i == 50) result.push(" \n ")
+                if (i == 10 || i == 20 || i == 30 || i == 40 || i == 50) result.push(" \n")
                 if (body[i] == "move") result.push(svgBody('#A9B7C6'))
                 if (body[i] == "carry") result.push(svgBody('#777777'))
                 if (body[i] == "work") result.push(svgBody('#FFE56D'))
@@ -160,20 +242,35 @@ function params() {
             result.push("<td>  </td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td> Время создания крипа </td>");
-            result.push('<td> ' + time + ' тиков </td>');
+            result.push("<td>Время создания крипа </td>");
+            result.push('<td> ' + time + ' tiks </td>');
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td> Количество HITS крипа </td>");
+            result.push("<td>Количество HITS крипа </td>");
             result.push("<td> " + hits + " HITS </td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td> Общее количество BODY PARTS: </td>");
-            result.push("<td> " + bodyCount + " части(ей) </td>");
+            result.push("<td>Общее количество BODY PARTS: </td>");
+            result.push("<td> " + bodyCount + " PARTS </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>Время передвижения крипа по PLAIN </td>");
+            if (carryCount > 0) result.push('<td> ' + movePlain + ' / ' + movePlainCarry + ' tiks </td>');
+            else result.push('<td> ' + movePlain + ' tiks </td>');
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>Время передвижения крипа по ROAD </td>");
+            if (carryCount > 0) result.push('<td> ' + moveRoad + ' / ' + moveRoadCarry + ' tiks </td>');
+            else result.push('<td> ' + moveRoad + ' tiks </td>');
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>Время передвижения крипа по SWAMP </td>");
+            if (carryCount > 0) result.push('<td> ' + moveSwamp + ' / ' + moveSwampCarry + ' tiks </td>');
+            else result.push('<td> ' + moveSwamp + ' tiks </td>');
             result.push("</tr>");
             result.push("</table>");
             result.push("\n\n<table border=\"1\">");
-            if (badBodyParts != moveCount) result.push('<caption>Характеристики крипа\n<p><font color="#FF0000">Крип будет идти с задержкой\nНеобходимо добавить еще ' + (badBodyParts - moveCount) + ' частей MOVE</font></p></caption>');
+            if (badBodyParts > moveCount) result.push('<caption>Характеристики крипа\n<p><font color="#FF0000">Крип будет идти с задержкой\nНеобходимо добавить еще ' + (badBodyParts - moveCount) + ' частей MOVE</font></p></caption>');
             else result.push('<caption>Характеристики крипа\n\n</caption>');
             result.push("<tr>");
             result.push("<th></th>");
