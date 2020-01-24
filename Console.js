@@ -40,21 +40,21 @@ function params() {
         const cy = height / 2;
         const r = cx;
 
-        body = []
+        body = [];
         for (let i = 0; i < count; i += 1) {
-            body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="' + color + '"/></svg>')
+            body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="' + color + '"/></svg>');
         }
         body = body.join("");
         return body;
     };
 
-    global.svgCreep = function (width = 16, height = 16) {
+    global.svgCreep = function (width = 48, height = 48) {
         const cx = width / 2;
         const cy = height / 2;
         const r = cx;
 
-        body = []
-        body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="grey"/></svg>')
+        body = [];
+        body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r*2 + '" stroke="black" stroke-width="1" fill="yellow"/> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="#202020"/></svg>');
         body = body.join("");
         return body;
     };
@@ -88,12 +88,14 @@ function params() {
             let damageRangedAttack = 0;
             let healShort = 0;
             let healDistance = 0;
+            let hits = 0;
 
             let price = 0;
             let time = body.length * 3;
 
             for (let i in body) {
                 bodyCount++;
+                hits += 50;
                 if (body[i] == "move" || body[i] == "carry") {
                     price = price + 50;
                     if (body[i] == "move") {
@@ -135,8 +137,16 @@ function params() {
 
             result = [];
 
+            result.push("\n\n<table border=\"1\">");
+            result.push('<caption>Крип\n\n</caption>');
+            result.push("<tr>");
+            result.push("<th> ТЕЛО </th>");
+            result.push("<th> ВНЕШНИЙ ВИД </th>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td> ");
             for (var i = 0; i < bodyCount; i++) {
-                if (i == 10 || i == 20 || i == 30 || i == 40 || i == 50) result.push("\n")
+                if (i == 10 || i == 20 || i == 30 || i == 40 || i == 50) result.push(" \n ")
                 if (body[i] == "move") result.push(svgBody('#A9B7C6'))
                 if (body[i] == "carry") result.push(svgBody('#777777'))
                 if (body[i] == "work") result.push(svgBody('#FFE56D'))
@@ -146,8 +156,25 @@ function params() {
                 if (body[i] == "tough") result.push(svgBody('#FFFFFF'))
                 if (body[i] == "claim") result.push(svgBody('#B99CFB'))
             }
+            result.push("</td>");
+            result.push("<td>  </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td> Время создания крипа </td>");
+            result.push('<td> ' + time + ' тиков </td>');
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td> Количество HITS крипа </td>");
+            result.push("<td> " + hits + " HITS </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td> Общее количество BODY PARTS: </td>");
+            result.push("<td> " + bodyCount + " части(ей) </td>");
+            result.push("</tr>");
+            result.push("</table>");
             result.push("\n\n<table border=\"1\">");
-            result.push("<caption>Характеристики крипа</caption>");
+            if (badBodyParts != moveCount) result.push('<caption>Характеристики крипа\n<p><font color="#FF0000">Крип будет идти с задержкой\nНеобходимо добавить еще ' + (badBodyParts - moveCount) + ' частей MOVE</font></p></caption>');
+            else result.push('<caption>Характеристики крипа\n\n</caption>');
             result.push("<tr>");
             result.push("<th></th>");
             result.push("<th> " + svgBody("#A9B7C6") + " </th>");
