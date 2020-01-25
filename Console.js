@@ -74,15 +74,82 @@ function params() {
         return body;
     };
 
-    global.svgCreep = function (width = 48, height = 48) {
+    global.svgCreep = function (body, width = 48, height = 48) {
+
         const cx = width / 2;
         const cy = height / 2;
         const r = cx;
 
-        body = [];
-        body.push('<svg width="' + width + '" height="' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="#202020"/></svg>');
-        body = body.join("");
-        return body;
+        let bodyCount = 0;
+        let moveCount = 0;
+        let carryCount = 0;
+        let workCount = 0;
+        let attackCount = 0;
+        let rangedAttackCount = 0;
+        let healCount = 0;
+        let toughCount = 0;
+        let claimCount = 0;
+
+        for (let i in body) {
+            if (body[i] == "move" || body[i] == "carry") {
+                if (body[i] == "move") {
+                    moveCount++;
+                } else {
+                    carryCount++;
+                }
+            } else if (body[i] == "work") {
+                workCount++;
+            } else if (body[i] == "attack") {
+                attackCount++
+            } else if (body[i] == "ranged_attack") {
+                rangedAttackCount++;
+            } else if (body[i] == "heal") {
+                healCount++;
+            } else if (body[i] == "tough") {
+                toughCount++;
+            } else if (body[i] == "claim") {
+                claimCount++;
+            }
+        }
+
+        bodySvg = [];
+        bodySvg.push('<svg viewBox="-9 -9 18 18">');
+        if (toughCount > 0) bodySvg.push('<circle cx="0" cy="0" r="9" fill="#5e5e5e"/>');
+        bodySvg.push('<circle cx="0" cy="0" r="8" fill="#202020"/>');
+
+        let percentMove = 25.1/50*moveCount;
+        let rotateMove = Math.ceil(90-(180/50*moveCount-180/50)-5);
+
+        let percentWork = 25.1/50*workCount;
+        let rotateWork = Math.ceil((90-(180/50*workCount-180/50)-5))-180;
+
+        if (workCount > 0 && attackCount > 0) attackCount += workCount;
+        let percentAttack = 25.1/50*attackCount;
+        let rotateAttack = Math.ceil((90-(180/50*attackCount-180/50)-5))-180;
+
+        if (attackCount > 0 && rangedAttackCount > 0) rangedAttackCount += attackCount;
+        let percentRangedAttack = 25.1/50*rangedAttackCount;
+        let rotateRangedAttack = Math.ceil((90-(180/50*rangedAttackCount-180/50)-5))-180;
+
+        if (rangedAttackCount > 0 && healCount > 0) healCount += rangedAttackCount;
+        let percentHeal = 25.1/50*healCount;
+        let rotateHeal = Math.ceil((90-(180/50*healCount-180/50)-5))-180;
+
+        if (healCount > 0 && claimCount > 0) claimCount += healCount;
+        let percentClaim = 25.1/50*claimCount;
+        let rotateClaim = Math.ceil((90-(180/50*claimCount-180/50)-5))-180;
+
+        if (moveCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateMove+')" stroke-width="8" stroke-dasharray="'+percentMove+', 26" stroke="#A9B7C6" fill="none" />')
+        if (claimCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateClaim+')" stroke-width="8" stroke-dasharray="'+percentClaim+', 26" stroke="#B99CFB" fill="none" />')
+        if (healCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateHeal+')" stroke-width="8" stroke-dasharray="'+percentHeal+', 26" stroke="#65FD62" fill="none" />')
+        if (rangedAttackCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateRangedAttack+')" stroke-width="8" stroke-dasharray="'+percentRangedAttack+', 26" stroke="#5D80B2" fill="none" />')
+        if (attackCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateAttack+')" stroke-width="8" stroke-dasharray="'+percentAttack+', 26" stroke="#F93842" fill="none" />')
+        if (workCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateWork+')" stroke-width="8" stroke-dasharray="'+percentWork+', 26" stroke="#FFE56D" fill="none" />')
+        //body.push('<svg viewBox="0 0 ' + width + ' ' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="#202020"/>')
+        bodySvg.push('<circle cx="0" cy="0" r="6" fill="#202020" stroke-width="0.4" stroke="#191919"/>');
+        body.push('</svg>');
+        bodySvg = bodySvg.join("");
+        return bodySvg;
     };
     
     global.CreepBuilder = function (bodyBuild) {
@@ -95,6 +162,9 @@ function params() {
         let work = bodyBuild.work || 0;
         let heal = bodyBuild.heal || 0;
         let claim = bodyBuild.claim || 0;
+
+        let bodyCount = tough + attack + rangedAttack + move + carry + work + heal + claim;
+        if (bodyCount > 50) return "Your creep's body have more parts than can have. (" +bodyCount + " | 50)";
 
         body = [];
         if (tough > 0) {
@@ -250,7 +320,7 @@ function params() {
 
             result = [];
             result.push("[" + body.toString().toUpperCase() + "]\n\n");
-            result.push("<table border=\"1\">");
+            result.push("<table border=\"1\" bordercolor=\"#2b2b2b\">");
             result.push('<caption>CREEP\n\n</caption>');
             result.push("<tr>");
             result.push("<th> BODY </th>");
@@ -270,7 +340,7 @@ function params() {
                 if (body[i] == "claim") result.push(svgBody('#B99CFB'))
             }
             result.push("</td>");
-            result.push("<td>  \n " + svgCreep() + " \n\n</td>");
+            result.push("<td>  \n " + svgCreep(body) + " \n\n</td>");
             result.push("</tr>");
             result.push("<tr>");
             result.push("<td>Cost build creep </td>");
@@ -304,7 +374,7 @@ function params() {
             else result.push('<td> ' + moveSwamp + ' TICKS </td>');
             result.push("</tr>");
             result.push("</table>");
-            result.push("\n\n<table border=\"1\">");
+            result.push("\n\n<table border=\"1\" bordercolor=\"grey\">");
             if (badBodyParts > moveCount) result.push('<caption>Creep\'s parameters\n<p><font color="#FF0000">Creep will go with fatigue\Need add ' + (badBodyParts - moveCount) + ' MOVE part(s)</font></p></caption>');
             else result.push('<caption>Creep\'s parameters\n\n</caption>');
             result.push("<tr>");
