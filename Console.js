@@ -308,9 +308,10 @@ function params() {
                 moveSwamp = Math.ceil((badBodyParts * 10) / (moveCount * 2));
 
                 if (carryCount > 0) {
-                    movePlainCarry = Math.ceil(((badBodyParts - carryCount) * 2) / (moveCount * 2));
-                    moveRoadCarry = Math.ceil(((badBodyParts - carryCount) * 1) / (moveCount * 2));
-                    moveSwampCarry = Math.ceil(((badBodyParts - carryCount) * 5) / (moveCount * 2));
+                    badBodyPartsWithoutCarry = workCount + attackCount + rangedAttackCount + healCount + toughCount + claimCount
+                    movePlainCarry = Math.ceil((badBodyPartsWithoutCarry * 2) / (moveCount * 2));
+                    moveRoadCarry = Math.ceil((badBodyPartsWithoutCarry * 1) / (moveCount * 2));
+                    moveSwampCarry = Math.ceil((badBodyPartsWithoutCarry * 10) / (moveCount * 2));
                 }
             }
            
