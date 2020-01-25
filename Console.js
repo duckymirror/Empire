@@ -31,6 +31,10 @@ function params() {
         return help
     };
 
+    global.resourceImg = function() {
+        return '<img src ="blob:https://screeps.com/490c57de-3f82-493e-aca7-6df0a095579c"';
+    };
+
     global.progressBar = function(num = 0) {
         let width = 128;
         let height = 10;
@@ -128,14 +132,20 @@ function params() {
         let rotateAttack = Math.ceil((90-(180/50*attackCount-180/50)-5))-180;
 
         if (attackCount > 0 && rangedAttackCount > 0) rangedAttackCount += attackCount;
+        if (rangedAttackCount > 0 && attackCount < 1 && workCount > 0) rangedAttackCount += workCount
         let percentRangedAttack = 25.1/50*rangedAttackCount;
         let rotateRangedAttack = Math.ceil((90-(180/50*rangedAttackCount-180/50)-5))-180;
 
         if (rangedAttackCount > 0 && healCount > 0) healCount += rangedAttackCount;
+        if (healCount > 0 && rangedAttackCount < 1 && attackCount > 0) healCount += attackCount
+        else if (healCount > 0 && rangedAttackCount < 1 && workCount > 0) healCount += workCount
         let percentHeal = 25.1/50*healCount;
         let rotateHeal = Math.ceil((90-(180/50*healCount-180/50)-5))-180;
 
-        if (healCount > 0 && claimCount > 0) claimCount += healCount;
+        if (rangedAttackCount > 0 && claimCount > 0) claimCount += rangedAttackCount;
+        if (claimCount > 0 && rangedAttackCount < 1 && attackCount > 0) claimCount += attackCount
+        else if (claimCount > 0 && rangedAttackCount < 1 && workCount > 0) claimCount += workCount
+        else if (claimCount > 0 && rangedAttackCount < 1 && attackCount < 1 && workCount < 1 && healCount > 0) claimCount += workCount
         let percentClaim = 25.1/50*claimCount;
         let rotateClaim = Math.ceil((90-(180/50*claimCount-180/50)-5))-180;
 
@@ -376,7 +386,7 @@ function params() {
             result.push("</tr>");
             result.push("</table>");
             result.push("\n\n<table border=\"1\" bordercolor=\"grey\">");
-            if (badBodyParts > moveCount) result.push('<caption>Creep\'s parameters\n<p><font color="#FF0000">Creep will go with fatigue\Need add ' + (badBodyParts - moveCount) + ' MOVE part(s)</font></p></caption>');
+            if (badBodyParts > moveCount) result.push('<caption>Creep\'s parameters\n<p><font color="#FF0000">Creep will go with fatigue\nNeed add ' + (badBodyParts - moveCount) + ' MOVE part(s)</font></p></caption>');
             else result.push('<caption>Creep\'s parameters\n\n</caption>');
             result.push("<tr>");
             result.push("<th></th>");
