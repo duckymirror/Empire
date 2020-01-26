@@ -360,8 +360,11 @@ function params() {
         return Creeps(body)
     }
 
-    global.Creeps = function (body = null, creepRole = null) {
-        if (body || creepRole) {
+    global.Creeps = function (body = null, bodyString = null, creepRole = null) {
+        if (body || bodyString || creepRole) {
+            if (bodyString) {
+                body = createCreepBodyArray(bodyString);
+            }
             if (creepRole && !body) {
                 spawnFile = require("role.spawn");
                 energy = 9999999999
