@@ -47,13 +47,30 @@ function doRefill(creep) {
                 creep.moveTo(towerWithoutEnergy[0], { heuristicWeight: 1.2, range: 1, reusePath: 20 });
             }
         } else {
-            if (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] < 500001) {
-                if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
+            const labs= creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_LAB) && structure.store[RESOURCE_ENERGY] < 2000;
                 }
-            } else if (creep.room.controller && creep.room.controller.store[RESOURCE_ENERGY] < 100000) {
-                if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
+            });
+            if (labs.length > 0) {
+                const labsInRoom = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_LAB) && structure.store[RESOURCE_ENERGY] < 2000;
+                    }
+                });
+
+                if (creep.transfer(labsInRoom, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(labsInRoom, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
+                }
+            } else {
+                if (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] < 500001) {
+                    if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
+                    }
+                } else if (creep.room.controller && creep.room.controller.store[RESOURCE_ENERGY] < 100000) {
+                    if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
+                    }
                 }
             }
         }
