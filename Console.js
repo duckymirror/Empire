@@ -31,8 +31,12 @@ function params() {
         return help
     };
 
-    global.resourceImg = function() {
-        return '<img src ="blob:https://screeps.com/490c57de-3f82-493e-aca7-6df0a095579c"';
+    global.playerLink = function() {
+        let nickName = null;
+        for(var i in Game.spawns) {
+            nickName = Game.spawns[i].owner.username
+        }
+        return 'https://screeps.com/api/user/badge-svg?username=' + nickName;
     };
 
     global.progressBar = function(num = 0) {
@@ -156,7 +160,7 @@ function params() {
         if (attackCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateAttack+')" stroke-width="8" stroke-dasharray="'+percentAttack+', 26" stroke="#F93842" fill="none" />')
         if (workCount > 0) bodySvg.push('<circle cx="0" cy="0" r="4" transform="rotate('+rotateWork+')" stroke-width="8" stroke-dasharray="'+percentWork+', 26" stroke="#FFE56D" fill="none" />')
         //body.push('<svg viewBox="0 0 ' + width + ' ' + height + '"> <circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke="black" stroke-width="1" fill="#202020"/>')
-        bodySvg.push('<circle cx="0" cy="0" r="6" fill="#202020" stroke-width="0.4" stroke="#191919"/>');
+        bodySvg.push('<image x="-5.7" y="-5.7" width="11.5" height="11.5" xlink:href="' + playerLink() + '"/> <circle cx="0" cy="0" r="5.8" stroke-width="0.6" stroke="black" fill="none"/>')
         body.push('</svg>');
         bodySvg = bodySvg.join("");
         return bodySvg;
@@ -292,7 +296,11 @@ function params() {
                 }
             }
 
-            const badBodyParts = carryCount + workCount + attackCount + rangedAttackCount + healCount + toughCount + claimCount
+            let liveTime = 1500;
+
+            if (claimCount > 0) liveTime = 600;
+
+            const badBodyParts = carryCount + workCount + attackCount + rangedAttackCount + healCount + toughCount + claimCount;
 
             let movePlain = 0;
             let moveRoad = 0;
@@ -354,6 +362,9 @@ function params() {
             result.push("<td>  \n " + svgCreep(body) + " \n\n</td>");
             result.push("</tr>");
             result.push("<tr>");
+            result.push("<td>Live </td>");
+            result.push('<td> ' + liveTime + ' TICKS </td>');
+            result.push("</tr>");
             result.push("<td>Cost build creep </td>");
             result.push('<td> ' + price + ' ENERGY </td>');
             result.push("</tr>");
@@ -466,7 +477,29 @@ function params() {
             result.push("<td>  </td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>ATTACK per tick </td>");
+            result.push("<td>REPAIR </td>");
+            result.push("<td>  </td>");
+            result.push("<td> " + "" + " </td>");
+            result.push("<td> " + workCount*100 + " </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>DISMANTLE </td>");
+            result.push("<td>  </td>");
+            result.push("<td> " + Math.floor(workCount*0.25) + " </td>");
+            result.push("<td> " + workCount*50 + " </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("</tr>");
+            result.push("<tr>");
+            result.push("<td>ATTACK </td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
@@ -477,7 +510,7 @@ function params() {
             result.push("<td>  </td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>HEAL per tick (short)</td>");
+            result.push("<td>HEAL (short)</td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
@@ -488,7 +521,7 @@ function params() {
             result.push("<td>  </td>");
             result.push("</tr>");
             result.push("<tr>");
-            result.push("<td>HEAL per tick (distance)</td>");
+            result.push("<td>HEAL (distance)</td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
@@ -497,6 +530,36 @@ function params() {
             result.push("<td>" + healDistance + "</td>");
             result.push("<td>  </td>");
             result.push("<td>  </td>");
+            result.push("</tr>");
+            result.push("<td>RESERVE</td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td> " + claimCount + " </td>");
+            result.push("</tr>");
+            result.push("<td>ATTACK HOSTILE ROOM CONTOLLER</td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td> " + claimCount*300 + " </td>");
+            result.push("</tr>");
+            result.push("<td>ATTACK NEUTRAL ROOM CONTOLLER</td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td>  </td>");
+            result.push("<td> " + claimCount + " </td>");
             result.push("</tr>");
             result.push("</table>");
 
