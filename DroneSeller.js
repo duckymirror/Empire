@@ -13,6 +13,12 @@ function getResource(creep) {
             if (creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
         } else if (creep.room.storage && creep.room.storage.store[RESOURCE_HYDROGEN] >= 10000+creep.store.getCapacity()) {
             if (creep.withdraw(creep.room.storage, RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+        } else {
+            const spawn = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, { filter: { structureType: STRUCTURE_SPAWN } });
+            if (spawn) {
+                if (creep.pos.isNearTo(spawn)) spawn.recycleCreep(creep);
+                else creep.moveTo(spawn, { heuristicWeight: 1.2, range: 1, reusePath: 50 });
+            }
         }
     }
 }
