@@ -31,6 +31,106 @@ function params() {
         return help
     };
 
+    global.expandBodyArrayString = function(bodyString) {
+        var preg = /(\d+)\(([0-9a-zA-Z]+)\)/;
+        var match; 
+        do
+        {
+            m = preg.exec(bodyString);
+            if (m)
+            {
+                let times = parseInt(m[1]);
+                let replace = "";
+                
+                for (let i = 0; i < times; i++)
+                    replace += m[2];
+                
+                bodyString = bodyString.replace(m[0], replace);
+            }
+        }
+        while (m);
+        
+        return bodyString;
+    },
+    
+    /*
+     * Unpack a bodypart string into creep body part array
+     *
+     *  MOVE - "M"
+     *  WORK - "W"
+     *  CARRY - "C"
+     *  ATTACK - "A"
+     *  RANGED_ATTACK - "R"
+     *  HEAL - "H"
+     *  CLAIM - "X" or "K" --- note the special character
+     *  TOUGH - "T"
+     *
+     * Example 1: let body = Game.utils.createCreepBodyArray("6W1C1M");
+     * Example 2: let body = Game.utils.createCreepBodyArray("WWWWWWCM");
+     * Example 3: let body = Game.utils.createCreepBodyArray("6WCM");
+     *
+     * And using the expandBodyArrayString format:
+     * Example 3: let body = Game.utils.createCreepBodyArray("5(WCM)");
+     */
+    global.createCreepBodyArray = function(bodyString) {
+        // pre-convert to lowercase
+        bodyString = bodyString.toLowerCase();
+        
+        // it's a group expando string? (f.ex.: "5(WCM)")
+        if (bodyString.indexOf('(') !== -1)
+            bodyString = this.expandBodyArrayString(bodyString);
+        
+        // body object LUT
+        var bodyObject =
+        {
+            m: MOVE,
+            w: WORK,
+            c: CARRY,
+            a: ATTACK,
+            r: RANGED_ATTACK,
+            h: HEAL,
+            x: CLAIM,
+            k: CLAIM,
+            t: TOUGH
+        }
+        
+        // parse and expand the string into array of body bits
+        var bodyArray = new Array();
+        var partCounter = 0;
+        
+        for (let i = 0; i < bodyString.length; i++)
+        {
+            if (isNaN(bodyString[i]))
+            {
+                // it's a letter
+                if (partCounter === 0)
+                    partCounter = 1;
+                
+                let part = bodyObject[bodyString[i]];
+            
+                // error?
+                if (part === undefined)
+                {
+                    partCounter = 0;
+                    continue;
+                }
+                
+                // expand!
+                for (let j = 0; j < partCounter; j++)
+                    bodyArray.push(part);
+                
+                partCounter = 0;
+            }
+            else
+            {
+                // it's a number
+                partCounter = partCounter*10 + parseInt(bodyString[i]);
+            }
+        }
+        
+        return bodyArray;
+    }
+
     global.playerLink = function() {
         let nickName = null;
         for(var i in Game.spawns) {
@@ -166,16 +266,52 @@ function params() {
         return bodySvg;
     };
     
-    global.CreepBuilder = function (bodyBuild) {
+    global.CreepBuilder = function (bodyBuild, bodyString) {
 
-        let tough = bodyBuild.tough || 0;
-        let attack = bodyBuild.attack || 0;
-        let rangedAttack = bodyBuild.rangedAttack || 0;
-        let move = bodyBuild.move || 0;
-        let carry = bodyBuild.carry || 0;
-        let work = bodyBuild.work || 0;
-        let heal = bodyBuild.heal || 0;
-        let claim = bodyBuild.claim || 0;
+        let tough = 0;
+        let attack = 0;
+        let rangedAttack = 0;
+        let move = 0;
+        let carry = 0;
+        let work = 0;
+        let heal = 0;
+        let claim = 0;
+
+        if (bodyBuild != null) {
+            tough = bodyBuild.tough || 0;
+            attack = bodyBuild.attack || 0;
+            rangedAttack = bodyBuild.rangedAttack || 0;
+            move = bodyBuild.move || 0;
+            carry = bodyBuild.carry || 0;
+            work = bodyBuild.work || 0;
+            heal = bodyBuild.heal || 0;
+            claim = bodyBuild.claim || 0;
+        }
+
+        if (bodyString != null) {
+            body = createCreepBodyArray(bodyString);
+            for (let i in body) {
+                if (body[i] == "move" || body[i] == "carry") {
+                    if (body[i] == "move") {
+                        move++;
+                    } else {
+                        carry++;
+                    }
+                } else if (body[i] == "work") {
+                    work++;
+                } else if (body[i] == "attack") {
+                    attack++
+                } else if (body[i] == "ranged_attack") {
+                    rangedAttack++;
+                } else if (body[i] == "heal") {
+                    heal++;
+                } else if (body[i] == "tough") {
+                    tough++;
+                } else if (body[i] == "claim") {
+                    claim++;
+                }
+            }
+        }
 
         let bodyCount = tough + attack + rangedAttack + move + carry + work + heal + claim;
         if (bodyCount > 50) return "Your creep's body have more parts than can have. (" +bodyCount + " | 50)";
@@ -336,6 +472,10 @@ function params() {
             if (movePlain < 1) movePlain = 1;
             if (moveRoad < 1) moveRoad = 1;
             if (moveSwamp < 1) moveSwamp = 1
+
+            if (movePlainCarry < 1) movePlainCarry = 1;
+            if (moveRoadCarry < 1) moveRoadCarry = 1;
+            if (moveSwampCarry < 1) moveSwampCarry = 1
 
             result = [];
             result.push("[" + body.toString().toUpperCase() + "]\n\n");
