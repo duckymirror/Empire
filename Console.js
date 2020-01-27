@@ -31,6 +31,16 @@ function params() {
         return help
     };
 
+    global.pushNotification = function(room) {
+        let notification = [];
+        notification.push('<script>alert("');
+        notification.push(room + ' have troubles. Look in console for link')
+        notification.push('"); </script>')
+        notification = notification.join("");
+        console.log('<a target="_blank" href="https://screeps.com/a/#!/room/' + Game.shard.name +'/' + room + '">' + room + ' have troubles. Click on me for open this room</a>')
+        return notification
+    }
+
     global.expandBodyArrayString = function(bodyString) {
         var preg = /(\d+)\(([0-9a-zA-Z]+)\)/;
         var match; 
