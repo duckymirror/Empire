@@ -4,8 +4,8 @@ function amountCreeps() {
             delete Memory.creeps[name];
         }
     }
-    Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "Stormtrooper", "ScoutTrooper"];
-    Memory.code = "Sith Empire is our future."
+    Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "DroneWarrior", "DroneRenamer"];
+    Memory.code = "Ginnungagap, Niflheim, Muspelheim. Ild, is, dråber falder. Ymir, Jotun, skaber aser."
 
     for (let z in Game.rooms) {
         let room = Game.rooms[z];
@@ -22,16 +22,16 @@ function amountCreeps() {
                     if ("DroneSeller" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 }
                 if ("DroneUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
-                if ("Stormtrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 0;
+                if ("DroneWarrior" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 0;
                 if (!sourceInRoom[0].ticksToRegeneration) {
                     if ("DroneMineralMiner" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                 } else {
                     if ("DroneMineralMiner" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 }
                 if (!room.controller.sign || (room.controller.sign && room.controller.sign.text != Memory.code)) { 
-                    if ("ScoutTrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
+                    if ("DroneRenamer" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 1;
                 } else {
-                    if ("ScoutTrooper" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 0;
+                    if ("DroneRenamer" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]]  = 0;
                 }
             }
         }
@@ -59,8 +59,6 @@ function amountCreepsIsLive() {
 
 function runCreep() {
     let droneTask = null;
-    const words = ["Peace", "is", "a", "lie.", "There", "is", "only", "Passion.", "Through", "Passion", "I", "gain", "Strength.", "Through", "Strength", "I", "gain", "Power.", "Through", "Power", "I", "gain", "Victory.", "Through", "Victory", "my", "chains", "are", "Broken.", "The", "Force", "shall", "free", "me."]
-    const speakNow = words[Game.time%words.length];
     for (let z in Game.rooms) {
         let room = Game.rooms[z];
         if (room.controller && room.controller.my) {
@@ -68,47 +66,38 @@ function runCreep() {
                 let creep = Game.creeps[i];
                 switch (creep.memory.role) {
                     case "DroneBuilder":
-                        creep.say(speakNow, true);
                         droneTask = require("DroneBuilder");
                         droneTask.control(creep)
                         break;
                     case "DroneMiner1":
-                        creep.say(speakNow, true);
                         droneTask = require("DroneMiner");
                         droneTask.control(creep)
                         break;
                     case "DroneMiner2":
-                        creep.say(speakNow, true);
                         droneTask = require("DroneMiner");
                         droneTask.control(creep)
                         break;
                     case "DroneRefiller":
-                        creep.say(speakNow, true);
                         droneTask = require("DroneRefiller");
                         droneTask.control(creep)
                         break;
                     case "DroneUpgrader":
-                        creep.say(speakNow, true);
                         droneTask = require("DroneUpgrader");
                         droneTask.control(creep)
                         break;
-                    case "Stormtrooper":
-                        creep.say(speakNow, true);
-                        droneTask = require("Stormtrooper");
+                    case "DroneWarrior":
+                        droneTask = require("DroneWarrior");
                         droneTask.control(creep)
                         break;
-                    case "ScoutTrooper":
-                        creep.say(speakNow, true);
-                        droneTask = require("ScoutTrooper");
+                    case "DroneRenamer":
+                        droneTask = require("DroneRenamer");
                         droneTask.control(creep)
                         break;
                     case "DroneMineralMiner":
-                        creep.say(speakNow, true);
                         droneTask = require("DroneMineralMiner");
                         droneTask.control(creep)
                         break;
                     case "DroneSeller":
-                        creep.say(speakNow, true);
                         droneTask = require("DroneSeller");
                         droneTask.control(creep)
                         break;
