@@ -67,9 +67,9 @@ function doRefill(creep) {
                     if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
                     }
-                } else if (creep.room.controller && creep.room.controller.store[RESOURCE_ENERGY] < 100000) {
-                    if (creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.storage, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
+                } else if (creep.room.terminal && creep.room.terminal.store[RESOURCE_ENERGY] < 100000) {
+                    if (creep.transfer(creep.room.terminal, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(creep.room.terminal, { heuristicWeight: 1.2, range: 1, reusePath: 20 });
                     }
                 }
             }
