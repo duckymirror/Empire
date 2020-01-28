@@ -163,6 +163,10 @@ function params() {
         return progressBar;
     }
 
+    global.resourceImg = function(resourceType) {
+        return '<a target="_blank" href="https://screeps.com/a/#!/market/all/' + Game.shard.name + '/' + resourceType + '"><img src ="https://s3.amazonaws.com/static.screeps.com/upload/mineral-icons/' + resourceType + '.png" /></a>';
+    };
+
     global.calculate_time = function (time, tickRate) {
         if (tickRate) {
             ticks = tickRate;
@@ -729,6 +733,9 @@ function params() {
         }
     };
     global.info = function () {
+
+        const resources = [RESOURCE_ENERGY, RESOURCE_POWER, RESOURCE_OPS, RESOURCE_HYDROGEN, RESOURCE_OXYGEN, RESOURCE_UTRIUM, RESOURCE_LEMERGIUM, RESOURCE_LEMERGIUM, RESOURCE_KEANIUM, RESOURCE_ZYNTHIUM, RESOURCE_CATALYST, RESOURCE_GHODIUM];
+
         info = [];
         info.push("--------------------------")
 
@@ -740,34 +747,82 @@ function params() {
         }
         for (let i in spawns) {
             let spawn = spawns[i];
-            info.push("Room's name: " + spawn.room.name);
-            info.push("├ Energy for spawn  " + progressBar(Math.round(spawn.room.energyAvailable/spawn.room.energyCapacityAvailable*100)) + " (" + (Math.round(spawn.room.energyAvailable/spawn.room.energyCapacityAvailable*100)) + "%)");
-            info.push("│ ├ Capacity: " + spawn.room.energyCapacityAvailable);
-            info.push("│ └ Free capacity: " + spawn.room.energyAvailable);
-            info.push("├ Controller  " + progressBar(Math.round(spawn.room.controller.progress / spawn.room.controller.progressTotal * 100)) + " (" + (Math.round(spawn.room.controller.progress / spawn.room.controller.progressTotal * 100)) + "%)");
-            info.push("│ └ Controller's level: " + spawn.room.controller.level);
+            info.push('\nRoom name: ' + spawn.room.name );
+            //
+            info.push("\n\n")
+            //
+            info.push("<table align=\"center\" border=\"1\">");
+            info.push('<caption>ENERGY FOR SPAWN\n' + progressBar(Math.round(spawn.room.energyAvailable/spawn.room.energyCapacityAvailable*100)) + '\n(' + (Math.round(spawn.room.energyAvailable/spawn.room.energyCapacityAvailable*100)) + '%)\n\n</caption>');
+            info.push("<tr>");
+            info.push("<th> AVAILABLE </th>");
+            info.push("<th> CAPACITY </th>");
+            info.push("</tr>");
+            info.push("<tr>");
+            info.push("<td>" + spawn.room.energyAvailable + "</td>");
+            info.push("<td>" + spawn.room.energyCapacityAvailable + "</td>");
+            info.push("</tr>");
+            info.push("</table>");
+            //
+            info.push("\n\n")
+            //
+            info.push("<table align=\"center\" border=\"1\">");
+            info.push('<caption>CONTROLLER\n' + progressBar(Math.round(spawn.room.controller.progress / spawn.room.controller.progressTotal * 100)) + '\n(' + (Math.round(spawn.room.controller.progress / spawn.room.controller.progressTotal * 100)) + '%)\n\n</caption>');
+            info.push("<tr>");
+            info.push("<th> LEVEL </th>");
+            info.push("<th> SAFE MODE AVAILABLE </th>");
+            info.push("</tr>");
+            info.push("<tr>");
+            info.push("<td>" + spawn.room.controller.level + "</td>");
+            info.push("<td>" + spawn.room.controller.safeModeAvailable + "</td>");
+            info.push("</tr>");
+            info.push("</table>");
+            //
+            info.push("\n\n")
+            //
             if (spawn.room.storage) {
-                info.push("├ Storage  " + progressBar(Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + " (" + (Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + "%)");
-                info.push("│ ├ Free capacity: " + spawn.room.storage.store.getFreeCapacity());
-                info.push("│ └ Energy capacity: " + spawn.room.storage.store[RESOURCE_ENERGY])
-            } else {
-                info.push("├ Storage");
-                info.push("└ None")
+                info.push("<table align=\"center\" border=\"1\">");
+                info.push('<caption>STORAGE\n' + progressBar(Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + '\n(' + (Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + '%)\n\n</caption>');
+                info.push("<tr>");
+                info.push("<th></th>");
+                info.push("<th> USED CAPACITY </th>");
+                info.push("<th> FREE CAPACITY </th>");
+                info.push("</tr>");
+
+                for (z in resources) {
+                    if (spawn.room.storage.store[resources[z]] > 0) {
+                        info.push("<tr>"); info.push("<td>" + resourceImg(resources[z]) + "</td>"); 
+                        info.push("<td>" + spawn.room.storage.store[resources[z]]/1000 + "</td>"); i
+                        info.push("<td>" + spawn.room.storage.store.getFreeCapacity()/1000 + "</td>"); 
+                        info.push("</tr>");
+                    }
+                }
+                info.push("</table>");
             }
+            //
+            info.push("\n\n")
+            //
             if (spawn.room.terminal) {
-                info.push("└ Terminal  " + progressBar(Math.round(spawn.room.terminal.store.getUsedCapacity() / spawn.room.terminal.store.getCapacity() * 100)) + " (" + (Math.round(spawn.room.terminal.store.getUsedCapacity() / spawn.room.terminal.store.getCapacity() * 100)) + "%)");
-                info.push("  ├ Free capacity: " + spawn.room.terminal.store.getFreeCapacity());
-                info.push("  ├ Energy capacity: " + spawn.room.terminal.store[RESOURCE_ENERGY])
-                if (spawn.room.terminal.cooldown) info.push("└ Cooldown: " + spawn.room.terminal.cooldown)
-                else info.push("  └ Cooldown: 0")
-            } else {
-                info.push("└ Terminal");
-                info.push("  └ None")
+                info.push("<table align=\"center\" border=\"1\">");
+                info.push('<caption>TERMINAL\n' + progressBar(Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + '\n(' + (Math.round(spawn.room.storage.store[RESOURCE_ENERGY] / spawn.room.storage.store.getFreeCapacity() * 100)) + '%)\n\n</caption>');
+                info.push("<tr>");
+                info.push("<th></th>");
+                info.push("<th> USED CAPACITY </th>");
+                info.push("<th> FREE CAPACITY </th>");
+                info.push("</tr>");
+
+                for (z in resources) {
+                    if (spawn.room.terminal.store[resources[z]] > 0) {
+                        info.push("<tr>"); info.push("<td>" + resourceImg(resources[z]) + "</td>"); 
+                        info.push("<td>" + spawn.room.terminal.store[resources[z]]/1000 + "</td>"); i
+                        info.push("<td>" + spawn.room.terminal.store.getFreeCapacity()/1000 + "</td>"); 
+                        info.push("</tr>");
+                    }
+                }
+                info.push("</table>");
             }
-            info.push("--------------------------")
         }
 
-        info = info.join("\n");
+        info = info.join("");
 
         return info
     }
