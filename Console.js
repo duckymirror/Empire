@@ -33,11 +33,17 @@ function params() {
 
     global.pushNotification = function(room) {
         let notification = [];
-        notification.push('<script>alert("');
-        notification.push(room + ' have troubles. Look in console for link')
-        notification.push('"); </script>')
-        notification = notification.join("");
-        console.log('<a target="_blank" href="https://screeps.com/a/#!/room/' + Game.shard.name +'/' + room + '">' + room + ' have troubles. Click on me for open this room</a>')
+        notification = `<script>
+        if (!pushNotifications) { 
+            var pushNotifications = {}; 
+        } 
+        if (!pushNotifications['${room}']) {
+            pushNotifications['${room}'] = true;
+            alert('${room} is in trouble. Look into the console for the link.');
+        }
+        </script>`;
+        notification = notification.replace(/\r?\n|\r/g, ' ');
+        console.log(`<a target="_blank" href="https://screeps.com/a/#!/room/${Game.shard.name}/${room}">${room} is in trouble. Click on me to open this room!</a>`);
         return notification
     }
 
