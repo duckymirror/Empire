@@ -20,7 +20,7 @@ function destroyStructures(creep) {
     if (creep.attack(hostileTarget) == ERR_NOT_IN_RANGE) creep.moveTo(hostileTarget);
 }
 
-let Stormtrooper = {
+let DroneWarrior = {
     /** @param {Creep} creep **/
     control(creep) {
         if (creep.spawning) {
@@ -53,8 +53,7 @@ let Stormtrooper = {
                     }
                 }
             }
-
         }
     }
 };
-module.exports = Stormtrooper;
+module.exports = DroneWarrior;
