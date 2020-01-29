@@ -4,7 +4,7 @@ function amountCreeps() {
             delete Memory.creeps[name];
         }
     }
-    Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "DroneWarrior", "DroneRenamer", "DroneClaimer", "DroneHelperBuilder", "DroneHelperUpgrader"];
+    Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "DroneWarrior", "DroneRenamer", "DroneClaimer", "DroneHelperBuilder", "DroneHelperUpgrader", "DroneHelperWarrior"];
     Memory.code = "Ginnungagap, Niflheim, Muspelheim. Ild, is, dråber falder. Ymir, Jotun, skaber aser."
 
     for (let z in Game.rooms) {
@@ -43,13 +43,16 @@ function amountCreeps() {
                     if (spawn.length == 0) {
                         if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                         if ("DroneHelperUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                        if ("DroneHelperWarrior" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                     } else {
                         if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                         if ("DroneHelperUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
+                        if ("DroneHelperWarrior" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                     }
                 } else {
                     if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                     if ("DroneHelperUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
+                    if ("DroneHelperWarrior" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 }
             }
         }
@@ -129,6 +132,10 @@ function runCreep() {
                         break;
                     case "DroneHelperUpgrader":
                         droneTask = require("DroneHelperUpgrader");
+                        droneTask.control(creep);
+                        break;
+                    case "DroneHelperWarrior":
+                        droneTask = require("DroneHelperWarrior");
                         droneTask.control(creep);
                         break;
                 }
