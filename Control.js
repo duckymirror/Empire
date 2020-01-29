@@ -4,7 +4,7 @@ function amountCreeps() {
             delete Memory.creeps[name];
         }
     }
-    Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "DroneWarrior", "DroneRenamer", "DroneClaimer", "DroneHelperBuilder"];
+    Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "DroneWarrior", "DroneRenamer", "DroneClaimer", "DroneHelperBuilder", "DroneHelperUpgrader"];
     Memory.code = "Ginnungagap, Niflheim, Muspelheim. Ild, is, dråber falder. Ymir, Jotun, skaber aser."
 
     for (let z in Game.rooms) {
@@ -42,11 +42,14 @@ function amountCreeps() {
                     const spawn = Game.flags.Claim.room.find(FIND_MY_SPAWNS);
                     if (spawn.length == 0) {
                         if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                        if ("DroneHelperUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                     } else {
-                        if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
+                        if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
+                        if ("DroneHelperUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                     }
                 } else {
                     if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
+                    if ("DroneHelperUpgrader" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 }
             }
         }
@@ -124,13 +127,17 @@ function runCreep() {
                         droneTask = require("DroneHelperBuilder");
                         droneTask.control(creep);
                         break;
+                    case "DroneHelperUpgrader":
+                        droneTask = require("DroneHelperUpgrader");
+                        droneTask.control(creep);
+                        break;
                 }
             }
         }
     }
 }
 const Control = {
-    control(colony) {
+    control() {
         amountCreeps();
         amountCreepsIsLive();
         runCreep();
