@@ -758,8 +758,8 @@ function params() {
             info.push("<th> CAPACITY </th>");
             info.push("</tr>");
             info.push("<tr>");
-            info.push("<td>" + spawn.room.energyAvailable + "</td>");
-            info.push("<td>" + spawn.room.energyCapacityAvailable + "</td>");
+            info.push("<td> " + spawn.room.energyAvailable + "</td>");
+            info.push("<td> " + spawn.room.energyCapacityAvailable + "</td>");
             info.push("</tr>");
             info.push("</table>");
             //
@@ -772,8 +772,8 @@ function params() {
             info.push("<th> SAFE MODE AVAILABLE </th>");
             info.push("</tr>");
             info.push("<tr>");
-            info.push("<td>" + spawn.room.controller.level + "</td>");
-            info.push("<td>" + spawn.room.controller.safeModeAvailable + "</td>");
+            info.push("<td> " + spawn.room.controller.level + "</td>");
+            info.push("<td> " + spawn.room.controller.safeModeAvailable + "</td>");
             info.push("</tr>");
             info.push("</table>");
             //
@@ -790,9 +790,9 @@ function params() {
 
                 for (z in resources) {
                     if (spawn.room.storage.store[resources[z]] > 0) {
-                        info.push("<tr>"); info.push("<td>" + resourceImg(resources[z]) + "</td>"); 
-                        info.push("<td>" + spawn.room.storage.store[resources[z]]/1000 + "</td>"); i
-                        info.push("<td>" + spawn.room.storage.store.getFreeCapacity()/1000 + "</td>"); 
+                        info.push("<tr>"); info.push("<td> " + resourceImg(resources[z]) + "</td>"); 
+                        info.push("<td> " + spawn.room.storage.store[resources[z]]/1000 + "</td>"); i
+                        info.push("<td> " + spawn.room.storage.store.getFreeCapacity()/1000 + "</td>"); 
                         info.push("</tr>");
                     }
                 }
@@ -812,9 +812,9 @@ function params() {
 
                 for (z in resources) {
                     if (spawn.room.terminal.store[resources[z]] > 0) {
-                        info.push("<tr>"); info.push("<td>" + resourceImg(resources[z]) + "</td>"); 
-                        info.push("<td>" + spawn.room.terminal.store[resources[z]]/1000 + "</td>"); i
-                        info.push("<td>" + spawn.room.terminal.store.getFreeCapacity()/1000 + "</td>"); 
+                        info.push("<tr>"); info.push("<td> " + resourceImg(resources[z]) + "</td>"); 
+                        info.push("<td> " + spawn.room.terminal.store[resources[z]]/1000 + "</td>"); i
+                        info.push("<td> " + spawn.room.terminal.store.getFreeCapacity()/1000 + "</td>"); 
                         info.push("</tr>");
                     }
                 }
