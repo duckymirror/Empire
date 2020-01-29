@@ -6,7 +6,6 @@ function amountCreeps() {
     }
     Memory.rolies = ["DroneBuilder", "DroneMiner1", "DroneMiner2", "DroneMineralMiner", "DroneRefiller", "DroneSeller", "DroneUpgrader", "DroneWarrior", "DroneRenamer", "DroneClaimer", "DroneHelperBuilder", "DroneHelperUpgrader", "DroneHelperWarrior"];
     Memory.code = "Ginnungagap, Niflheim, Muspelheim. Ild, is, dråber falder. Ymir, Jotun, skaber aser."
-
     for (let z in Game.rooms) {
         let room = Game.rooms[z];
         const sourceInRoom = room.find(FIND_MINERALS);
@@ -33,12 +32,12 @@ function amountCreeps() {
                 } else {
                     if ("DroneRenamer" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 }
-                if (Game.flags.Claim && !Game.flags.Claim.room.controller.my) {
+                if (Game.flags.Claim && (Game.flags.Claim.room != undefined && !Game.flags.Claim.room.controller.my || Game.flags.Claim.room == undefined)) {
                     if ("DroneClaimer" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
                 } else {
                     if ("DroneClaimer" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 0;
                 }
-                if (Game.flags.Claim && Game.flags.Claim.room.controller.my) {
+                if (Game.flags.Claim && Game.flags.Claim.room != undefined && Game.flags.Claim.room.controller.my) {
                     const spawn = Game.flags.Claim.room.find(FIND_MY_SPAWNS);
                     if (spawn.length == 0) {
                         if ("DroneHelperBuilder" == Memory.rolies[i]) Memory.room[room.name + ".amount." + Memory.rolies[i]] = 1;
