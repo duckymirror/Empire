@@ -1,6 +1,6 @@
 function creepBody(energy, role) {
 
-    if (role == "DroneBuilder" || role == "DroneUpgrader") {
+    if (role == "DroneBuilder" || role == "DroneUpgrader" || role == "DroneHelperBuilder" || role == "DroneHelperUpgrader") {
         if (energy == 300) {
             return [MOVE, MOVE, CARRY, WORK]
         } else if (energy == 350) {
@@ -152,7 +152,7 @@ function creepBody(energy, role) {
         }
     }
 
-    if (role == 'DroneWarrior') {
+    if (role == 'DroneWarrior' || role == "DroneHelperWarrior") {
         if (energy == 300) {
             return [MOVE, MOVE, ATTACK, ATTACK]
         } else if (energy == 350) {
@@ -181,20 +181,8 @@ function creepBody(energy, role) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
         } else if (energy == 950) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
-        } else if (energy == 1000) {
+        } else if (energy >= 1000) {
             return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
-        } else if (energy == 1050) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
-        } else if (energy == 1100) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
-        } else if (energy == 1150) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
-        } else if (energy == 1200) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
-        } else if (energy == 1250) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
-        } else if (energy >= 1300) {
-            return [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK]
         }
     }
 
@@ -211,6 +199,10 @@ function creepBody(energy, role) {
         return [MOVE];
     }
 
+    if (role == "DroneClaimer") {
+        return [MOVE, MOVE, MOVE, MOVE, MOVE, CLAIM];
+    }
+
 }
 
 let roleSpawn = {
@@ -225,14 +217,15 @@ let roleSpawn = {
         let maleNames = ['Arne', 'Birger', 'Bjørn', 'Bo', 'Erik', 'Frode', 'Gorm', 'Halfdan', 'Harald', 'Knud', 'Kåre', 'Leif', 'Njal', 'Roar', 'Rune', 'Sten', 'Skarde', 'Sune', 'Svend', 'Troels', 'Toke', 'Torsten', 'Trygve', 'Ulf', 'Ødger', 'Åge']
         let femaleNames = ['Astrid', 'Bodil', 'Frida', 'Gertrud', 'Gro', 'Estrid', 'Hilda', 'Gudrun', 'Gunhild', 'Helga', 'Inga', 'Liv', 'Randi', 'Signe', 'Sigrid', 'Revna', 'Sif', 'Tora', 'Tove', 'Thyra', 'Thurid', 'Yrsa', 'Ulfhild', 'Åse']
 
-        if (role == "DroneBuilder") newName = maleNames[Game.time%maleNames.length] + " [" + Game.time%1001 + "]";
+        if (role == "DroneBuilder" || role == "DroneHelperBuilder") newName = maleNames[Game.time%maleNames.length] + " [" + Game.time%1001 + "]";
         if (role == "DroneMiner1" || role == "DroneMiner2") newName = maleNames[Game.time%maleNames.length] + " [" + Game.time%1001 + "]";
         if (role == "DroneRefiller") newName = femaleNames[Game.time%femaleNames.length] + " [" + Game.time%1001 + "]";
-        if (role == "DroneUpgrader") newName = femaleNames[Game.time%femaleNames.length] + " [" + Game.time%1001 + "]";
-        if (role == "DroneWarrior") newName = maleNames[Game.time%maleNames.length] + " ID [" + Game.time%1001 + "]";
+        if (role == "DroneUpgrader" || role == "DroneHelperUpgrader") newName = femaleNames[Game.time%femaleNames.length] + " [" + Game.time%1001 + "]";
+        if (role == "DroneWarrior" || role == "DroneHelperWarrior") newName = maleNames[Game.time%maleNames.length] + " ID [" + Game.time%1001 + "]";
         if (role == "DroneRenamer") newName = femaleNames[Game.time%femaleNames.length] + " [" + Game.time%1001 + "]";
         if (role == "DroneMineralMiner") newName = maleNames[Game.time%maleNames.length] + " [" + Game.time%1001 + "]";
         if (role == "DroneSeller") newName = femaleNames[Game.time%femaleNames.length] + " [" + Game.time%1001 + "]";
+        if (role == "DroneClaimer") newName = femaleNames[Game.time%femaleNames.length] + " [" + Game.time%1001 + "]";
         body = creepBody(amountEnergy, role);
         if (!Memory.room[spawn.room.name + ".amountIsLive." + "DroneRefiller"] && !Memory.room[spawn.room.name + ".amountIsLive." + "DroneBuilder"] && !Memory.room[spawn.room.name + ".amountIsLive." + "DroneUpgrader"] && spawn.room.energyCapacityAvailable > spawn.room.energyAvailable) {
             spawn.spawnCreep([MOVE, MOVE, CARRY, CARRY], newName, { memory: { role: "DroneRefiller" } });
